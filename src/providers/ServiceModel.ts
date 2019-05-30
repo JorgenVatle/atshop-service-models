@@ -1,11 +1,11 @@
 import ModelDocument from '../interfaces/ModelDocument';
 import { Application } from '@feathersjs/feathers';
 
-interface Model extends ModelDocument {
+interface ServiceModel extends ModelDocument {
     entry: ModelDocument;
 }
 
-abstract class Model {
+abstract class ServiceModel {
 
     /**
      * Feathers application.
@@ -71,4 +71,4 @@ abstract class Model {
     }
 }
 
-export default Model;
+export default ServiceModel;

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/JorgenVatle/atshop-service-models/issues"
   },
-  "homepage": "https://github.com/JorgenVatle/atshop-service-models#readme"
+  "homepage": "https://github.com/JorgenVatle/atshop-service-models#readme",
+  "devDependencies": {
+    "typescript": "^3.5.1"
+  }
 }

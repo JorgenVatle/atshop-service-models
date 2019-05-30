@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "outDir": "./dist",
+
+    "strict": true,
+    "esModuleInterop": true,
+
+    "sourceRoot": "/",
+    "inlineSourceMap": true,
+    "inlineSources": true
+  },
+  "exclude": [
+    "test",
+    "dist"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

@@ -1,10 +1,28 @@
 import ModelDocument from '../interfaces/ModelDocument';
+import { Application } from '@feathersjs/feathers';
 
 interface Model extends ModelDocument {
     entry: ModelDocument;
 }
 
 abstract class Model {
+
+    /**
+     * Feathers application.
+     */
+    public static App: Application;
+
+    /**
+     * Feathers service path.
+     */
+    public static servicePath: string;
+
+    /**
+     * Feathers service instance for this model instance.
+     */
+    public static get service() {
+        return this.App.service(this.servicePath);
+    }
 
     /**
      * Model constructor.

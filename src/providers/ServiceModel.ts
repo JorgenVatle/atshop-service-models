@@ -1,6 +1,7 @@
 import { Application, Id, Paginated, Params } from '@feathersjs/feathers';
 import ModelDocument from '../interfaces/ModelDocument';
 import { NotFound } from '@feathersjs/errors';
+import PaginatedServiceModel from './PaginatedServiceModel';
 
 export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;

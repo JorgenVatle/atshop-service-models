@@ -23,7 +23,7 @@ abstract class ServiceModel {
     public static servicePath: string;
 
     /**
-     * Feathers service instance for this model instance.
+     * Feathers service instance for this model.
      */
     public static get service() {
         return this.App.service(this.servicePath);

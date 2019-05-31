@@ -13,6 +13,11 @@ interface ServiceModel extends ModelDocument {
 abstract class ServiceModel {
 
     /**
+     * Model index signature.
+     */
+    [s: string]: any;
+
+    /**
      * Feathers application.
      */
     public static App: Application;

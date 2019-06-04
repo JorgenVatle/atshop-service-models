@@ -54,21 +54,6 @@ class ShopModel extends ServiceModel {
     }
 
     /**
-     * Build a full-fledged URL to a page on the given path for the current shop.
-     */
-    public urlTo(path: string) {
-        const frontend = this._App.get('frontend');
-        return Helpers.urlTo(frontend.protocol, `${this.domain}.${frontend.host}`, path);
-    }
-
-    /**
-     * Discord notification instance for the current shop.
-     */
-    public get discord(): DiscordNotification {
-        return new DiscordNotification(this);
-    }
-
-    /**
      * Whether or not this shop has an available Discord webhook.
      */
     public get hasDiscord(): boolean {

@@ -67,3 +67,5 @@ class ShopModel extends ServiceModel {
         return this.entry.maxFraud || 30;
     }
 }
+
+export default ShopModel;

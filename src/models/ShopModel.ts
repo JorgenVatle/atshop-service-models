@@ -2,6 +2,7 @@ import ShopDocument from '../interfaces/ShopDocument';
 import ProductModel from './ProductModel';
 import ServiceModel from '../providers/ServiceModel';
 import CustomerBlacklistModel from './CustomerBlacklistModel';
+import GatewayModel from './GatewayModel';
 
 interface ShopModel extends ShopDocument {
     entry: ShopDocument;

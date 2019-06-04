@@ -1,6 +1,6 @@
-import ShopModel from './ShopModel';
+import ServiceModel from '../providers/ServiceModel';
 
-class GatewayModel extends ShopModel {
+class GatewayModel extends ServiceModel {
 
 }
 

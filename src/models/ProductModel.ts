@@ -1,6 +1,7 @@
 import Dinero from 'dinero.js';
 import ProductDocument from '../interfaces/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
+import ShopModel from './ShopModel';
 
 interface ProductModel extends Omit<ProductDocument, 'value'> {
     entry: ProductDocument;

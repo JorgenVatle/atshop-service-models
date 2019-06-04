@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JorgenVatle/atshop-service-models#readme",
   "devDependencies": {
+    "@feathersjs/feathers": "^3.3.1",
     "@types/dinero.js": "^1.4.0",
     "@types/feathersjs__errors": "^3.3.1",
     "@types/feathersjs__feathers": "^3.1.4",

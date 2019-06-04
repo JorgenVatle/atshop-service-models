@@ -3,7 +3,7 @@ import FeathersRest from '@feathersjs/rest-client';
 import Axios from 'axios';
 
 const Client = Feathers();
-const RestClient = FeathersRest('http://localhost:30303');
+const RestClient = FeathersRest('http://localhost:3030');
 
 Client.configure(RestClient.axios(Axios));
 

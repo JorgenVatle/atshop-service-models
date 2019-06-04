@@ -2,7 +2,7 @@ import { Application, Id, Paginated, Params, Service } from '@feathersjs/feather
 import ModelDocument from '../interfaces/ModelDocument';
 import { NotFound } from '@feathersjs/errors';
 import PaginatedServiceModel from './PaginatedServiceModel';
-import { BaseModel, App } from '../utility/Service';
+import { App } from '../utility/Service';
 
 export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;
@@ -11,7 +11,7 @@ interface ServiceModel extends ModelDocument {
     entry: ModelDocument;
 }
 
-abstract class ServiceModel extends BaseModel {
+abstract class ServiceModel {
 
     /**
      * Model index signature.
@@ -41,7 +41,6 @@ abstract class ServiceModel extends BaseModel {
      * Model constructor.
      */
     public constructor(data: ModelDocument) {
-        super(data);
         this._renewEntry(data);
     }
 

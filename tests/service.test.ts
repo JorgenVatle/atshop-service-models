@@ -11,12 +11,6 @@ class BaseModel  {
 
 SetupServiceModels({
     app: Client,
-    baseModel: BaseModel,
-});
-
-test('can use a custom BaseModel', () => {
-     // @ts-ignore
-     expect(ShopModel.testGetter).toBe('test');
 });
 
 test('can interact with the Feathers server', async () => {

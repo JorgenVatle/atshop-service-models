@@ -1,4 +1,3 @@
-import ModelDocument from '../interfaces/ModelDocument';
 import { Application } from '@feathersjs/feathers';
 
 /**
@@ -7,17 +6,8 @@ import { Application } from '@feathersjs/feathers';
 export let App: Application;
 
 /**
- * Class for ServiceModel to extend.
- */
-export let BaseModel: {
-    new(data: ModelDocument): any,
-    [s: string]: any;
-};
-
-/**
  * Configure Feathers Service Models.
  */
-export const config = (options: { app: Application, baseModel: any }) => {
+export const config = (options: { app: Application }) => {
     App = options.app;
-    BaseModel = options.baseModel || class {}
 };

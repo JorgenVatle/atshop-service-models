@@ -13,7 +13,7 @@ class ShopModel extends ServiceModel {
     /**
      * Service path for the "shops" service.
      */
-    protected static readonly collectionName = 'shops';
+    public static servicePath = '/shops';
 
     /**
      * Publicly visible fields.

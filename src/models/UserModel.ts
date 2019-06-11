@@ -13,3 +13,5 @@ class UserModel extends ServiceModel {
     public static readonly servicePath = '/users';
 
 }
+
+export default UserModel;

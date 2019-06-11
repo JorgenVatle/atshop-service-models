@@ -2,6 +2,7 @@ import { SetupServiceModels } from '../src';
 import Client from './FeathersClient';
 import ShopModel from '../src/models/ShopModel';
 import ProductModel from '../src/models/ProductModel';
+import { Forbidden } from '@feathersjs/errors';
 
 SetupServiceModels({
     app: Client,
@@ -30,4 +31,11 @@ describe('ShopModel', () => {
         expect(products.total).toBeGreaterThan(0);
         expect(products.data[0]).toBeInstanceOf(ProductModel);
     });
+
+    describe('unauthorized users', () => {
+        test('cannot fetch the blacklist', async () => {
+            await expect(testShop.blacklist.fetch()).rejects.toBeInstanceOf(Forbidden);
+        });
+    });
+
 });

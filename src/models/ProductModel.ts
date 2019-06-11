@@ -11,6 +11,11 @@ interface ProductModel extends Omit<ProductDocument, 'value'> {
 class ProductModel extends ServiceModel {
 
     /**
+     * Service path for Product Model.
+     */
+    public static servicePath = '/shop/products';
+
+    /**
      * Fetch stock count for the current product.
      */
     public async getStock(): Promise<number> {

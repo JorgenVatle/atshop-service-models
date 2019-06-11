@@ -1,7 +1,6 @@
 import { SetupServiceModels } from '../src';
 import Client from './FeathersClient';
 import ShopModel from '../src/models/ShopModel';
-import { NotFound } from '@feathersjs/errors';
 
 SetupServiceModels({
     app: Client,

@@ -211,3 +211,5 @@ class OrderModel extends ServiceModel {
     }
 
 }
+
+export default OrderModel;

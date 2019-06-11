@@ -13,7 +13,7 @@ class ProductModel extends ServiceModel {
     /**
      * Service path for Product Model.
      */
-    public static servicePath = '/shop/products';
+    public static readonly servicePath = '/shop/products';
 
     /**
      * Fetch stock count for the current product.

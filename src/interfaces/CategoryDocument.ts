@@ -1,4 +1,6 @@
-export default interface CategoryDocument {
+import ModelDocument from './ModelDocument';
+
+export default interface CategoryDocument extends ModelDocument {
     title: string;
     shopId: string;
     color: string;

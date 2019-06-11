@@ -3,7 +3,7 @@ import FeathersRest from '@feathersjs/rest-client';
 import Axios from 'axios';
 
 const Client = Feathers();
-const RestClient = FeathersRest('https://sandbox.atshop.io');
+const RestClient = FeathersRest('https://api_sandbox.atshop.io');
 
 Client.configure(RestClient.axios(Axios));
 

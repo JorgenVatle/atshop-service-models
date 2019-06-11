@@ -13,6 +13,8 @@ SetupServiceModels({
     app: Client,
 });
 
-test('can interact with the Feathers server', async () => {
-    await expect(ShopModel.get('some-id')).rejects.toBeInstanceOf(NotFound);
+describe('ShopModel', () => {
+    test('can get() a shop by ID', async () => {
+        await expect(ShopModel.get('ZBAWZE4LzB4RoguGY')).resolves.toBeDefined();
+    });
 });

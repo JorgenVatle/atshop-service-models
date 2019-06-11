@@ -16,14 +16,6 @@ class ShopModel extends ServiceModel {
     public static servicePath = '/shops';
 
     /**
-     * Publicly visible fields.
-     */
-    public static readonly publicFields = [
-        '_id', 'name', 'style', 'domain', 'tagline', 'widgets', 'currency', 'companyName', 'customDomain',
-        'feedback.count', 'feedback.score', 'disabled'
-    ];
-
-    /**
      * A shop has many blacklisted customers.
      */
     public get blacklist() {

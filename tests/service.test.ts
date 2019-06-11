@@ -10,4 +10,9 @@ describe('ShopModel', () => {
     test('can get() a shop by ID', async () => {
         await expect(ShopModel.get('ZBAWZE4LzB4RoguGY')).resolves.toBeDefined();
     });
+
+    test('can find() a shop by domain', async () => {
+        const shops = await ShopModel.find({ domain: 'test-shop' }).fetch();
+        expect(shops.total).toBeGreaterThan(0);
+    });
 });

@@ -1,6 +1,11 @@
 import ServiceModel from '../providers/ServiceModel';
+import ProductStockDocument from '../interfaces/ProductStockDocument';
 
-class ProductStockModel extends ServiceModel {
+interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
+    entry: ProductStockDocument;
+}
+
+class ProductStockModel extends ServiceModel<ProductStockDocument> {
 
     /**
      * Service path for Product Stock Model

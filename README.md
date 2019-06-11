@@ -44,3 +44,8 @@ SetupServiceModels({
 
 ## Usage
 ...
+
+## License
+This repository is licensed under the ISC license.
+
+Copyright (c) 2019, Jørgen Vatle.

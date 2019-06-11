@@ -1,4 +1,4 @@
 /**
  * JavaScript key-value object.
  */
-export type KeyVal = { [key: string]: any };
+export type KeyValue = { [key: string]: any };

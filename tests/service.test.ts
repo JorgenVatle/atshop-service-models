@@ -27,7 +27,7 @@ describe('ShopModel', () => {
 
     test('has many products', async () => {
         const products = await testShop.products.fetch();
-        expect(products.total).toBeDefined();
+        expect(products.total).toBeGreaterThan(0);
         expect(products.data[0]).toBeInstanceOf(ProductModel);
     });
 });

@@ -5,7 +5,7 @@ interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
     entry: ProductStockDocument;
 }
 
-class ProductStockModel extends ServiceModel<ProductStockDocument> {
+class ProductStockModel extends ServiceModel {
 
     /**
      * Service path for Product Stock Model

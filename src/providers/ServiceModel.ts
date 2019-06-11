@@ -7,11 +7,11 @@ import { App } from '../utility/Service';
 export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;
 
-interface ServiceModel<Document extends ModelDocument> extends ModelDocument {
-    entry: Document;
+interface ServiceModel extends ModelDocument {
+    entry: ModelDocument;
 }
 
-abstract class ServiceModel<Document = ModelDocument> {
+abstract class ServiceModel {
 
     /**
      * Model index signature.
@@ -40,14 +40,14 @@ abstract class ServiceModel<Document = ModelDocument> {
     /**
      * Model constructor.
      */
-    public constructor(data: Document) {
+    public constructor(data: ModelDocument) {
         this._renewEntry(data);
     }
 
     /**
      * Merge entry data with the current model.
      */
-    protected _renewEntry(entry: Document) {
+    protected _renewEntry(entry: ModelDocument) {
         this.entry = entry;
 
         Object.entries(entry).forEach(([key, value]) => {

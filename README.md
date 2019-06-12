@@ -42,8 +42,23 @@ SetupServiceModels({
 
 **Setup complete!**
 
-## Usage
-...
+## Shops
+
+### Fetch a shop by domain.
+```typescript
+import ShopModel from 'atshop-service-models/models/ShopModel'
+
+const Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
+```
+
+### Fetch a shop's products.  
+```typescript
+const products = await Shop.products.fetch(); // Returns an instance of PaginatedServiceModel.
+
+products.data.forEach((product) => {
+    console.log(product.name);
+});
+```
 
 ## License
 This repository is licensed under the ISC license.

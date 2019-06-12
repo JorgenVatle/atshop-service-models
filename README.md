@@ -54,7 +54,14 @@ SetupServiceModels({
 ```typescript
 import ShopModel from 'atshop-service-models/models/ShopModel';
 
-const Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
+// Fetch a shop by subdomain: (e.g. test-shop.atshop.io)
+let Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
+
+// Fetch a shop by custom domain: (e.g. example.com)
+Shop = await ShopModel.find({ customDomain: 'example.com' });
+
+// Fetch a shop by ID
+Shop = ShopModel.get('ZBAWZE4LzB4RoguGY');
 ```
 
 ### Fetch a shop's products.  

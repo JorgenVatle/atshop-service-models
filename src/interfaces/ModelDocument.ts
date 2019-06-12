@@ -13,4 +13,9 @@ export default interface ModelDocument {
      * Date of the last document update.
      */
     updatedAt: Date;
+
+    /**
+     * Soft-deletion date of the current document.
+     */
+    deletedAt?: Date;
 }

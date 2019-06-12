@@ -90,11 +90,6 @@ export default interface ShopDocument extends ModelDocument {
     productLimit?: number;
 
     /**
-     * Soft deletion date of the current shop.
-     */
-    deletedAt: Date;
-
-    /**
      * ID of the user that soft-deleted the current shop.
      */
     deletedBy: string;

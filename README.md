@@ -141,7 +141,9 @@ OrderModel.service.on('created', (orderData) => {
     
     console.log(`An order was created by ${order.email}, you'll have ${stock - order.quantity} stock left after the order has been paid for.`)
 })
-``` 
+```
+
+See the [Feathers Events](https://docs.feathersjs.com/api/events.html) documentation for more information on this. 
 
 ## License
 This repository is licensed under the ISC license.

@@ -137,7 +137,7 @@ import OrderModel from 'atshop-service-models/models/OrderModel';
 OrderModel.service.on('created', (orderData) => {
     const order = new OrderModel(orderData);
     const product = await order.product;
-    const stock = product.stockForSale.count();
+    const stock = await product.stockForSale.count();
     
     console.log(`An order was created by ${order.email}, you'll have ${stock - order.quantity} stock left after the order has been paid for.`)
 })

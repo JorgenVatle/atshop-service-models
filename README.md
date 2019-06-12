@@ -103,7 +103,7 @@ console.log(order.quantity);            // Quantity of product ordered.
 console.log(order.description);         // Order description.
 ```
 
-## Adding your own properties and methods.
+## Adding your own properties and methods
 You can rather easily extend a model with your own functionality if you have any implementation specific needs.
 ```typescript
 import OrderServiceModel from 'atshop-service-models/models/OrderModel';
@@ -122,8 +122,26 @@ class OrderModel extends OrderServiceModel {
 
 // Send email.
 OrderModel.get('someOrderId').then((order) => order.sendThankYouEmail());
-
 ```
+
+## Hooking into real-time events
+If you're using the [Feathers Socket.io client](https://docs.feathersjs.com/api/client/socketio.html) as described in
+the above setup instructions, you'll be able to listen for changes made to ATShop resources. This isn't strictly a 
+feature of `atshop-service-models` as this functionality is provided directly by the [Feathers](https://feathersjs.com/)
+instance you passed `atshop-service-models` during setup. 
+
+```typescript
+import OrderModel from 'atshop-service-models/models/OrderModel';
+
+FeathersClient.service('/orders').on('created', (orderData) => { // Do note that you will receive events for all orders that are created for shops you have administrative permissions for.
+    const order = new OrderModel(orderData);
+    const product = await order.product;
+    const stock = product.stockForSale.count();
+    
+    console.log(`An order was created by ${order.email}, you'll have ${stock - order.quantity} stock left after the 
+    order has been paid for.`)
+})
+``` 
 
 ## License
 This repository is licensed under the ISC license.

@@ -133,7 +133,8 @@ instance you passed `atshop-service-models` during setup.
 ```typescript
 import OrderModel from 'atshop-service-models/models/OrderModel';
 
-FeathersClient.service('/orders').on('created', (orderData) => { // Do note that you will receive events for all orders that are created for shops you have administrative permissions for.
+// Do note that you will receive events for all orders that are created for shops you have administrative permissions for.
+OrderModel.service.on('created', (orderData) => {
     const order = new OrderModel(orderData);
     const product = await order.product;
     const stock = product.stockForSale.count();

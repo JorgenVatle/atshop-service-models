@@ -6,6 +6,6 @@ export default interface CategoryDocument extends ModelDocument {
     color: string;
     gradient: boolean;
     dynamicSize: boolean;
-    position: string;
+    position: number;
     slug: string;
 }

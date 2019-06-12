@@ -125,15 +125,6 @@ class OrderModel extends ServiceModel {
     }
 
     /**
-     * Prepare a payment for the user, returning an object with enough information to build up an order
-     * on the client side.
-     */
-    public async preparePayment() {
-        // Todo: Add browser-compatible implementation.
-        // @link https://github.com/JorgenVatle/atshop-api/blob/master/src/models/OrderModel.ts#L187
-    }
-
-    /**
      * Fetch the payment method used to complete this order.
      */
     public async paymentMethod() {

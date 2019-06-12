@@ -30,7 +30,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Date of payment for this order.
      */
-    paidAt: Date;
+    paidAt?: Date;
 
     /**
      * Secret key stored in the customer's browser to protect ordered items from search engines.
@@ -46,7 +46,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * ID of the IPN notification that triggered order fulfillment.
      */
-    ipnId: string;
+    ipnId?: string;
 
     /**
      * Currency this order should be paid in.
@@ -57,7 +57,7 @@ export default interface OrderDocument extends ModelDocument {
      * Admin-provided reason for discarding the current order.
      * (If flagged for manual fraud review)
      */
-    discardReason: string;
+    discardReason?: string;
 
     /**
      * Whether or not the current order has been fulfilled.

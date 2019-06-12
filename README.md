@@ -61,7 +61,7 @@ let Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
 Shop = await ShopModel.find({ customDomain: 'example.com' });
 
 // Fetch a shop by ID
-Shop = ShopModel.get('ZBAWZE4LzB4RoguGY');
+Shop = await ShopModel.get('ZBAWZE4LzB4RoguGY');
 ```
 
 ### Fetch a shop's products.  

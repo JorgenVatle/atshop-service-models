@@ -97,7 +97,7 @@ export default interface ProductDocument extends ModelDocument {
     /**
      * Soft-deletion date of this product.
      */
-    deletedAt: Date;
+    deletedAt?: Date;
 
     /**
      * Feedback summary for this product.

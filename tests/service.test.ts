@@ -32,6 +32,10 @@ describe('ShopModel', () => {
         expect(products.data[0]).toBeInstanceOf(ProductModel);
     });
 
+    test('can build URLs to self', () => {
+        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
+    });
+
     describe('unauthorized users', () => {
         test('cannot fetch the blacklist', async () => {
             await expect(testShop.blacklist.fetch()).rejects.toBeInstanceOf(Forbidden);

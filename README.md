@@ -62,7 +62,12 @@ const Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
 const products = await Shop.products.fetch(); // Returns an instance of PaginatedServiceModel.
 
 products.data.forEach((product) => {
-    console.log(product.name);
+    console.log(product.name);          // Product name.
+    console.log(product.description);   // Product description markdown.
+    console.log(product.minQuantity);   // Minimum order quantity for the product.
+    console.log(product.stockCount);    // Remaining stock.
+    console.log(product.value);         // Dinero.js instance of the product value.
+                                        // https://sarahdayan.github.io/dinero.js/
 });
 ```
 

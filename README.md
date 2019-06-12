@@ -73,7 +73,7 @@ products.data.forEach((product) => {
     console.log(product.description);   // Product description markdown.
     console.log(product.minQuantity);   // Minimum order quantity for the product.
     console.log(product.stockCount);    // Remaining stock.
-    console.log(product.value);         // Dinero.js instance of the product value.
+    console.log(product.value);         // Dinero.js instance of the product price.
                                         // https://sarahdayan.github.io/dinero.js/
 });
 ```

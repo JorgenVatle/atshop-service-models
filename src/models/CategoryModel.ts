@@ -13,3 +13,5 @@ class CategoryModel extends ServiceModel {
     public static readonly servicePath = '/shop/categories';
 
 }
+
+export default CategoryModel;

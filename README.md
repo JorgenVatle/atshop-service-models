@@ -2,8 +2,8 @@
 A collection of models for interacting with the ATShop API. Easily **c**reate, **r**ead, **u**pdate and **d**elete 
 ATShop resources.
 
-> **NOTICE** This is still very much a work in progress. The documentation is also very lacking. If you're a 
-TypeScript user, you'll find that most type-hinted properties are somewhat well documented.  
+> **NOTICE** This is still very much a work in progress. The documentation for this package is mostly provided 
+exclusively through TypeScript type hints.
 
 ## Installation & Setup
 There's a couple steps to getting started with `atshop-service-models`.

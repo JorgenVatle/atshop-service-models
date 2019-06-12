@@ -52,7 +52,7 @@ ConfigureModels({
 
 ### Fetch a shop by domain or ID.
 ```typescript
-import ShopModel from 'atshop-service-models/models/ShopModel';
+import { ShopModel } from 'atshop-service-models';
 
 // Fetch a shop by subdomain: (e.g. test-shop.atshop.io)
 let Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
@@ -93,7 +93,7 @@ categories.data.forEach((category) => {
 
 ### Get an order by ID
 ```typescript
-import OrderModel from 'atshop-service-models/models/OrderModel';
+import { OrderModel } from 'atshop-service-models';
 
 const order = await OrderModel.get('orderIdHere');
 
@@ -118,7 +118,7 @@ interact with the API.
 ## Adding your own properties and methods
 You can rather easily extend a model with your own functionality if you have any implementation specific needs.
 ```typescript
-import OrderServiceModel from 'atshop-service-models/models/OrderModel';
+import { OrderModel as OrderServiceModel } from 'atshop-service-models';
 
 class OrderModel extends OrderServiceModel {
     
@@ -147,7 +147,7 @@ object specific to the model's associated service. This is where we derive the r
 below example.
 
 ```typescript
-import OrderModel from 'atshop-service-models/models/OrderModel';
+import { OrderModel } from 'atshop-service-models';
 
 // Do note that you will receive events for all orders that are created for shops you have administrative permissions for.
 OrderModel.service.on('created', async (orderData) => {

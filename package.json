@@ -9,7 +9,8 @@
     "build": "tsc",
     "prepare": "npm run build",
     "preversion": "npm t",
-    "prepublish": "npm t"
+    "prepublish": "npm t",
+    "postpublish": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

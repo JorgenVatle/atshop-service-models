@@ -21,7 +21,7 @@ export default interface ShopDocument extends ModelDocument {
     /**
      * Full custom, merchant provided domain for the current shop.
      */
-    customDomain: string,
+    customDomain?: string,
 
     /**
      * Tagline for the current shop.

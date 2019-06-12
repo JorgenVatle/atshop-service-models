@@ -1,10 +1,10 @@
-import { SetupServiceModels } from '../src';
+import ConfigureModels from '../src/config';
 import Client from './FeathersClient';
 import ShopModel from '../src/models/ShopModel';
 import ProductModel from '../src/models/ProductModel';
 import { Forbidden } from '@feathersjs/errors';
 
-SetupServiceModels({
+ConfigureModels({
     app: Client,
 });
 

@@ -92,7 +92,7 @@ export default interface ShopDocument extends ModelDocument {
     /**
      * ID of the user that soft-deleted the current shop.
      */
-    deletedBy: string;
+    deletedBy?: string;
 
     /**
      * Fraud risk percentage threshold for the current shop.

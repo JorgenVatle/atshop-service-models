@@ -7,6 +7,7 @@ import Dinero from 'dinero.js';
 import ProductStockModel from './ProductStockModel';
 import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
+import { Unprocessable } from '@feathersjs/errors';
 
 interface OrderModel extends Omit<OrderDocument, 'currency'> {
     entry: OrderDocument;
@@ -57,6 +58,9 @@ class OrderModel extends ServiceModel {
      * An order belongs to an IPN.
      */
     public get ipn(): Promise<IpnModel> {
+        if (!this.ipnId) {
+            throw new Unprocessable(`Order #${this._id} does not yet have an attached IPN.`);
+        }
         return this.belongsTo(IpnModel, this.ipnId);
     }
 

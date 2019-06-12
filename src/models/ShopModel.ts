@@ -4,6 +4,7 @@ import ServiceModel from '../providers/ServiceModel';
 import CustomerBlacklistModel from './CustomerBlacklistModel';
 import GatewayModel from './GatewayModel';
 import CategoryModel from './CategoryModel';
+import Helpers from '../utility/Helpers';
 
 interface ShopModel extends ShopDocument {
     entry: ShopDocument;
@@ -67,6 +68,14 @@ class ShopModel extends ServiceModel {
      */
     public get maxFraud() {
         return this.entry.maxFraud || 30;
+    }
+
+    /**
+     * Build a full-fledged URL to a page on the given path for the current shop.
+     */
+    public urlTo(path: string) {
+        const frontend = this._App.get('frontend');
+        return Helpers.urlTo(frontend.protocol, `${this.domain}.${frontend.host}`, path);
     }
 }
 

@@ -1,5 +1,7 @@
 import ModelDocument from './ModelDocument';
 
+export type ProductStyle = 'box' | 'dynamic' | 'card';
+
 export type RequireShipping = 'no' | 'ask' | 'require';
 
 export default interface ProductDocument extends ModelDocument {
@@ -33,7 +35,7 @@ export default interface ProductDocument extends ModelDocument {
      * Merchants can pick from a set of predefined product "styles" that determine how the product should look and
      * behave in the merchant shop.
      */
-    style: string;
+    style: ProductStyle;
 
     /**
      * Whether or not we should require shipping information from the customer during the checkout process.

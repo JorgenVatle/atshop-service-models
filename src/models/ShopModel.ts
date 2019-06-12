@@ -3,6 +3,7 @@ import ProductModel from './ProductModel';
 import ServiceModel from '../providers/ServiceModel';
 import CustomerBlacklistModel from './CustomerBlacklistModel';
 import GatewayModel from './GatewayModel';
+import CategoryModel from './CategoryModel';
 
 interface ShopModel extends ShopDocument {
     entry: ShopDocument;
@@ -34,6 +35,13 @@ class ShopModel extends ServiceModel {
      */
     public get products() {
         return this.hasMany(ProductModel, 'shopId', this.entry._id);
+    }
+
+    /**
+     * A shop can have many categories.
+     */
+    public get categories() {
+        return this.hasMany(CategoryModel, 'shopId', this.entry._id);
     }
 
     /**

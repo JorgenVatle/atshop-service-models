@@ -40,7 +40,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Status of the current order.
      */
-    status: 'reversed' | 'completed' | 'discarded' | 'hold';
+    status?: 'reversed' | 'completed' | 'discarded' | 'hold';
 
     /**
      * ID of the IPN notification that triggered order fulfillment.

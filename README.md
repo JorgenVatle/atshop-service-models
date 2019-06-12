@@ -134,7 +134,7 @@ instance you passed `atshop-service-models` during setup.
 import OrderModel from 'atshop-service-models/models/OrderModel';
 
 // Do note that you will receive events for all orders that are created for shops you have administrative permissions for.
-OrderModel.service.on('created', (orderData) => {
+OrderModel.service.on('created', async (orderData) => {
     const order = new OrderModel(orderData);
     const product = await order.product;
     const stock = await product.stockForSale.count();

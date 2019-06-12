@@ -8,7 +8,8 @@
     "test": "npx jest",
     "build": "tsc",
     "prepare": "npm run build",
-    "preversion": "npm t"
+    "preversion": "npm t",
+    "prepublish": "npm t"
   },
   "repository": {
     "type": "git",

@@ -106,3 +106,5 @@ class OrderEventModel extends ServiceModel {
         return await shop.discord.isValid();
     }
 }
+
+export default OrderEventModel;

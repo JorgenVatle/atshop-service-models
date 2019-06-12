@@ -100,11 +100,6 @@ export default interface ProductDocument extends ModelDocument {
     deletedAt: Date;
 
     /**
-     * Number of customer provided reviews for this product.
-     */
-    ratingCount: number,
-
-    /**
      * Feedback summary for this product.
      */
     feedback?: {

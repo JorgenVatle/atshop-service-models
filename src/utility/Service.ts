@@ -2,9 +2,9 @@ import { Application } from '@feathersjs/feathers';
 
 interface ConfigOptions {
     app: Application,
-    frontend: {
-        host: string,
-        protocol: 'http' | 'https',
+    frontend?: {
+        host?: string,
+        protocol?: 'http' | 'https',
     }
 }
 

@@ -38,9 +38,12 @@ export default interface OrderDocument extends ModelDocument {
     secret: string;
 
     /**
-     * Status of the current order.
+     * Payment status of the current order.
      */
-    status?: 'reversed' | 'completed' | 'discarded' | 'hold';
+    status?: 'reversed' // The customer triggered a chargeback for this order, reverting funds back to the customer.
+        | 'completed'   // Order was paid for and fulfilled.
+        | 'discarded'   // Order was discarded by the shop administrator.
+        | 'hold';       // Pending manual review by the shop administrator.
 
     /**
      * ID of the IPN notification that triggered order fulfillment.

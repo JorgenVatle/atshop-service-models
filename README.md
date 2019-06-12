@@ -139,8 +139,7 @@ OrderModel.service.on('created', (orderData) => {
     const product = await order.product;
     const stock = product.stockForSale.count();
     
-    console.log(`An order was created by ${order.email}, you'll have ${stock - order.quantity} stock left after the 
-    order has been paid for.`)
+    console.log(`An order was created by ${order.email}, you'll have ${stock - order.quantity} stock left after the order has been paid for.`)
 })
 ``` 
 

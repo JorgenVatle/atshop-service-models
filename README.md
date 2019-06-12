@@ -60,6 +60,17 @@ products.data.forEach((product) => {
 });
 ```
 
+### Fetch a shop's categories
+```typescript
+const categories = await Shop.categories.fetch();
+
+categories.data.forEach((category) => {
+    console.log(category.title);    // Category heading
+    console.log(category.slug);     // Category slug
+    console.log(category.position); // Position of category relative to other categories.
+});
+```
+
 ## Orders
 
 ### Get an order by ID

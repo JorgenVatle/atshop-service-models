@@ -50,7 +50,7 @@ SetupServiceModels({
 
 ## Shops
 
-### Fetch a shop by domain.
+### Fetch a shop by domain or ID.
 ```typescript
 import ShopModel from 'atshop-service-models/models/ShopModel';
 

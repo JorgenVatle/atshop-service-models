@@ -46,7 +46,7 @@ SetupServiceModels({
 
 ### Fetch a shop by domain.
 ```typescript
-import ShopModel from 'atshop-service-models/models/ShopModel'
+import ShopModel from 'atshop-service-models/models/ShopModel';
 
 const Shop = await ShopModel.find({ domain: 'test-shop' }).fetchOne();
 ```
@@ -58,6 +58,20 @@ const products = await Shop.products.fetch(); // Returns an instance of Paginate
 products.data.forEach((product) => {
     console.log(product.name);
 });
+```
+
+## Orders
+
+### Get an order by ID
+```typescript
+import OrderModel from 'atshop-service-models/models/OrderModel';
+
+const order = await OrderModel.get('orderIdHere');
+
+console.log(await order.product);       // Product ordered. 
+console.log(await order.humanValue());  // Order value in a human format.
+console.log(order.quantity);            // Quantity of product ordered.
+console.log(order.description);         // Order description.
 ```
 
 ## License

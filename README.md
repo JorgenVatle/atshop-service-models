@@ -103,6 +103,28 @@ console.log(order.quantity);            // Quantity of product ordered.
 console.log(order.description);         // Order description.
 ```
 
+## Adding your own properties and methods.
+You can rather easily extend a model with your own functionality if you have any implementation specific needs.
+```typescript
+import OrderServiceModel from 'atshop-service-models/models/OrderModel';
+
+class OrderModel extends OrderServiceModel {
+    
+    get emailer() {
+        return new MyEmailerService({ defaultEmail: this.email });
+    }
+    
+    sendThankYouEmail() {
+        this.emailer.send({ message: 'Thank you for placing an order!' });
+    }
+    
+}
+
+// Send email.
+OrderModel.get('someOrderId').then((order) => order.sendThankYouEmail());
+
+```
+
 ## License
 This repository is licensed under the ISC license.
 

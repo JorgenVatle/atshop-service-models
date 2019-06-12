@@ -108,7 +108,7 @@ All `atshop-service-models` models come equipped with a set of reusable methods 
 interact with the API.
 
 - `static App` Global Feathers.js application object `atshop-service-models`
-- `static service` Feathers.js service object for current model.
+- `static service` Feathers.js service object for the current model.
 - `static create(data)` Create a new resource for the current model. Returns an instance of self.
 - `static find(query)` Build a query for the current model. Returns an instance of `PaginatedServiceModel`.
 - `static get(_id)` Fetch a single entry from the service by ID.

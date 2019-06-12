@@ -128,7 +128,11 @@ OrderModel.get('someOrderId').then((order) => order.sendThankYouEmail());
 If you're using the [Feathers Socket.io client](https://docs.feathersjs.com/api/client/socketio.html) as described in
 the above setup instructions, you'll be able to listen for changes made to ATShop resources. This isn't strictly a 
 feature of `atshop-service-models` as this functionality is provided directly by the [Feathers](https://feathersjs.com/)
-instance you passed `atshop-service-models` during setup. 
+instance you passed `atshop-service-models` during setup.
+
+All model instances are equipped with a static `service` getter that returns a [Feathers Service](https://docs.feathersjs.com/api/services.html)
+object specific to the model's associated service. This is where we derive the real-time functionality from in the 
+below example.
 
 ```typescript
 import OrderModel from 'atshop-service-models/models/OrderModel';

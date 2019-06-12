@@ -26,6 +26,14 @@ abstract class ServiceModel {
     };
 
     /**
+     * Dynamic accessor for Feathers application.
+     */
+    public get _App() {
+        // @ts-ignore
+        return this.constructor.App;
+    }
+
+    /**
      * Feathers service path.
      */
     public static servicePath: string;

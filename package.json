@@ -6,7 +6,8 @@
   "types": "src/index.ts",
   "scripts": {
     "test": "npx jest",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

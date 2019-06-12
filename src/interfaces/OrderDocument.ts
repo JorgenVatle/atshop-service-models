@@ -39,9 +39,8 @@ export default interface OrderDocument extends ModelDocument {
 
     /**
      * Status of the current order.
-     * Todo: define available status types.
      */
-    status: string;
+    status: 'reversed' | 'completed' | 'discarded' | 'hold';
 
     /**
      * ID of the IPN notification that triggered order fulfillment.

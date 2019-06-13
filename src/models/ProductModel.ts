@@ -4,6 +4,7 @@ import ServiceModel from '../providers/ServiceModel';
 import ShopModel from './ShopModel';
 import ProductStockModel from './ProductStockModel';
 import { Omit } from '../utility/TS';
+import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
 interface ProductModel extends Omit<ProductDocument, 'value'> {
     entry: ProductDocument;
@@ -26,8 +27,8 @@ class ProductModel extends ServiceModel {
     /**
      * A product has many stock entries.
      */
-    public stock() {
-        return this.hasMany(ProductStockModel, 'productId', this.entry._id);
+    public stock(): PaginatedServiceModel<typeof ProductStockModel> {
+        return this.hasMany('ProductStockModel', 'productId', this.entry._id);
     }
 
     /**

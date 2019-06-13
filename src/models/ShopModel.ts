@@ -5,6 +5,7 @@ import CustomerBlacklistModel from './CustomerBlacklistModel';
 import GatewayModel from './GatewayModel';
 import CategoryModel from './CategoryModel';
 import Helpers from '../utility/Helpers';
+import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
 interface ShopModel extends ShopDocument {
     entry: ShopDocument;
@@ -20,29 +21,29 @@ class ShopModel extends ServiceModel {
     /**
      * A shop has many blacklisted customers.
      */
-    public get blacklist() {
-        return this.hasMany(CustomerBlacklistModel, 'shopId', this.entry._id);
+    public get blacklist(): PaginatedServiceModel<typeof CustomerBlacklistModel> {
+        return this.hasMany('CustomerBlacklistModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop has many gateways.
      */
-    public get gateways() {
-        return this.hasMany(GatewayModel, 'shopId', this.entry._id);
+    public get gateways(): PaginatedServiceModel<typeof GatewayModel> {
+        return this.hasMany('GatewayModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop can have many products.
      */
-    public get products() {
-        return this.hasMany(ProductModel, 'shopId', this.entry._id);
+    public get products(): PaginatedServiceModel<typeof ProductModel> {
+        return this.hasMany('ProductModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop can have many categories.
      */
-    public get categories() {
-        return this.hasMany(CategoryModel, 'shopId', this.entry._id);
+    public get categories(): PaginatedServiceModel<typeof CategoryModel> {
+        return this.hasMany('CategoryModel', 'shopId', this.entry._id);
     }
 
     /**

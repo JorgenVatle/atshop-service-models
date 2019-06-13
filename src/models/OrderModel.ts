@@ -9,6 +9,7 @@ import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
+import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
 interface OrderModel extends Omit<OrderDocument, 'currency'> {
     entry: OrderDocument;
@@ -37,8 +38,8 @@ class OrderModel extends ServiceModel {
     /**
      * An order has many ordered items.
      */
-    public get items() {
-        return this.hasMany(ProductStockModel, 'orderId');
+    public get items(): PaginatedServiceModel<typeof ProductStockModel> {
+        return this.hasMany('ProductStockModel', 'orderId');
     }
 
     /**

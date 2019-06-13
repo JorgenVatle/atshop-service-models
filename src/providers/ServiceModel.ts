@@ -113,11 +113,11 @@ abstract class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany(model: typeof ServiceModel, foreignKey: string, localKey = this.entry._id) {
+    protected hasMany(model: ModelName, foreignKey: string, localKey = this.entry._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(model, query);
+        return new PaginatedServiceModel(this.getModel(model), query);
     }
 
     /**

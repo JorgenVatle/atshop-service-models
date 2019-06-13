@@ -4,6 +4,7 @@ import { NotFound } from '@feathersjs/errors';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
+export type ModelName = string;
 export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;
 
@@ -122,14 +123,14 @@ abstract class ServiceModel {
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends ServiceModel>(modelName: string, foreignKey: AsyncKey): Promise<T> {
+    protected belongsTo<T extends ServiceModel>(modelName: ModelName, foreignKey: AsyncKey): Promise<T> {
         return this.getModel(modelName).get(foreignKey);
     }
 
     /**
      * Fetch a model by name.
      */
-    private getModel(modelName: string) {
+    private getModel(modelName: ModelName) {
         return require(`../models/${modelName}`);
     }
 

@@ -3,6 +3,7 @@ import ProductDocument from '../interfaces/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
 import ShopModel from './ShopModel';
 import ProductStockModel from './ProductStockModel';
+import { Omit } from '../utility/TS';
 
 interface ProductModel extends Omit<ProductDocument, 'value'> {
     entry: ProductDocument;

@@ -8,6 +8,7 @@ import ProductStockModel from './ProductStockModel';
 import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { Unprocessable } from '@feathersjs/errors';
+import { Omit } from '../utility/TS';
 
 interface OrderModel extends Omit<OrderDocument, 'currency'> {
     entry: OrderDocument;

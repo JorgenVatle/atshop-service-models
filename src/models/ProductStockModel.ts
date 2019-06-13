@@ -1,5 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import ProductStockDocument from '../interfaces/ProductStockDocument';
+import { Omit } from '../utility/TS';
 
 interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
     entry: ProductStockDocument;

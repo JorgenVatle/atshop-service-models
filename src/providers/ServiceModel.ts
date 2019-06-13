@@ -123,7 +123,7 @@ abstract class ServiceModel {
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends ServiceModel>(modelName: ModelName, foreignKey: AsyncKey): Promise<T> {
+    protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {
         return this.getModel(modelName).get(foreignKey);
     }
 

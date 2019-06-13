@@ -45,14 +45,14 @@ class OrderModel extends ServiceModel {
      * An order belongs to a shop.
      */
     public get shop(): Promise<ShopModel> {
-        return this.belongsTo(ShopModel, this.shopId);
+        return this.belongsTo('ShopModel', this.shopId);
     }
 
     /**
      * An order belongs to a product.
      */
-    public get product() {
-        return <Promise<ProductModel>>this.belongsTo(ProductModel, this.productId);
+    public get product(): Promise<ProductModel> {
+        return this.belongsTo('ProductModel', this.productId);
     }
 
     /**
@@ -62,7 +62,7 @@ class OrderModel extends ServiceModel {
         if (!this.ipnId) {
             throw new Unprocessable(`Order #${this._id} does not yet have an attached IPN.`);
         }
-        return this.belongsTo(IpnModel, this.ipnId);
+        return this.belongsTo('IpnModel', this.ipnId);
     }
 
     /**

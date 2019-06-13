@@ -1,12 +1,12 @@
 import { Paginated, Params } from '@feathersjs/feathers';
 import Model from './ServiceModel';
 
-export default class PaginatedModel {
+export default class PaginatedModel<T extends Model> {
 
     /**
      * Model to be paginated
      */
-    private readonly model: typeof Model;
+    private readonly model: T;
 
     /**
      * Service query.
@@ -16,7 +16,7 @@ export default class PaginatedModel {
     /**
      * Cached pagination result.
      */
-    private _result: Paginated<Model> = { total: -1, limit: -1,  skip: -1, data: [] };
+    private _result: Paginated<T> = { total: -1, limit: -1,  skip: -1, data: [] };
 
     /**
      * Paginated model constructor.
@@ -24,7 +24,7 @@ export default class PaginatedModel {
      * @param model
      * @param query
      */
-    constructor(model: typeof Model, query: Params['query']) {
+    constructor(model: T, query: Params['query']) {
         this.model = model;
         this.query = query;
     }
@@ -78,7 +78,7 @@ export default class PaginatedModel {
      * @param query
      */
     public find(query?: Params['query']) {
-        return new PaginatedModel(this.model, { ...query, ...this.query, });
+        return new PaginatedModel<T>(this.model, { ...query, ...this.query, });
     }
 
     /**

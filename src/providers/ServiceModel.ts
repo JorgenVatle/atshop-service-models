@@ -5,7 +5,7 @@ import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
 export type ModelName = string;
-export type ServiceModelClass<T> = { new(data: ModelDocument): T, get(id: string): Promise<T> };
+export type ServiceModelClass<T> = { new(data: ModelDocument): T, get(id: AsyncKey): Promise<T> };
 export type AsyncKey = Id | Promise<Id>;
 
 interface ServiceModel extends ModelDocument {

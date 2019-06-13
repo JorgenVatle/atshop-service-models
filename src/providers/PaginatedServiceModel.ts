@@ -1,7 +1,7 @@
 import { Paginated, Params } from '@feathersjs/feathers';
 import Model from './ServiceModel';
 
-export default class PaginatedModel<T extends Model> {
+export default class PaginatedModel<T extends typeof Model> {
 
     /**
      * Model to be paginated

@@ -116,7 +116,7 @@ class ServiceModel {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel<T>(this.getModel(model), query);
+        return new PaginatedServiceModel(this.getModel<T>(model), query);
     }
 
     /**

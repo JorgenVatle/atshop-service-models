@@ -130,7 +130,7 @@ class ServiceModel {
      * Fetch a model by name.
      */
     private getModel<T extends typeof ServiceModel>(modelName: ModelName): T {
-        return require(`../models/${modelName}`);
+        return require(`../models/${modelName}`).default;
     }
 
     /**

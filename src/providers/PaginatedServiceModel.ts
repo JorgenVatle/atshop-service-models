@@ -2,12 +2,12 @@ import { Paginated, Params } from '@feathersjs/feathers';
 import ServiceModel from './ServiceModel';
 import { NotFound } from '@feathersjs/errors';
 
-export default class PaginatedModel<T> {
+export default class PaginatedModel<T extends typeof ServiceModel> {
 
     /**
      * Model to be paginated
      */
-    private readonly model: typeof ServiceModel;
+    private readonly model: T;
 
     /**
      * Service query.
@@ -17,7 +17,7 @@ export default class PaginatedModel<T> {
     /**
      * Cached pagination result.
      */
-    private _result: Paginated<T> = { total: -1, limit: -1,  skip: -1, data: [] };
+    private _result: Paginated<InstanceType<T>> = { total: -1, limit: -1,  skip: -1, data: [] };
 
     /**
      * Paginated model constructor.
@@ -25,7 +25,7 @@ export default class PaginatedModel<T> {
      * @param model
      * @param query
      */
-    constructor(model: typeof ServiceModel, query: Params['query']) {
+    constructor(model: T, query: Params['query']) {
         this.model = model;
         this.query = query;
     }
@@ -35,11 +35,11 @@ export default class PaginatedModel<T> {
      *
      * @param result
      */
-    private formatResult(result: Paginated<any>): Paginated<T> {
+    private formatResult(result: Paginated<any>): Paginated<InstanceType<T>> {
         return {
             ...result,
+            // @ts-ignore
             data: result.data.map((document: any) => {
-                // @ts-ignore
                 return new this.model(document);
             }),
         }
@@ -63,7 +63,7 @@ export default class PaginatedModel<T> {
      *
      * @param query
      */
-    public async fetchOne(query: Params['query'] = {}): Promise<T> {
+    public async fetchOne(query: Params['query'] = {}): Promise<InstanceType<T>> {
         const result = await this.fetch(query);
 
         if (result.data.length) {

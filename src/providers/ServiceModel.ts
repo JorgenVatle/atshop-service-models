@@ -5,18 +5,13 @@ import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
 export type ModelName = string;
-export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;
-type ModelClass = typeof ServiceModel;
-export interface ModelDerived<T> extends ModelClass {
-    new(): T
-}
 
 interface ServiceModel extends ModelDocument {
     entry: ModelDocument;
 }
 
-abstract class ServiceModel {
+class ServiceModel {
 
     /**
      * Model index signature.
@@ -117,7 +112,7 @@ abstract class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany<T extends ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
+    protected hasMany<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
@@ -127,14 +122,14 @@ abstract class ServiceModel {
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends ServiceModel>(modelName: ModelName, foreignKey: AsyncKey): Promise<T> {
-        return this.getModel<T>(modelName).get<T>(foreignKey);
+    protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {
+        return this.getModel<T>(modelName).get(foreignKey);
     }
 
     /**
      * Fetch a model by name.
      */
-    private getModel<T>(modelName: ModelName): ModelDerived<T> {
+    private getModel<T extends typeof ServiceModel>(modelName: ModelName): T {
         return require(`../models/${modelName}`);
     }
 
@@ -155,14 +150,14 @@ abstract class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find(query: Params) {
-        return new PaginatedServiceModel(this, query);
+    public static find<T extends typeof ServiceModel>(this: T, query: Params) {
+        return new PaginatedServiceModel<T>(this, query);
     }
 
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get<T extends ServiceModel>(this: ServiceModelClass<T>, id: AsyncKey, query?: Params) {
+    public static async get<T extends typeof ServiceModel>(this: T, id: AsyncKey, query?: Params): Promise<InstanceType<T>> {
         const self = <typeof ServiceModel><unknown>this;
         const result = await self.service.get(await id, query);
 
@@ -174,6 +169,7 @@ abstract class ServiceModel {
             });
         }
 
+        // @ts-ignore
         return new this(result);
     }
 
@@ -181,8 +177,8 @@ abstract class ServiceModel {
      * Insert an entry into the database.
      */
     public static async create(data: any, params?: Params) {
-        // @ts-ignore
         return new this(
+            // @ts-ignore
             await this.service.create(data, params)
         );
     }

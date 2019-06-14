@@ -1,5 +1,6 @@
 import { Paginated, Params } from '@feathersjs/feathers';
 import ServiceModel from './ServiceModel';
+import { NotFound } from '@feathersjs/errors';
 
 export default class PaginatedModel<T> {
 
@@ -62,14 +63,16 @@ export default class PaginatedModel<T> {
      *
      * @param query
      */
-    public async fetchOne(query: Params['query'] = {}): Promise<T | null> {
+    public async fetchOne(query: Params['query'] = {}): Promise<T> {
         const result = await this.fetch(query);
 
         if (result.data.length) {
             return result.data[0];
         }
 
-        return null;
+        throw new NotFound('[PaginatedServiceModel] fetchOne() could not locate any entries!', {
+            query,
+        })
     }
 
     /**

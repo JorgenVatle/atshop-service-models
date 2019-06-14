@@ -5,8 +5,12 @@ import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
 export type ModelName = string;
-export type ServiceModelClass<T> = { new(data: ModelDocument): T, get(id: AsyncKey): Promise<T> };
+export type ServiceModelClass<T> = { new(data: ModelDocument): T };
 export type AsyncKey = Id | Promise<Id>;
+type ModelClass = typeof ServiceModel;
+export interface ModelDerived<T> extends ModelClass {
+    new(): T
+}
 
 interface ServiceModel extends ModelDocument {
     entry: ModelDocument;
@@ -113,24 +117,24 @@ abstract class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
+    protected hasMany<T extends ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(this.getModel<T>(model), query);
+        return new PaginatedServiceModel<T>(this.getModel(model), query);
     }
 
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {
-        return this.getModel<T>(modelName).get(foreignKey);
+    protected belongsTo<T extends ServiceModel>(modelName: ModelName, foreignKey: AsyncKey): Promise<T> {
+        return this.getModel<T>(modelName).get<T>(foreignKey);
     }
 
     /**
      * Fetch a model by name.
      */
-    private getModel<T extends typeof ServiceModel>(modelName: ModelName): T {
+    private getModel<T>(modelName: ModelName): ModelDerived<T> {
         return require(`../models/${modelName}`);
     }
 

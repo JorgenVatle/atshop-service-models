@@ -62,7 +62,7 @@ class OrderEventModel extends ServiceModel {
      * An order event belongs to an order.
      */
     protected get order(): Promise<OrderModel> {
-        return this.belongsTo('OrderModel', this.orderId);
+        return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
     }
 
     /**
@@ -72,7 +72,7 @@ class OrderEventModel extends ServiceModel {
         const shopId = this.order
             .then((order) => order.shop)
             .then((shop) => shop._id);
-        return this.belongsTo('ShopModel', shopId);
+        return this.belongsTo<typeof ShopModel>('ShopModel', shopId);
     }
 
     /**

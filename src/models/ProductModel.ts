@@ -58,7 +58,7 @@ class ProductModel extends ServiceModel {
      * A product belongs to a shop.
      */
     public get shop(): Promise<ShopModel> {
-        return this.belongsTo('ShopModel', this.entry.shopId);
+        return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
     }
 
     /**

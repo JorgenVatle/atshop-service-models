@@ -149,6 +149,7 @@ ConfigureModels({
 Now, any relationship that returns an OrderModel (e.g. `OrderFeedbackModel.order`) will be an instance of your custom
 `OrderModel`.
 
+### TypeScript users:
 If you're a TypeScript user, you'll likely need to override the return types of model to model relationships. 
 ```typescript
 class MyCustomProductModel extends ProductModel {

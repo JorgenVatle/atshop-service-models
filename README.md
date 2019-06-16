@@ -2,8 +2,8 @@
 A collection of models for interacting with the ATShop API. Easily **c**reate, **r**ead, **u**pdate and **d**elete 
 ATShop resources.
 
-![npm](https://img.shields.io/npm/v/atshop-service-models.svg)
-![node](https://img.shields.io/node/v/atshop-service-models.svg)
+[![npm](https://img.shields.io/npm/v/atshop-service-models.svg)](https://www.npmjs.com/package/atshop-service-models)
+[![node](https://img.shields.io/node/v/atshop-service-models.svg)](https://www.npmjs.com/package/atshop-service-models)
 
 > **NOTICE** This is still very much a work in progress. The documentation for this package is mostly provided 
 exclusively through TypeScript type hints.

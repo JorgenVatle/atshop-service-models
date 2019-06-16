@@ -46,5 +46,5 @@ export interface CoinbaseCommerceCredentials extends GatewayBaseDocument {
     sharedSecret: string;
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinPaymentsCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials;
 export default GatewayDocument;

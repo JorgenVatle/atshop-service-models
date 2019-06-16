@@ -12,7 +12,7 @@ class GatewayModel extends ServiceModel {
      * Gateway credentials.
      */
     public get credentials() {
-        const { enabled, name, _id, createdAt, updatedAt, ...credentials } = this.entry;
+        const { enabled, name, _id, createdAt, updatedAt, deletedAt, ...credentials } = this.entry;
 
         return credentials;
     }

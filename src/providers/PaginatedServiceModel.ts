@@ -2,7 +2,7 @@ import { Paginated, Params } from '@feathersjs/feathers';
 import ServiceModel from './ServiceModel';
 import { NotFound } from '@feathersjs/errors';
 
-export default class PaginatedModel<T extends typeof ServiceModel> {
+export default class PaginatedServiceModel<T extends typeof ServiceModel> {
 
     /**
      * Model to be paginated
@@ -81,7 +81,7 @@ export default class PaginatedModel<T extends typeof ServiceModel> {
      * @param query
      */
     public find(query?: Params['query']) {
-        return new PaginatedModel<T>(this.model, { ...query, ...this.query, });
+        return new PaginatedServiceModel<T>(this.model, { ...query, ...this.query, });
     }
 
     /**

@@ -1,4 +1,9 @@
 import ServiceModel from '../providers/ServiceModel';
+import GatewayDocument from '../interfaces/GatewayDocument';
+
+interface GatewayModel extends GatewayDocument {
+    entry: GatewayDocument;
+}
 
 class GatewayModel extends ServiceModel {
 

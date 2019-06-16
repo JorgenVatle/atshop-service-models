@@ -16,6 +16,26 @@ beforeAll(async () => {
     testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
 });
 
+test('Can override service models', async () => {
+    class ProductModelOverride extends ProductModel {
+        customMethod() {
+            return true;
+        }
+    }
+
+    ConfigureModels({
+        app: Client,
+        models: {
+            ProductModel: ProductModelOverride,
+        }
+    });
+
+    const testProduct = <ProductModelOverride>await testShop.products.fetchOne();
+
+    expect(testProduct).toBeInstanceOf(ProductModelOverride);
+    expect(testProduct.customMethod()).toBe(true);
+});
+
 describe('ShopModel', () => {
     test('can get() a shop by ID', async () => {
         await expect(ShopModel.get(testShop._id)).resolves.toBeDefined();

@@ -20,11 +20,14 @@ export let App: Application;
  */
 export const config = (options: ConfigOptions) => {
     App = options.app;
-    App.set('frontend', {
-        host: 'atshop.io',
-        protocol: 'https',
-        ...options.frontend,
-    });
+
+    if (options.frontend || !App.get('frontend')) {
+        App.set('frontend', {
+            host: 'atshop.io',
+            protocol: 'https',
+            ...options.frontend,
+        });
+    }
 
     if (options.models) {
         Object.entries(options.models).forEach(([modelName, model]) => {

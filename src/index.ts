@@ -8,9 +8,11 @@ import OrderModel from './models/OrderModel';
 import ProductModel from './models/ProductModel';
 import ProductStockModel from './models/ProductStockModel';
 import UserModel from './models/UserModel';
+import GatewayModel from './models/GatewayModel';
 
 export {
     CategoryModel,
+    GatewayModel,
     CustomerBlacklistModel,
     IpnModel,
     OrderEventModel,

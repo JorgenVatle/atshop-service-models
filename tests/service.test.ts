@@ -1,12 +1,8 @@
-import ConfigureModels from '../src/config';
 import Client from './FeathersClient';
 import ShopModel from '../src/models/ShopModel';
 import ProductModel from '../src/models/ProductModel';
 import { Forbidden } from '@feathersjs/errors';
-
-ConfigureModels({
-    app: Client,
-});
+import { ATShopServiceModels } from '../src';
 
 /**
  * Always available sandbox test shop.
@@ -23,12 +19,11 @@ test('Can override service models', async () => {
         }
     }
 
-    ConfigureModels({
-        app: Client,
+    Client.configure(ATShopServiceModels({
         models: {
             ProductModel: ProductModelOverride,
         }
-    });
+    }));
 
     const testProduct = <ProductModelOverride>await testShop.products.fetchOne();
 

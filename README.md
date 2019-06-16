@@ -48,9 +48,9 @@ ConfigureModels({
 
 #### Setup complete!
 
-Since we're using FeatherJS as our API intermediary, `atshop-service-models` can run in either a browser or on your 
-Node.js server. This can be very handy if you're deploying your own storefront and don't want to depend on 
-any backend other than [ATShop.io](https://atshop.io).
+Since we're using [FeatherJS](https://feathersjs.com/) as our API intermediary, `atshop-service-models` can run in
+either a browser or on your Node.js server. This can be very handy if you're deploying your own storefront and don't
+want to depend on any backend other than [ATShop.io](https://atshop.io).
 
 ## Shops
 

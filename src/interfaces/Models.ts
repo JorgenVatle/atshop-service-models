@@ -23,3 +23,5 @@ export default interface Models {
     ShopModel: typeof ShopModel,
     UserModel: typeof UserModel,
 }
+
+export type ModelName = keyof Models;

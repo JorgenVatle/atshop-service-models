@@ -39,11 +39,9 @@ FeathersClient.configure(SocketClient);
 
 ### 4. Setting up `atshop-service-models`
 ```typescript
-import ConfigureModels from 'atshop-service-models/config';
+import { ATShopServiceModels } from 'atshop-service-models';
 
-ConfigureModels({
-    app: FeathersClient,
-});
+FeathersClient.configure(ATShopServiceModels());
 ```
 
 #### Setup complete!

@@ -1,10 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import GatewayDocument from '../interfaces/GatewayDocument';
 
-interface GatewayModel extends GatewayDocument {
-    entry: GatewayDocument;
-}
-
 class GatewayModel extends ServiceModel {
 
     /**
@@ -12,6 +8,17 @@ class GatewayModel extends ServiceModel {
      */
     public static readonly servicePath = '/shop/gateways';
 
+    /**
+     * A gateway belongs to a shop.
+     */
+    public get shop() {
+        return this.belongsTo('ShopModel', this.shopId);
+    }
+
+}
+
+interface GatewayModel extends GatewayDocument {
+    entry: GatewayDocument;
 }
 
 export default GatewayModel;

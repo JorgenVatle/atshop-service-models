@@ -9,7 +9,7 @@ import ProductModel from './models/ProductModel';
 import ProductStockModel from './models/ProductStockModel';
 import UserModel from './models/UserModel';
 import GatewayModel from './models/GatewayModel';
-import ConfigureATShopServiceModels from './config';
+import ATShopServiceModels from './config';
 
 export {
     CategoryModel,
@@ -23,5 +23,5 @@ export {
     ProductStockModel,
     ShopModel,
     UserModel,
-    ConfigureATShopServiceModels,
+    ATShopServiceModels,
 }

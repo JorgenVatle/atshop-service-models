@@ -9,6 +9,15 @@ class GatewayModel extends ServiceModel {
     public static readonly servicePath = '/shop/gateways';
 
     /**
+     * Gateway credentials.
+     */
+    public get credentials() {
+        const { enabled, name, _id, createdAt, updatedAt, ...credentials } = this.entry;
+
+        return credentials;
+    }
+
+    /**
      * A gateway belongs to a shop.
      */
     public get shop() {

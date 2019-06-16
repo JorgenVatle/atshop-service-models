@@ -1,7 +1,7 @@
 import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
-interface ConfigOptions {
+export interface ConfigOptions {
     app: Application,
     frontend?: {
         host?: string,

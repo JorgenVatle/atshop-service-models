@@ -149,6 +149,23 @@ ConfigureModels({
 Now, any relationship that returns an OrderModel (e.g. `OrderFeedbackModel.order`) will be an instance of your custom
 `OrderModel`.
 
+If you're a TypeScript user, you'll likely need to override the return types of model to model relationships. 
+```typescript
+class MyCustomProductModel extends ProductModel {
+    
+    // "Belongs to" and "has one" relationships return a promise.
+    shop!: Promise<MyCustomShopModel> // Now you'll get proper type-hinting for any calls to the shop relationship on MyCustomProductModel.
+    
+}
+
+class MyCustomShopModel extends ShopModel {
+    
+    // "Has many" relationships return instances of PagiantedServiceModel.
+    products!: PaginatedServiceModel<MyCustomProductModel>
+    
+}
+```
+
 ## Hooking into real-time events
 If you're using the [Feathers Socket.io client](https://docs.feathersjs.com/api/client/socketio.html) as described in
 the above setup instructions, you'll be able to listen for changes made to ATShop resources. This isn't strictly a 

@@ -141,12 +141,11 @@ OrderModel.get('someOrderId').then((order) => order.sendThankYouEmail());
 To ensure your model is utilized for for future relationship calls. (e.g. `ShopModel.products`), you'll need to 
 register it during the [configuration process](#4-setting-up-atshop-service-models).
 ```typescript
-ConfigureModels({
-    app: FeathersApp,
+FeathersClient.configure(ATShopServiceModels({
     models: {
-        OrderModel: OrderModel, // Referencing the OrderModel you see up above.
+        OrderModel, // Referencing the OrderModel you see up above.
     }
-})
+}));
 ```
 Now, any relationship that returns an OrderModel (e.g. `OrderFeedbackModel.order`) will be an instance of your custom
 `OrderModel`.

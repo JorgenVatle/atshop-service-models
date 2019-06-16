@@ -12,7 +12,7 @@ class GatewayModel<Credentials extends GatewayBaseDocument = GatewayDocument> ex
      * Gateway credentials.
      */
     public get credentials() {
-        const { enabled, name, _id, createdAt, updatedAt, deletedAt, ...credentials } = <Credentials><unknown>this.entry;
+        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = <Credentials><unknown>this.entry;
 
         return credentials;
     }

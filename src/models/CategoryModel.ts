@@ -2,10 +2,6 @@ import ServiceModel from '../providers/ServiceModel';
 import CategoryDocument from '../interfaces/CategoryDocument';
 import ShopModel from './ShopModel';
 
-interface CategoryModel extends CategoryDocument {
-    entry: CategoryDocument;
-}
-
 class CategoryModel extends ServiceModel {
 
     /**
@@ -20,6 +16,10 @@ class CategoryModel extends ServiceModel {
         return this.belongsTo<typeof ShopModel>('ShopModel', this.shopId);
     }
 
+}
+
+interface CategoryModel extends CategoryDocument {
+    entry: CategoryDocument;
 }
 
 export default CategoryModel;

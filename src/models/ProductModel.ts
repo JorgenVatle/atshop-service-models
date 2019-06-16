@@ -6,10 +6,6 @@ import ProductStockModel from './ProductStockModel';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
-interface ProductModel extends Omit<ProductDocument, 'value'> {
-    entry: ProductDocument;
-}
-
 class ProductModel extends ServiceModel {
 
     /**
@@ -76,6 +72,10 @@ class ProductModel extends ServiceModel {
         return this.stock().find(this.stockForSaleQuery);
     }
 
+}
+
+interface ProductModel extends Omit<ProductDocument, 'value'> {
+    entry: ProductDocument;
 }
 
 export default ProductModel;

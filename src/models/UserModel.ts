@@ -1,10 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import { UserDocument } from '../interfaces/UserDocument';
 
-interface UserModel extends UserDocument {
-    entry: UserDocument;
-}
-
 class UserModel extends ServiceModel {
 
     /**
@@ -12,6 +8,10 @@ class UserModel extends ServiceModel {
      */
     public static readonly servicePath = '/users';
 
+}
+
+interface UserModel extends UserDocument {
+    entry: UserDocument;
 }
 
 export default UserModel;

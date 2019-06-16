@@ -1,10 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import CustomerBlacklistDocument from '../interfaces/CustomerBlacklistDocument';
 
-interface CustomerBlacklistModel extends CustomerBlacklistDocument {
-    entry: CustomerBlacklistDocument;
-}
-
 class CustomerBlacklistModel extends ServiceModel {
 
     /**
@@ -14,4 +10,7 @@ class CustomerBlacklistModel extends ServiceModel {
 
 }
 
+interface CustomerBlacklistModel extends CustomerBlacklistDocument {
+    entry: CustomerBlacklistDocument;
+}
 export default CustomerBlacklistModel;

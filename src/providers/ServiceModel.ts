@@ -4,13 +4,6 @@ import { NotFound } from '@feathersjs/errors';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
-export type ModelName = string;
-export type AsyncKey = Id | Promise<Id>;
-
-interface ServiceModel extends ModelDocument {
-    entry: ModelDocument;
-}
-
 class ServiceModel {
 
     /**
@@ -184,4 +177,10 @@ class ServiceModel {
     }
 }
 
+interface ServiceModel extends ModelDocument {
+    entry: ModelDocument;
+}
+
+export type ModelName = string;
+export type AsyncKey = Id | Promise<Id>;
 export default ServiceModel;

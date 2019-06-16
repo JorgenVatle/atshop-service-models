@@ -11,10 +11,6 @@ import { Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
-interface OrderModel extends Omit<OrderDocument, 'currency'> {
-    entry: OrderDocument;
-}
-
 class OrderModel extends ServiceModel {
 
     /**
@@ -207,6 +203,10 @@ class OrderModel extends ServiceModel {
         return shop.urlTo('/admin/orders/' + this._id);
     }
 
+}
+
+interface OrderModel extends Omit<OrderDocument, 'currency'> {
+    entry: OrderDocument;
 }
 
 export default OrderModel;

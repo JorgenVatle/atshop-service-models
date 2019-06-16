@@ -3,10 +3,6 @@ import OrderEventDocument, { BaseMetadata, OrderEventMetadata, OrderEventName } 
 import ShopModel from './ShopModel';
 import OrderModel from './OrderModel';
 
-interface OrderEventModel extends OrderEventDocument {
-    entry: OrderEventDocument;
-}
-
 class OrderEventModel extends ServiceModel {
 
     /**
@@ -105,6 +101,10 @@ class OrderEventModel extends ServiceModel {
 
         return await shop.discord.isValid();
     }
+}
+
+interface OrderEventModel extends OrderEventDocument {
+    entry: OrderEventDocument;
 }
 
 export default OrderEventModel;

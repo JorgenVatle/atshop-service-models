@@ -7,10 +7,6 @@ import CategoryModel from './CategoryModel';
 import Helpers from '../utility/Helpers';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 
-interface ShopModel extends ShopDocument {
-    entry: ShopDocument;
-}
-
 class ShopModel extends ServiceModel {
 
     /**
@@ -78,6 +74,10 @@ class ShopModel extends ServiceModel {
         const frontend = this._App.get('frontend');
         return Helpers.urlTo(frontend.protocol, `${this.domain}.${frontend.host}`, path);
     }
+}
+
+interface ShopModel extends ShopDocument {
+    entry: ShopDocument;
 }
 
 export default ShopModel;

@@ -2,10 +2,6 @@ import ServiceModel from '../providers/ServiceModel';
 import OrderModel from './OrderModel';
 import OrderFeedbackDocument from '../interfaces/OrderFeedbackDocument';
 
-interface OrderFeedbackModel extends OrderFeedbackDocument {
-    entry: OrderFeedbackDocument;
-}
-
 class OrderFeedbackModel extends ServiceModel {
 
     /**
@@ -20,6 +16,10 @@ class OrderFeedbackModel extends ServiceModel {
         return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
     }
 
+}
+
+interface OrderFeedbackModel extends OrderFeedbackDocument {
+    entry: OrderFeedbackDocument;
 }
 
 export default OrderFeedbackModel;

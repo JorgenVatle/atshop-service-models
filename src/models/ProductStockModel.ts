@@ -2,10 +2,6 @@ import ServiceModel from '../providers/ServiceModel';
 import ProductStockDocument from '../interfaces/ProductStockDocument';
 import { Omit } from '../utility/TS';
 
-interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
-    entry: ProductStockDocument;
-}
-
 class ProductStockModel extends ServiceModel {
 
     /**
@@ -13,6 +9,10 @@ class ProductStockModel extends ServiceModel {
      */
     public static readonly servicePath = '/shop/product/stock'
 
+}
+
+interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
+    entry: ProductStockDocument;
 }
 
 export default ProductStockModel;

@@ -136,6 +136,19 @@ class OrderModel extends OrderServiceModel {
 OrderModel.get('someOrderId').then((order) => order.sendThankYouEmail());
 ```
 
+To ensure your model is utilized for for future relationship calls. (e.g. `ShopModel.products`), you'll need to 
+register it during the [configuration process](#4-setting-up-atshop-service-models).
+```typescript
+ConfigureModels({
+    app: FeathersApp,
+    models: {
+        OrderModel: OrderModel, // Referencing the OrderModel you see up above.
+    }
+})
+```
+Now, any relationship that returns an OrderModel (e.g. `OrderFeedbackModel.order`) will be an instance of your custom
+`OrderModel`.
+
 ## Hooking into real-time events
 If you're using the [Feathers Socket.io client](https://docs.feathersjs.com/api/client/socketio.html) as described in
 the above setup instructions, you'll be able to listen for changes made to ATShop resources. This isn't strictly a 

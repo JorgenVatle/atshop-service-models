@@ -1,7 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import GatewayDocument, { GatewayBaseDocument } from '../interfaces/GatewayDocument';
 
-class GatewayModel<Credentials extends GatewayBaseDocument = GatewayDocument> extends ServiceModel {
+class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends ServiceModel {
 
     /**
      * Gateway Model service path.
@@ -12,7 +12,7 @@ class GatewayModel<Credentials extends GatewayBaseDocument = GatewayDocument> ex
      * Gateway credentials.
      */
     public get credentials() {
-        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = <Credentials><unknown>this.entry;
+        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = <Credentials>this.entry;
 
         return credentials;
     }
@@ -26,7 +26,7 @@ class GatewayModel<Credentials extends GatewayBaseDocument = GatewayDocument> ex
 
 }
 
-interface GatewayModel<Credentials extends GatewayBaseDocument> extends GatewayBaseDocument {
+interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends GatewayBaseDocument {
     entry: GatewayDocument;
 }
 

@@ -1,5 +1,6 @@
 import { Application } from '@feathersjs/feathers';
 import { config, ConfigOptions } from './utility/Service';
+import { Omit } from './utility/TS';
 
 /**
  * Configure package using existing Feathers instance.

@@ -1,5 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderEventDocument, { BaseMetadata, OrderEventMetadata, OrderEventName } from '../interfaces/OrderEventDocument';
+import OrderEventDocument, { BaseMetadata, OrderEventName } from '../interfaces/OrderEventDocument';
 import ShopModel from './ShopModel';
 import OrderModel from './OrderModel';
 
@@ -85,22 +85,6 @@ class OrderEventModel extends ServiceModel {
         return this.customerNotifiable.indexOf(this.name) !== -1;
     }
 
-    /**
-     * Whether or not this event should trigger a Discord notification.
-     */
-    protected async shouldNotifyDiscord(): Promise<boolean> {
-        const shop = await this.shop;
-
-        if (!shop.hasDiscord) {
-            return false;
-        }
-
-        if (!this.isNotifiable) {
-            return false;
-        }
-
-        return await shop.discord.isValid();
-    }
 }
 
 interface OrderEventModel extends OrderEventDocument {

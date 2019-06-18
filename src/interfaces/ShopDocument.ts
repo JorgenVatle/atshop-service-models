@@ -82,6 +82,11 @@ export default interface ShopDocument extends ModelDocument {
          * Merchant provided URI of the current shop's logo.
          */
         logoUri?: string,
+
+        /**
+         * URI to background image for this shop.
+         */
+        backgroundImage?: string;
     };
 
     /**

@@ -28,7 +28,7 @@ class ProductModel extends ServiceModel {
     }
 
     /**
-     * Check if the current product has enough stock to create a sale.
+     * Check if the current product has enough stock to create a sale of the given quantity.
      */
     public async hasStockForSale(count: number): Promise<boolean> {
         return (await this.getStock()) >= count;

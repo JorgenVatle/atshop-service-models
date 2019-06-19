@@ -3,6 +3,8 @@ import ShopModel from '../src/models/ShopModel';
 import ProductModel from '../src/models/ProductModel';
 import { Forbidden } from '@feathersjs/errors';
 import { ATShopServiceModels } from '../src';
+import CategoryModel from '../src/models/CategoryModel';
+import Factory from 'feathers-factory';
 
 /**
  * Always available sandbox test shop.
@@ -57,4 +59,15 @@ describe('ShopModel', () => {
         });
     });
 
+});
+
+describe('CategoryModel', () => {
+    it('can match paths', async () => {
+        const category = new CategoryModel(<any>await Factory.get('category', {
+            shopId: testShop._id,
+            slug: 'test'
+        }));
+
+        expect(category.matchesPath('/test')).toBe(true);
+    });
 });

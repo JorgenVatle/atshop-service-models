@@ -16,6 +16,12 @@ class CategoryModel extends ServiceModel {
         return this.belongsTo<typeof ShopModel>('ShopModel', this.shopId);
     }
 
+    /**
+     * Whether or not the given path matches this category's slug.
+     */
+    public matchesPath(path: string) {
+        return path.replace(/^\/+/, '') === this.slug;
+    }
 }
 
 interface CategoryModel extends CategoryDocument {

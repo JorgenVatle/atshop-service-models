@@ -26,6 +26,11 @@ export default interface ProductDocument extends ModelDocument {
     icon: string;
 
     /**
+     * URL to product image.
+     */
+    image_url?: string;
+
+    /**
      * Minimum order quantity.
      */
     minQuantity: number;

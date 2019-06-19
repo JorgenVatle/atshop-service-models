@@ -64,12 +64,25 @@ class ProductModel extends ServiceModel {
         return { productId: this._id, forSale: true }
     }
 
-
     /**
      * Product stock that is for sale.
      */
     public get stockForSale() {
         return this.stock().find(this.stockForSaleQuery);
+    }
+
+    /**
+     * Product rating in stars.
+     * (Float between 0 - 5).
+     */
+    public get stars() {
+        const feedback = this.entry.feedback;
+
+        if (!feedback) {
+            return 'N/A';
+        }
+
+        return feedback.score / 20;
     }
 
 }

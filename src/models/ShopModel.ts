@@ -74,6 +74,13 @@ class ShopModel extends ServiceModel {
         const frontend = this._App.get('frontend');
         return Helpers.urlTo(frontend.protocol, `${this.domain}.${frontend.host}`, path);
     }
+
+    /**
+     * Legal name of the current shop.
+     */
+    public get legalName() {
+        return this.companyName || this.name;
+    }
 }
 
 interface ShopModel extends ShopDocument {

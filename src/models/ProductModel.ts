@@ -1,12 +1,14 @@
 import Dinero from 'dinero.js';
+import { get } from 'lodash';
 import ProductDocument from '../interfaces/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
 import ShopModel from './ShopModel';
 import ProductStockModel from './ProductStockModel';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
+import FeedbackSummary from '../interfaces/FeedbackSummary';
 
-class ProductModel extends ServiceModel {
+class ProductModel extends ServiceModel implements FeedbackSummary {
 
     /**
      * Service path for Product Model.
@@ -77,10 +79,21 @@ class ProductModel extends ServiceModel {
         const feedback = this.entry.feedback;
 
         if (!feedback) {
-            return 'N/A';
+            return 0;
         }
 
         return feedback.score / 20;
+    }
+
+    /**
+     * Summary of feedback for this product.
+     */
+    public get feedbackSummary() {
+        return {
+            count: get(this.feedback, 'count', 0),
+            percentage: get(this.feeedback, 'score', 0),
+            stars: this.stars,
+        }
     }
 
 }

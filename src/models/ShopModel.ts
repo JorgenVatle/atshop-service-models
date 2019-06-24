@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import ShopDocument from '../interfaces/ShopDocument';
 import ProductModel from './ProductModel';
 import ServiceModel from '../providers/ServiceModel';
@@ -6,8 +7,9 @@ import GatewayModel from './GatewayModel';
 import CategoryModel from './CategoryModel';
 import Helpers from '../utility/Helpers';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
+import FeedbackSummary from '../interfaces/FeedbackSummary';
 
-class ShopModel extends ServiceModel {
+class ShopModel extends ServiceModel implements FeedbackSummary {
 
     /**
      * Service path for the "shops" service.
@@ -80,6 +82,17 @@ class ShopModel extends ServiceModel {
      */
     public get legalName() {
         return this.companyName || this.name;
+    }
+
+    /**
+     * Summary of feedback for this product.
+     */
+    public get feedbackSummary() {
+        return {
+            count: get(this.entry, 'feedback.count', 0),
+            percentage: get(this.entry, 'feedback.score', 0),
+            stars: get(this.entry, 'feedback.score', 0) / 20,
+        }
     }
 }
 

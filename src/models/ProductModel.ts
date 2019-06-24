@@ -76,13 +76,13 @@ class ProductModel extends ServiceModel implements FeedbackSummary {
      * (Float between 0 - 5).
      */
     public get stars() {
-        const feedback = this.entry.feedback;
+        const summary = this.feedbackSummary;
 
-        if (!feedback) {
-            return 0;
+        if (!summary.count) {
+            return 'N/A';
         }
 
-        return feedback.score / 20;
+        return summary.stars;
     }
 
     /**
@@ -90,9 +90,9 @@ class ProductModel extends ServiceModel implements FeedbackSummary {
      */
     public get feedbackSummary() {
         return {
-            count: get(this.feedback, 'count', 0),
-            percentage: get(this.feeedback, 'score', 0),
-            stars: this.stars,
+            count: get(this.entry, 'feedback.count', 0),
+            percentage: get(this.entry, 'feedback.score', 0),
+            stars: get(this.entry, 'feedback.score', 0) / 20,
         }
     }
 

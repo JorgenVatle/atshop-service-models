@@ -103,4 +103,19 @@ export default interface ShopDocument extends ModelDocument {
      * Fraud risk percentage threshold for the current shop.
      */
     maxFraud: number;
+
+    /**
+     * Shop feedback.
+     */
+    feedback?: {
+        /**
+         * Number of reviews left across all products belonging to this shop.
+         */
+        count: number;
+
+        /**
+         * A score from 0 - 100 determining the percentage of positive reviews.
+         */
+        score: number;
+    }
 }

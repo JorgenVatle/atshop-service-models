@@ -1,6 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import OrderModel from './OrderModel';
 import OrderFeedbackDocument from '../interfaces/OrderFeedbackDocument';
+import ProductModel from './ProductModel';
 
 class OrderFeedbackModel extends ServiceModel {
 
@@ -14,6 +15,13 @@ class OrderFeedbackModel extends ServiceModel {
      */
     public get order() {
         return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
+    }
+
+    /**
+     * Order feedback belongs to a product.
+     */
+    public get product() {
+        return this.belongsTo<typeof ProductModel>('ProductModel', this.productI);
     }
 
 }

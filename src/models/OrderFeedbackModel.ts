@@ -21,7 +21,7 @@ class OrderFeedbackModel extends ServiceModel {
      * Order feedback belongs to a product.
      */
     public get product() {
-        return this.belongsTo<typeof ProductModel>('ProductModel', this.productI);
+        return this.belongsTo<typeof ProductModel>('ProductModel', this.productId);
     }
 
 }

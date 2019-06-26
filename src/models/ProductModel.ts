@@ -7,6 +7,7 @@ import ProductStockModel from './ProductStockModel';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
+import CategoryModel from './CategoryModel';
 
 class ProductModel extends ServiceModel implements FeedbackSummary {
 
@@ -55,6 +56,13 @@ class ProductModel extends ServiceModel implements FeedbackSummary {
      */
     public get shop(): Promise<ShopModel> {
         return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
+    }
+
+    /**
+     * A product can belong to a category.
+     */
+    public get category() {
+        return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
     }
 
     /**

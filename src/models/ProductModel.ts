@@ -106,7 +106,7 @@ class ProductModel extends ServiceModel implements FeedbackSummary {
 
 }
 
-interface ProductModel extends Omit<ProductDocument, 'value'> {
+interface ProductModel extends Omit<ProductDocument, 'value' | 'category'> {
     entry: ProductDocument;
 }
 

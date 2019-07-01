@@ -65,4 +65,14 @@ export default interface OrderDocument extends ModelDocument {
      * Whether or not the current order has been fulfilled.
      */
     fulfilled: boolean,
+
+    /**
+     * Tracked analytics event for the current order.
+     */
+    analytics?: {
+        /**
+         * Whether or not we've tracked the purchase event for this order.
+         */
+        purchase?: boolean;
+    }
 }

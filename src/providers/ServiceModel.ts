@@ -28,6 +28,20 @@ class ServiceModel {
     }
 
     /**
+     * FeathersVuex Model for the current service.
+     */
+    public get vuex() {
+        // @ts-ignore
+       const model = this.constructor.service.FeathersVuexModel;
+
+       if (!model) {
+           console.warn('[atshop-service-models] No FeathersVuexModel available for this service.', this.constructor.name)
+       }
+
+       return model;
+    }
+
+    /**
      * Feathers service path.
      */
     public static servicePath: string;

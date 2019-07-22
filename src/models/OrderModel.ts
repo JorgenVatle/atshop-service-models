@@ -120,6 +120,19 @@ class OrderModel extends ServiceModel {
     }
 
     /**
+     * Product ID passed to payment gateway.
+     */
+    public get gatewayProductId() {
+        return this.product.then((product) => {
+            if (product.useOrderIdAsItemName) {
+                return undefined;
+            }
+
+            return product._id;
+        });
+    }
+
+    /**
      * Full order value, in human readable decimal.
      */
     public async humanValue() {

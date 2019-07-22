@@ -109,7 +109,13 @@ class OrderModel extends ServiceModel {
      * Order product name.
      */
     public get name() {
-        return this.product.then((product) => product.name);
+        return this.product.then((product) => {
+            if (product.useOrderIdAsItemName) {
+                return `Order: ${this._id}`
+            }
+
+            return product.name;
+        });
     }
 
     /**

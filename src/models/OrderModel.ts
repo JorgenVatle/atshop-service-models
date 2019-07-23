@@ -172,6 +172,13 @@ class OrderModel extends ServiceModel {
     }
 
     /**
+     * Whether or not the current order has feedback attached.
+     */
+    public get hasFeedback(): Promise<boolean> {
+        return this.feedback.then((feedback) => !!feedback);
+    }
+
+    /**
      * Gravatar image URL for the customer.
      */
     public get customerAvatar() {

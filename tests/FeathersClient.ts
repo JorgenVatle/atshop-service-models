@@ -4,8 +4,10 @@ import Axios from 'axios';
 import { ATShopServiceModels } from '../src';
 import FeathersFactories from './FeathersFactories';
 
+require('dotenv-defaults').config();
+
 const Client = Feathers();
-const RestClient = FeathersRest('https://api_sandbox.atshop.io');
+const RestClient = FeathersRest(process.env.API_URL);
 
 Client.configure(RestClient.axios(Axios));
 Client.configure(ATShopServiceModels());

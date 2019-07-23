@@ -1,7 +1,7 @@
 import Client from './FeathersClient';
 import ShopModel from '../src/models/ShopModel';
 import ProductModel from '../src/models/ProductModel';
-import { Forbidden } from '@feathersjs/errors';
+import { Forbidden, NotFound } from '@feathersjs/errors';
 import { ATShopServiceModels } from '../src';
 import CategoryModel from '../src/models/CategoryModel';
 import Factory from 'feathers-factory';
@@ -88,6 +88,6 @@ describe('OrderModel', () => {
         expect(await orderWithFeedback.hasFeedback).toBe(true);
         expect(await orderWithoutFeedback.hasFeedback).toBeFalsy();
         expect(await orderWithFeedback.feedback).toBeTruthy();
-        expect(await orderWithoutFeedback.feedback).toBeFalsy();
+        await expect(orderWithoutFeedback.feedback).rejects.toBeInstanceOf(NotFound);
     });
 });

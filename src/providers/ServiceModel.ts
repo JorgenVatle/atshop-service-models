@@ -132,7 +132,7 @@ class ServiceModel {
      * Remove the current model from the database.
      */
     public remove() {
-        return this._App.remove(this._id);
+        return this.service.remove(this._id);
     }
 
     /**

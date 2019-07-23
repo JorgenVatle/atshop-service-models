@@ -5,11 +5,14 @@ import { Forbidden } from '@feathersjs/errors';
 import { ATShopServiceModels } from '../src';
 import CategoryModel from '../src/models/CategoryModel';
 import Factory from 'feathers-factory';
+import OrderModel from '../src/models/OrderModel';
 
 /**
  * Always available sandbox test shop.
  */
 let testShop: ShopModel;
+const orderIdWithFeedback = 'PF5HfQQAAqm2unQfr';
+
 beforeAll(async () => {
     testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
 });
@@ -69,5 +72,18 @@ describe('CategoryModel', () => {
         }));
 
         expect(category.matchesPath('/test')).toBe(true);
+    });
+});
+
+describe('OrderModel', () => {
+    it('can get() using ID', async () => {
+        await expect(OrderModel.get(orderIdWithFeedback)).resolves.toBeDefined();
+    });
+
+    it('can check for feedback', async () => {
+        const order = await OrderModel.get(orderIdWithFeedback);
+
+        expect(await order.hasFeedback).toBe(true);
+        expect(await order.feedback).toBeTruthy();
     });
 });

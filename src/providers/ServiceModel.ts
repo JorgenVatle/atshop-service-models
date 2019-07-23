@@ -97,6 +97,14 @@ class ServiceModel {
     }
 
     /**
+     * Dynamic accessor for current service.
+     */
+    public get service() {
+        // @ts-ignore
+        return this.constructor.service;
+    }
+
+    /**
      * FeathersVuex Model for the current service.
      */
     public get vuex() {

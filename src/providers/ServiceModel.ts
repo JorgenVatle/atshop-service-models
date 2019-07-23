@@ -128,6 +128,16 @@ class ServiceModel {
     }
 
     /**
+     * Register a has-one relationship for the current model.
+     */
+    protected hasOne<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey: AsyncKey = this._id) {
+        const query: Params['query'] = {};
+        query[foreignKey] = localKey;
+
+        return new PaginatedServiceModel(this.getModel<T>(model), query).fetchOne();
+    }
+
+    /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
     protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {

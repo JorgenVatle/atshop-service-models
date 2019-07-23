@@ -10,6 +10,7 @@ import IpnModel from './IpnModel';
 import { Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
+import OrderFeedbackModel from './OrderFeedbackModel';
 
 class OrderModel extends ServiceModel {
 
@@ -50,6 +51,13 @@ class OrderModel extends ServiceModel {
      */
     public get product(): Promise<ProductModel> {
         return this.belongsTo<typeof ProductModel>('ProductModel', this.productId);
+    }
+
+    /**
+     * An order can have feedback.
+     */
+    public get feedback(): Promise<OrderFeedbackModel> {
+        return this.hasOne<typeof OrderFeedbackModel>('OrderFeedbackModel', 'orderId')
     }
 
     /**

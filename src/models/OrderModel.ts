@@ -56,7 +56,7 @@ class OrderModel extends ServiceModel {
     /**
      * An order can have feedback.
      */
-    public get feedback(): Promise<OrderFeedbackModel> {
+    public get feedback(): Promise<OrderFeedbackModel | null> {
         return this.hasOne<typeof OrderFeedbackModel>('OrderFeedbackModel', 'orderId')
     }
 

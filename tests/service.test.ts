@@ -12,6 +12,7 @@ import OrderModel from '../src/models/OrderModel';
  */
 let testShop: ShopModel;
 const orderIdWithFeedback = 'PF5HfQQAAqm2unQfr';
+const orderIdWithoutFeedback = '1Uj86Cw0re3q';
 
 beforeAll(async () => {
     testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
@@ -81,9 +82,12 @@ describe('OrderModel', () => {
     });
 
     it('can check for feedback', async () => {
-        const order = await OrderModel.get(orderIdWithFeedback);
+        const orderWithFeedback = await OrderModel.get(orderIdWithFeedback);
+        const orderWithoutFeedback = await OrderModel.get(orderIdWithoutFeedback);
 
-        expect(await order.hasFeedback).toBe(true);
-        expect(await order.feedback).toBeTruthy();
+        expect(await orderWithFeedback.hasFeedback).toBe(true);
+        expect(await orderWithoutFeedback.hasFeedback).toBeFalsy();
+        expect(await orderWithFeedback.feedback).toBeTruthy();
+        expect(await orderWithoutFeedback.feedback).toBeFalsy();
     });
 });

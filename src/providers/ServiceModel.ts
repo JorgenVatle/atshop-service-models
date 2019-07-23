@@ -152,6 +152,13 @@ class ServiceModel {
     }
 
     /**
+     * Remove the current model from the database.
+     */
+    public remove() {
+        return this._App.remove(this._id);
+    }
+
+    /**
      * Find a list of entries from the current service.
      */
     public static _find(query: Params['query']): Promise<Paginated<ModelDocument>> {

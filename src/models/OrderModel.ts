@@ -7,7 +7,7 @@ import Dinero from 'dinero.js';
 import ProductStockModel from './ProductStockModel';
 import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
-import { Unprocessable } from '@feathersjs/errors';
+import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
@@ -175,7 +175,13 @@ class OrderModel extends ServiceModel {
      * Whether or not the current order has feedback attached.
      */
     public get hasFeedback(): Promise<boolean> {
-        return this.feedback.then((feedback) => !!feedback);
+        return this.feedback.then(() => true).catch((exception) => {
+            if (exception instanceof NotFound !== true) {
+                throw exception;
+            }
+
+            return false;
+        });
     }
 
     /**

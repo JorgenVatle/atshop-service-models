@@ -8,6 +8,6 @@ export default interface ProductInterface {
     /**
      * Whether or not the product has enough stock to create a sale.
      */
-    hasEnoughStock: Promise<boolean>;
+    hasEnoughStock(): Promise<boolean>;
 
 }

@@ -10,4 +10,8 @@ export default interface ProductInterface {
      */
     hasStockForSale(count: number): Promise<boolean>;
 
+    /**
+     * Product implementation type.
+     */
+    type?: 'group' | 'product';
 }

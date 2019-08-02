@@ -35,7 +35,7 @@ class OrderFeedbackModel extends ServiceModel {
             $limit: -1,
         }).fetch();
 
-        const ratings: number[] = await feedback.data.map((feedback) => feedback.positive ? 1 : 0);
+        const ratings: number[] = feedback.data.map((feedback) => feedback.positive ? 1 : 0);
         let sum = 0;
 
         if (ratings.length) {

@@ -17,6 +17,23 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
         return this.belongsToMany('ProductModel', this.productIds)
     }
 
+    /**
+     * Whether or not this product group has enough stock to create a sale.
+     */
+    public async hasStockForSale(count: number): Promise<boolean> {
+        let enoughStock = false;
+        const products = await (await this.products).fetch({ query: { $limit: -1 } });
+
+        products.data.forEach((product: ProductModel) => {
+            if (enoughStock) return;
+            if (product.hasStockForSale(count)) {
+                enoughStock = true;
+            }
+        });
+
+        return enoughStock;
+    }
+
 }
 
 interface ProductGroupModel extends ProductGroupDocument {

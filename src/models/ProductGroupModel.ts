@@ -10,10 +10,15 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      */
     public static readonly servicePath = '/shop/product/groups';
 
+    /**
+     * A product group belongs to many products.
+     */
+    public get products() {
+        return this.belongsToMany('ProductGroupModel', this.productIds)
+    }
 
 }
 
 interface ProductGroupModel extends ProductGroupDocument {
     entry: ProductGroupDocument;
 }
-

@@ -45,7 +45,7 @@ export default interface ProductDocumentInterface extends ModelDocument {
     /**
      * ID of the category that this product belongs to.
      */
-    category?: string;
+    category: string;
 
     /**
      * Position of this product relative to other products.

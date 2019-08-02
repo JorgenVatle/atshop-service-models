@@ -1,9 +1,52 @@
+import { ProductStyle } from './ProductDocument';
+
 export default interface ProductInterface {
+
+    /**
+     * ID of the shop this product belongs to.
+     */
+    shopId: string;
 
     /**
      * Product name.
      */
     name: string;
+
+    /**
+     * Product description.
+     */
+    description: string;
+
+    /**
+     * Product display style.
+     */
+    style: ProductStyle,
+
+    /**
+     * Product image URL.
+     */
+    image_url?: string;
+
+    /**
+     * Product fallback icon.
+     */
+    icon?: string;
+
+    /**
+     * Whether or not to display the product description on the product card.
+     */
+    displayDescription: boolean;
+
+    /**
+     * Category ID this product belongs to.
+     */
+    category?: string;
+
+    /**
+     * Display priority of this product.
+     * From low to high.
+     */
+    priority?: number;
 
     /**
      * Remaining stock for sale for the product.

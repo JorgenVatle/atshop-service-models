@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
@@ -33,6 +34,17 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
         });
 
         return enoughStock;
+    }
+
+    /**
+     * Summary of feedback for this product group.
+     */
+    public get feedbackSummary() {
+        return {
+            count: get(this.entry, 'feedback.count', 0),
+            percentage: get(this.entry, 'feedback.score', 0),
+            stars: get(this.entry, 'feedback.score') / 20,
+        }
     }
 
 }

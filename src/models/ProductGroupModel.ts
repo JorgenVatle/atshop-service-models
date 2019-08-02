@@ -13,7 +13,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
 
 }
 
-interface ProductModel extends ProductGroupDocument {
+interface ProductGroupModel extends ProductGroupDocument {
     entry: ProductGroupDocument;
 }
 

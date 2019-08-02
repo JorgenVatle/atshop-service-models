@@ -14,7 +14,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      * A product group belongs to many products.
      */
     public get products() {
-        return this.belongsToMany('ProductGroupModel', this.productIds)
+        return this.belongsToMany('ProductModel', this.productIds)
     }
 
 }

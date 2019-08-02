@@ -29,12 +29,10 @@ class OrderFeedbackModel extends ServiceModel {
      */
     public static async rating(productIds: string[]) {
         const feedback = await this.find({
-            query: {
-                productId: {
-                    $in: productIds
-                },
-                $limit: -1,
-            }
+            productId: {
+                $in: productIds
+            },
+            $limit: -1,
         }).fetch();
 
         const ratings: number[] = await feedback.data.map((feedback) => feedback.positive ? 1 : 0);

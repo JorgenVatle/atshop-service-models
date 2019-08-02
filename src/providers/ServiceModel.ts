@@ -171,6 +171,17 @@ class ServiceModel {
     }
 
     /**
+     * Register a belongs-to-many relationship for the current model.
+     */
+    protected async belongsToMany<T extends typeof ServiceModel>(modelName: ModelName, foreignKeys: AsyncKey[]) {
+        const query: Params['query'] = {
+            _id: await Promise.all(foreignKeys),
+        };
+
+        return new PaginatedServiceModel(this.getModel<T>(modelName), query);
+    }
+
+    /**
      * Merge entry data with the current model.
      */
     protected _renewEntry(entry: ModelDocument) {

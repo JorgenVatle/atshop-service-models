@@ -22,3 +22,5 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
 interface ProductGroupModel extends ProductGroupDocument {
     entry: ProductGroupDocument;
 }
+
+export default ProductGroupModel;

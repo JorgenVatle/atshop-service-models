@@ -1,6 +1,7 @@
 import { ProductStyle } from './ProductDocument';
+import ModelDocument from './ModelDocument';
 
-export default interface ProductInterface {
+export default interface ProductInterface extends ModelDocument {
 
     /**
      * ID of the shop this product belongs to.

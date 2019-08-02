@@ -9,6 +9,7 @@ import ProductStockModel from '../models/ProductStockModel';
 import ShopModel from '../models/ShopModel';
 import UserModel from '../models/UserModel';
 import OrderFeedbackModel from '../models/OrderFeedbackModel';
+import ProductGroupModel from '../models/ProductGroupModel';
 
 export default interface Models {
     CategoryModel: typeof CategoryModel,
@@ -22,6 +23,7 @@ export default interface Models {
     ProductStockModel: typeof ProductStockModel,
     ShopModel: typeof ShopModel,
     UserModel: typeof UserModel,
+    ProductGroupModel: typeof ProductGroupModel,
 }
 
 export type ModelName = keyof Models;

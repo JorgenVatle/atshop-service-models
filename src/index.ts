@@ -10,6 +10,7 @@ import ProductStockModel from './models/ProductStockModel';
 import UserModel from './models/UserModel';
 import GatewayModel from './models/GatewayModel';
 import ATShopServiceModels from './config';
+import ProductGroupModel from './models/ProductGroupModel';
 
 export {
     CategoryModel,
@@ -20,6 +21,7 @@ export {
     OrderFeedbackModel,
     OrderModel,
     ProductModel,
+    ProductGroupModel,
     ProductStockModel,
     ShopModel,
     UserModel,

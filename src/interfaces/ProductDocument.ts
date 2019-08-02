@@ -1,8 +1,8 @@
-import ProductInterface from './ProductInterface';
+import ProductDocumentInterface from './ProductDocumentInterface';
 
 export type RequireShipping = 'no' | 'ask' | 'require';
 
-export default interface ProductDocument extends ProductInterface {
+export default interface ProductDocument extends ProductDocumentInterface {
 
     /**
      * Markdown to be displayed to customers who've purchased this product.
@@ -51,5 +51,21 @@ export default interface ProductDocument extends ProductInterface {
      * Soft-deletion date of this product.
      */
     deletedAt?: Date;
+
+    /**
+     * Feedback summary for this product.
+     */
+    feedback?: {
+        /**
+         * Number of ratings provided by customers.
+         */
+        count: number;
+
+        /**
+         * Score for this product.
+         * (0 - 100)
+         */
+        score: number;
+    }
 
 }

@@ -8,7 +8,7 @@ import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import CategoryModel from './CategoryModel';
-import ProductInterface from '../interfaces/ProductInterface';
+import { ProductInterface } from '../interfaces/ProductInterface';
 
 class ProductModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 

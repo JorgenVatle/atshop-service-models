@@ -1,5 +1,6 @@
-import { ProductStyle } from './ProductDocument';
 import ModelDocument from './ModelDocument';
+
+export type ProductStyle = 'box' | 'dynamic' | 'card';
 
 export default interface ProductInterface extends ModelDocument {
 
@@ -9,17 +10,19 @@ export default interface ProductInterface extends ModelDocument {
     shopId: string;
 
     /**
-     * Product name.
+     * Title of the product.
      */
     name: string;
 
     /**
-     * Product description.
+     * Markdown description of the current product.
      */
     description: string;
 
     /**
-     * Product display style.
+     * Product info layout.
+     * Merchants can pick from a set of predefined product "styles" that determine how the product should look and
+     * behave in the merchant shop.
      */
     style: ProductStyle,
 
@@ -29,28 +32,29 @@ export default interface ProductInterface extends ModelDocument {
     image_url?: string;
 
     /**
-     * Product fallback icon.
+     * Icon to use as a fallback if no product image is provided.
      */
     icon?: string;
 
     /**
-     * Whether or not to display the product description on the product card.
+     * Whether or not we should display this product's markdown description on the product card itself instead of in
+     * a dialog that pops up when the customer clicks on the product.
      */
     displayDescription: boolean;
 
     /**
-     * Category ID this product belongs to.
+     * ID of the category that this product belongs to.
      */
     category?: string;
 
     /**
-     * Display priority of this product.
+     * Position of this product relative to other products.
      * From low to high.
      */
     priority?: number;
 
     /**
-     * Remaining stock for sale for the product.
+     * Number of stock entries that are left for sale for this product.
      */
     stockCount: number;
 
@@ -63,4 +67,20 @@ export default interface ProductInterface extends ModelDocument {
      * Product implementation type.
      */
     type?: 'group' | 'product';
+
+    /**
+     * Feedback summary for this product.
+     */
+    feedback?: {
+        /**
+         * Number of ratings provided by customers.
+         */
+        count: number;
+
+        /**
+         * Score for this product.
+         * (0 - 100)
+         */
+        score: number;
+    }
 }

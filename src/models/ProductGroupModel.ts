@@ -2,6 +2,7 @@ import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
 import ProductGroupDocument from '../interfaces/ProductGroupDocument';
+import ProductModel from './ProductModel';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -13,8 +14,8 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
     /**
      * A product group belongs to many products.
      */
-    public get products() {
-        return this.belongsToMany('ProductModel', this.productIds)
+    public get products(): Promise<ProductModel> {
+        return this.belongsToMany<typeof ProductModel>('ProductModel', this.productIds);
     }
 
     /**

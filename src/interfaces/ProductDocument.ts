@@ -52,20 +52,4 @@ export default interface ProductDocument extends ProductDocumentInterface {
      */
     deletedAt?: Date;
 
-    /**
-     * Feedback summary for this product.
-     */
-    feedback?: {
-        /**
-         * Number of ratings provided by customers.
-         */
-        count: number;
-
-        /**
-         * Score for this product.
-         * (0 - 100)
-         */
-        score: number;
-    }
-
 }

@@ -63,4 +63,20 @@ export default interface ProductDocumentInterface extends ModelDocument {
      */
     type?: 'group' | 'product';
 
+    /**
+     * Feedback summary for this product.
+     */
+    feedback?: {
+        /**
+         * Number of ratings provided by customers.
+         */
+        count: number;
+
+        /**
+         * Score for this product.
+         * (0 - 100)
+         */
+        score: number;
+    }
+
 }

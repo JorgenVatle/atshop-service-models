@@ -1,6 +1,11 @@
 export default interface ProductInterface {
 
     /**
+     * Product name.
+     */
+    name: string;
+
+    /**
      * Remaining stock for sale for the product.
      */
     stockCount: number;

@@ -4,6 +4,7 @@ import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
 import ProductGroupDocument from '../interfaces/ProductGroupDocument';
 import ProductModel from './ProductModel';
+import Dinero from 'dinero.js';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -45,6 +46,20 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
             percentage: get(this.entry, 'feedback.score', 0),
             stars: get(this.entry, 'feedback.score') / 20,
         }
+    }
+
+    /**
+     * Product group value.
+     */
+    public get value() {
+        const products = this.entry._belongsToMany['/shop/products']
+            .sort((productA, productB) => productA.value - productB.value);
+
+        if (!products.length) {
+            return Dinero({ amount: 0 });
+        }
+
+        return Dinero({ amount: products[0].value });
     }
 
 }

@@ -52,4 +52,9 @@ export default interface ProductDocument extends ProductDocumentInterface {
      */
     deletedAt?: Date;
 
+    /**
+     * Number of stock entries that are left for sale for this product.
+     */
+    stockCount: number;
+
 }

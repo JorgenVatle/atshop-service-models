@@ -54,11 +54,6 @@ export default interface ProductDocumentInterface extends ModelDocument {
     priority?: number;
 
     /**
-     * Number of stock entries that are left for sale for this product.
-     */
-    stockCount: number;
-
-    /**
      * Product implementation type.
      */
     type?: 'group' | 'product';

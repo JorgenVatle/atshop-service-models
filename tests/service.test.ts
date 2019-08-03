@@ -53,6 +53,14 @@ describe('ShopModel', () => {
         expect(products.data[0]).toBeInstanceOf(ProductModel);
     });
 
+    test('can fetch raw (non-instantiated) products', async () => {
+        const products = await testShop.products.fetchRaw();
+        expect(products.total).toBeGreaterThan(0);
+        expect(products.data[0]).not.toBeInstanceOf(ProductModel);
+        expect(products.data[0]._id).toBeTruthy();
+        expect(products.data[0].name).toBeTruthy();
+    });
+
     test('can build URLs to self', () => {
         expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
     });

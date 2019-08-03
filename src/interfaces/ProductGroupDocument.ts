@@ -1,4 +1,5 @@
 import ProductDocumentInterface from './ProductDocumentInterface';
+import ProductDocument from './ProductDocument';
 
 export default interface ProductGroupDocument extends ProductDocumentInterface {
 
@@ -11,5 +12,12 @@ export default interface ProductGroupDocument extends ProductDocumentInterface {
      * List of product IDs attached to this group.
      */
     productIds: string[];
+
+    /**
+     * ProductGroups belong to many Products.
+     */
+    _belongsToMany: {
+        '/shop/products': ProductDocument[],
+    }
 
 }

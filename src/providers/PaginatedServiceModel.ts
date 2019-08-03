@@ -53,9 +53,16 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
             return this._result;
         }
 
-        const result = await this.model._find({ ...query, ...this.query });
+        const result = await this.fetchRaw(query);
+        this._result = this.formatResult(result);
+        return this._result;
+    }
 
-        return this._result = this.formatResult(result)
+    /**
+     * Fire a raw FeathersJS fetch request to the current model.
+     */
+    public async fetchRaw(query: Params['query'] = {}) {
+        return await this.model._find({ ...query, ...this.query });
     }
 
     /**

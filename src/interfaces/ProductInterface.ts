@@ -5,4 +5,9 @@ export interface ProductInterface {
      */
     hasStockForSale(count: number): Promise<boolean>;
 
+    /**
+     * Number of stock entries that are left for sale for this product.
+     */
+    stockCount: number;
+
 }

@@ -62,6 +62,14 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
         return Dinero({ amount: products[0].value });
     }
 
+    /**
+     * Total stock count for this product group.
+     */
+    public get stockCount() {
+        return this.entry._belongsToMany['/shop/products']
+            .reduce((sum, product) => sum + (product.stockCount || 0), 0);
+    }
+
 }
 
 interface ProductGroupModel extends ProductGroupDocument {

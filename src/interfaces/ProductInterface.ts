@@ -1,3 +1,5 @@
+import { Dinero } from 'dinero.js';
+
 export interface ProductInterface {
 
     /**
@@ -9,5 +11,10 @@ export interface ProductInterface {
      * Number of stock entries that are left for sale for this product.
      */
     stockCount: number;
+
+    /**
+     * Product value instanced as a Dinero object.
+     */
+    value: Dinero,
 
 }

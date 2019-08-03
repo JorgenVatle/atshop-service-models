@@ -61,7 +61,7 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
     /**
      * Fire a raw FeathersJS fetch request to the current model.
      */
-    public async fetchRaw(query: Params['query'] = {}) {
+    public async fetchRaw(query: Params['query'] = {}): Promise<Paginated<InstanceType<T>['entry']>> {
         return await this.model._find({ ...query, ...this.query });
     }
 

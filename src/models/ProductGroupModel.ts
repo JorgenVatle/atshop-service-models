@@ -5,6 +5,7 @@ import { ProductInterface } from '../interfaces/ProductInterface';
 import ProductGroupDocument from '../interfaces/ProductGroupDocument';
 import ProductModel from './ProductModel';
 import Dinero from 'dinero.js';
+import { CategoryModel } from '../index';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -18,6 +19,13 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      */
     public get products() {
         return this.belongsToMany<typeof ProductModel>('ProductModel', this.productIds);
+    }
+
+    /**
+     * A product group belongs to a category.
+     */
+    public get category() {
+        return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
     }
 
     /**

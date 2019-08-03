@@ -175,7 +175,9 @@ class ServiceModel {
      */
     protected async belongsToMany<T extends typeof ServiceModel>(modelName: ModelName, foreignKeys: AsyncKey[]) {
         const query: Params['query'] = {
-            _id: await Promise.all(foreignKeys),
+            _id: {
+                $in: await Promise.all(foreignKeys),
+            },
         };
 
         return new PaginatedServiceModel(this.getModel<T>(modelName), query);

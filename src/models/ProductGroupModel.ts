@@ -52,7 +52,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      * Product group value.
      */
     public get value() {
-        const products = this.entry._belongsToMany['/shop/products']
+        const products = [...this.entry._belongsToMany['/shop/products']]
             .sort((productA, productB) => productA.value - productB.value);
 
         if (!products.length) {

@@ -80,7 +80,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
 
 }
 
-interface ProductGroupModel extends ProductGroupDocument {
+interface ProductGroupModel extends Omit<ProductGroupDocument, 'category'> {
     entry: ProductGroupDocument;
 }
 

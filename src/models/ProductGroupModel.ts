@@ -6,6 +6,7 @@ import ProductGroupDocument from '../interfaces/ProductGroupDocument';
 import ProductModel from './ProductModel';
 import Dinero from 'dinero.js';
 import { CategoryModel } from '../index';
+import ShopModel from './ShopModel';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -26,6 +27,13 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      */
     public get category() {
         return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
+    }
+
+    /**
+     * A product group belongs to a shop.
+     */
+    public get shop() {
+        return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
     }
 
     /**

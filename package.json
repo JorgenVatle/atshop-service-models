@@ -52,6 +52,7 @@
   "dependencies": {
     "@feathersjs/errors": "^3.3.6",
     "dinero.js": "^1.6.0",
+    "escape-string-regexp": "^2.0.0",
     "gravatar": "^1.8.0",
     "lodash": "^4.17.11"
   }

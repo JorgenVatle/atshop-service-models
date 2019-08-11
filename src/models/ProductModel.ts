@@ -1,5 +1,6 @@
 import Dinero from 'dinero.js';
 import { get } from 'lodash';
+import EscapeRegex from 'escape-string-regexp';
 import ProductDocument from '../interfaces/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
 import ShopModel from './ShopModel';
@@ -102,6 +103,24 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
             count: get(this.entry, 'feedback.count', 0),
             percentage: get(this.entry, 'feedback.score', 0),
             stars: get(this.entry, 'feedback.score', 0) / 20,
+        }
+    }
+
+    /**
+     * Build a search query for a product using the given string.
+     */
+    static buildSearch(search: string) {
+        const regex = {
+            $regex: new RegExp(`${EscapeRegex(search)}`, 'i')
+        };
+
+        return {
+            $or: [
+                { _id: regex, },
+                { name: regex },
+                { description: regex },
+                { productIds: regex, },
+            ]
         }
     }
 

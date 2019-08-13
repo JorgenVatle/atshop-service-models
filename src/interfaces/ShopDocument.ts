@@ -117,5 +117,14 @@ export default interface ShopDocument extends ModelDocument {
          * A score from 0 - 100 determining the percentage of positive reviews.
          */
         score: number;
-    }
+    },
+
+    /**
+     * Category to be highlighted on the product landing page.
+     */
+    featured?: {
+        title: string;
+        icon: string;
+        categoryId: string;
+    };
 }

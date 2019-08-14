@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import { Omit } from '../utility/TS';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';

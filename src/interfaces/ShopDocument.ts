@@ -80,8 +80,15 @@ export default interface ShopDocument extends ModelDocument {
     style: {
         /**
          * Merchant provided URI of the current shop's logo.
+         * (any size, serves as a replacement for the shop name in the navbar)
          */
         logoUri?: string,
+
+        /**
+         * Merchant provided URI of the shop's logo icon.
+         * (64x64)
+         */
+        logoIconUri?: string;
 
         /**
          * URI to background image for this shop.

@@ -60,6 +60,36 @@ export default interface ShopDocument extends ModelDocument {
     };
 
     /**
+     * Social media, tracking and support widgets.
+     */
+    widgets: {
+        /**
+         * Discord invite link
+         */
+        discord: string;    // e.g. https://discord.gg/abc123
+
+        /**
+         * Telegram link
+         */
+        telegram: string;   // e.g. https://t.me/abc123
+
+        /**
+         * Twitter username
+         */
+        twitter: string;    // e.g. ATShopIo
+
+        /**
+         * Crisp website ID
+         */
+        crisp: string;      // e.g. 8d49a682-7cf0-4ae8-a2d9-18791dfb35e2
+
+        /**
+         * Google Analytics tracking ID
+         */
+        analytics: string;  // e.g. UA-12345678-1
+    },
+
+    /**
      * Number of products attached to this shop.
      */
     productCount: number;

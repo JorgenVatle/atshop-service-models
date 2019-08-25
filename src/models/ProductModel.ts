@@ -36,7 +36,7 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
      * Check if the current product has enough stock to create a sale of the given quantity.
      */
     public async hasStockForSale(count: number): Promise<boolean> {
-        return (await this.getStock()) >= count;
+        return (await this.stockForSale.count()) >= count;
     }
 
     /**

@@ -72,7 +72,7 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
     /**
      * Build a full-fledged URL to a page on the given path for the current shop.
      */
-    public urlTo(path: string, legacy: boolean) {
+    public urlTo(path: string, legacy?: boolean) {
         let frontend = this._App.get('frontend');
 
         if (legacy) {

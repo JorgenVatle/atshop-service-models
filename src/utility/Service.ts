@@ -1,12 +1,15 @@
 import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
+interface FrontendDetails {
+    host?: string,
+    protocol?: 'http' | 'https',
+}
+
 export interface ConfigOptions {
     app: Application,
-    frontend?: {
-        host?: string,
-        protocol?: 'http' | 'https',
-    },
+    frontend?: FrontendDetails,
+    legacyFrontend?: FrontendDetails,
     models?: Partial<Models>,
 }
 

@@ -66,7 +66,7 @@ describe('ShopModel', () => {
     });
 
     it('can build legacy URLs', () => {
-        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
+        expect(testShop.urlTo('/test', true)).toEqual('https://test-shop.atshop.io/test');
     });
 
     it('can build URLs using custom domains', async () => {

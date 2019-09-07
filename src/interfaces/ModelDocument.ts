@@ -18,4 +18,9 @@ export default interface ModelDocument {
      * Soft-deletion date of the current document.
      */
     deletedAt?: Date;
+
+    /**
+     * Document revision number.
+     */
+    __v?: number;
 }

@@ -237,7 +237,7 @@ class OrderModel extends ServiceModel {
      * Link to view this order as a customer.
      */
     public async customerLink(state?: 'waiting' | 'cancelled') {
-        return this.shop.then((shop) => shop.urlTo(`/order/${this._id}/${state}`));
+        return this.shop.then((shop) => shop.urlTo(`/order/${this._id}/${state}`, this.isLegacy));
     }
 
     /**

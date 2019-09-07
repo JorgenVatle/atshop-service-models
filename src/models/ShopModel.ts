@@ -79,11 +79,13 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
             frontend = this._App.get('legacyFrontend') || frontend;
         }
 
+        let host = `${this.domain}.${frontend.host}`;
+
         if (this.entry.customDomain) {
-            frontend.host = this.entry.customDomain;
+            host = this.entry.customDomain;
         }
 
-        return Helpers.urlTo(frontend.protocol, `${this.domain}.${frontend.host}`, path);
+        return Helpers.urlTo(frontend.protocol, host, path);
     }
 
     /**

@@ -71,6 +71,13 @@ class OrderModel extends ServiceModel {
     }
 
     /**
+     * Whether or not this order was created in ATShop v1.
+     */
+    public get isVersion1() {
+        return typeof this.entry.__v === 'undefined';
+    }
+
+    /**
      * Order value in cents.
      */
     public async value() {

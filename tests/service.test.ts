@@ -65,6 +65,10 @@ describe('ShopModel', () => {
         expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
     });
 
+    it('can build legacy URLs', () => {
+        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop-legacy.io/test');
+    });
+
     describe('unauthorized users', () => {
         test('cannot fetch the blacklist', async () => {
             await expect(testShop.blacklist.fetch()).rejects.toBeInstanceOf(Forbidden);

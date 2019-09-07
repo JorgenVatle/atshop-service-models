@@ -73,7 +73,7 @@ class OrderModel extends ServiceModel {
     /**
      * Whether or not this order was created in ATShop v1.
      */
-    public get isVersion1() {
+    public get isLegacy() {
         return typeof this.entry.__v === 'undefined';
     }
 

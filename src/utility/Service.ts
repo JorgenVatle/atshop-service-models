@@ -33,7 +33,7 @@ export const config = (options: ConfigOptions) => {
     }
 
     if (options.legacyFrontend || !App.get('legacyFrontend')) {
-        App.set('frontend', {
+        App.set('legacyFrontend', {
             host: 'atshop.io',
             protocol: 'https',
             ...options.frontend,

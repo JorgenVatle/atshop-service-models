@@ -62,11 +62,11 @@ describe('ShopModel', () => {
     });
 
     test('can build URLs to self', () => {
-        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
+        expect(testShop.urlTo('/test')).toEqual('https://test-shop.ats.gg/test');
     });
 
     it('can build legacy URLs', () => {
-        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop-legacy.io/test');
+        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
     });
 
     describe('unauthorized users', () => {

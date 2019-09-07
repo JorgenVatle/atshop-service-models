@@ -26,6 +26,14 @@ export const config = (options: ConfigOptions) => {
 
     if (options.frontend || !App.get('frontend')) {
         App.set('frontend', {
+            host: 'ats.gg',
+            protocol: 'https',
+            ...options.frontend,
+        });
+    }
+
+    if (options.legacyFrontend || !App.get('legacyFrontend')) {
+        App.set('frontend', {
             host: 'atshop.io',
             protocol: 'https',
             ...options.frontend,

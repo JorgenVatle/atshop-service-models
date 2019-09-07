@@ -69,6 +69,14 @@ describe('ShopModel', () => {
         expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
     });
 
+    it('can build URLs using custom domains', async () => {
+        const myShop = await ShopModel.get('ZBAWZE4LzB4RoguGY');
+        myShop.entry.customDomain = 'example.com';
+
+        expect(myShop.urlTo('/test')).toEqual('https://example.com/test');
+        expect(myShop.urlTo('/test', true)).toEqual('https://example.com/test');
+    });
+
     describe('unauthorized users', () => {
         test('cannot fetch the blacklist', async () => {
             await expect(testShop.blacklist.fetch()).rejects.toBeInstanceOf(Forbidden);

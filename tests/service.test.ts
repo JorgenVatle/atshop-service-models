@@ -62,7 +62,19 @@ describe('ShopModel', () => {
     });
 
     test('can build URLs to self', () => {
-        expect(testShop.urlTo('/test')).toEqual('https://test-shop.atshop.io/test');
+        expect(testShop.urlTo('/test')).toEqual('https://test-shop.ats.gg/test');
+    });
+
+    it('can build legacy URLs', () => {
+        expect(testShop.urlTo('/test', true)).toEqual('https://test-shop.atshop.io/test');
+    });
+
+    it('can build URLs using custom domains', async () => {
+        const myShop = await ShopModel.get('ZBAWZE4LzB4RoguGY');
+        myShop.entry.customDomain = 'example.com';
+
+        expect(myShop.urlTo('/test')).toEqual('https://example.com/test');
+        expect(myShop.urlTo('/test', true)).toEqual('https://example.com/test');
     });
 
     describe('unauthorized users', () => {

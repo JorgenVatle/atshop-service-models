@@ -1,12 +1,15 @@
 import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
+interface FrontendDetails {
+    host?: string,
+    protocol?: 'http' | 'https',
+}
+
 export interface ConfigOptions {
     app: Application,
-    frontend?: {
-        host?: string,
-        protocol?: 'http' | 'https',
-    },
+    frontend?: FrontendDetails,
+    legacyFrontend?: FrontendDetails,
     models?: Partial<Models>,
 }
 
@@ -23,6 +26,14 @@ export const config = (options: ConfigOptions) => {
 
     if (options.frontend || !App.get('frontend')) {
         App.set('frontend', {
+            host: 'ats.gg',
+            protocol: 'https',
+            ...options.frontend,
+        });
+    }
+
+    if (options.legacyFrontend || !App.get('legacyFrontend')) {
+        App.set('legacyFrontend', {
             host: 'atshop.io',
             protocol: 'https',
             ...options.frontend,

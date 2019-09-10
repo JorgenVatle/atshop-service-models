@@ -236,8 +236,18 @@ class OrderModel extends ServiceModel {
     /**
      * Link to view this order as a customer.
      */
-    public async customerLink(state?: 'waiting' | 'cancelled' | 'completed') {
-        return this.shop.then((shop) => shop.urlTo(`/order/${this._id}/${state}`, this.isLegacy));
+    public async customerLink(state?: 'waiting' | 'cancelled' | 'completed', includeSecret = false) {
+        let path = `/order/${this._id}`;
+
+        if (state) {
+            path += `/${state}`
+        }
+
+        if (includeSecret) {
+            path += `?s=${this.secret}`;
+        }
+
+        return this.shop.then((shop) => shop.urlTo(path, this.isLegacy));
     }
 
     /**

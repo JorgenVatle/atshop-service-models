@@ -11,6 +11,7 @@ import UserModel from './models/UserModel';
 import GatewayModel from './models/GatewayModel';
 import ATShopServiceModels from './config';
 import ProductGroupModel from './models/ProductGroupModel';
+import OrderReplacementModel from './models/OrderReplacementModel';
 
 export {
     CategoryModel,
@@ -18,6 +19,7 @@ export {
     CustomerBlacklistModel,
     IpnModel,
     OrderEventModel,
+    OrderReplacementModel,
     OrderFeedbackModel,
     OrderModel,
     ProductModel,

@@ -10,20 +10,22 @@ import ShopModel from '../models/ShopModel';
 import UserModel from '../models/UserModel';
 import OrderFeedbackModel from '../models/OrderFeedbackModel';
 import ProductGroupModel from '../models/ProductGroupModel';
+import OrderReplacementModel from '../models/OrderReplacementModel';
 
 export default interface Models {
-    CategoryModel: typeof CategoryModel,
-    CustomerBlacklistModel: typeof CustomerBlacklistModel,
-    GatewayModel: typeof GatewayModel,
-    IpnModel: typeof IpnModel,
-    OrderEventModel: typeof OrderEventModel,
-    OrderFeedbackModel: typeof OrderFeedbackModel,
-    OrderModel: typeof OrderModel,
-    ProductModel: typeof ProductModel,
-    ProductStockModel: typeof ProductStockModel,
-    ShopModel: typeof ShopModel,
-    UserModel: typeof UserModel,
-    ProductGroupModel: typeof ProductGroupModel,
+    CategoryModel: typeof CategoryModel;
+    CustomerBlacklistModel: typeof CustomerBlacklistModel;
+    GatewayModel: typeof GatewayModel;
+    IpnModel: typeof IpnModel;
+    OrderEventModel: typeof OrderEventModel;
+    OrderFeedbackModel: typeof OrderFeedbackModel;
+    OrderModel: typeof OrderModel;
+    ProductModel: typeof ProductModel;
+    ProductStockModel: typeof ProductStockModel;
+    ShopModel: typeof ShopModel;
+    UserModel: typeof UserModel;
+    ProductGroupModel: typeof ProductGroupModel;
+    OrderReplacementModel: typeof OrderReplacementModel;
 }
 
 export type ModelName = keyof Models;

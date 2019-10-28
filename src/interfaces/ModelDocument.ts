@@ -7,12 +7,12 @@ export default interface ModelDocument {
     /**
      * Document creation date.
      */
-    createdAt: Date;
+    createdAt: Date | string;
 
     /**
      * Date of the last document update.
      */
-    updatedAt: Date;
+    updatedAt: Date | string;
 
     /**
      * Soft-deletion date of the current document.

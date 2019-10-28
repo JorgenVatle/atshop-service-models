@@ -8,6 +8,7 @@ import CategoryModel from './CategoryModel';
 import Helpers from '../utility/Helpers';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class ShopModel extends ServiceModel implements FeedbackSummary {
 
@@ -107,7 +108,7 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
     }
 }
 
-interface ShopModel extends ShopDocument {
+interface ShopModel extends Omit<ShopDocument, ModelTimestamps> {
     entry: ShopDocument;
 }
 

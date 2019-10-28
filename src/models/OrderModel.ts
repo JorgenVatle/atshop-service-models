@@ -11,6 +11,7 @@ import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class OrderModel extends ServiceModel {
 
@@ -260,7 +261,7 @@ class OrderModel extends ServiceModel {
 
 }
 
-interface OrderModel extends Omit<OrderDocument, 'currency'> {
+interface OrderModel extends Omit<OrderDocument, 'currency' | ModelTimestamps> {
     entry: OrderDocument;
 }
 

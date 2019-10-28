@@ -1,5 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import { UserDocument } from '../interfaces/UserDocument';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class UserModel extends ServiceModel {
 
@@ -10,7 +11,7 @@ class UserModel extends ServiceModel {
 
 }
 
-interface UserModel extends UserDocument {
+interface UserModel extends Omit<UserDocument, ModelTimestamps> {
     entry: UserDocument;
 }
 

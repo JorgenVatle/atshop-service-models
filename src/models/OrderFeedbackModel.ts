@@ -2,6 +2,7 @@ import ServiceModel from '../providers/ServiceModel';
 import OrderModel from './OrderModel';
 import OrderFeedbackDocument from '../interfaces/OrderFeedbackDocument';
 import ProductModel from './ProductModel';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class OrderFeedbackModel extends ServiceModel {
 
@@ -50,7 +51,7 @@ class OrderFeedbackModel extends ServiceModel {
 
 }
 
-interface OrderFeedbackModel extends OrderFeedbackDocument {
+interface OrderFeedbackModel extends Omit<OrderFeedbackDocument, ModelTimestamps> {
     entry: OrderFeedbackDocument;
 }
 

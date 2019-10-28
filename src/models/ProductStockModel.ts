@@ -1,6 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import ProductStockDocument from '../interfaces/ProductStockDocument';
 import { Omit } from '../utility/TS';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class ProductStockModel extends ServiceModel {
 
@@ -11,7 +12,7 @@ class ProductStockModel extends ServiceModel {
 
 }
 
-interface ProductStockModel extends Omit<ProductStockDocument, 'entry'> {
+interface ProductStockModel extends Omit<ProductStockDocument, 'entry' | ModelTimestamps> {
     entry: ProductStockDocument;
 }
 

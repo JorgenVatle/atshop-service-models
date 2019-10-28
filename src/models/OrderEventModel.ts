@@ -2,6 +2,7 @@ import ServiceModel from '../providers/ServiceModel';
 import OrderEventDocument, { BaseMetadata, OrderEventName } from '../interfaces/OrderEventDocument';
 import ShopModel from './ShopModel';
 import OrderModel from './OrderModel';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class OrderEventModel extends ServiceModel {
 
@@ -87,7 +88,7 @@ class OrderEventModel extends ServiceModel {
 
 }
 
-interface OrderEventModel extends OrderEventDocument {
+interface OrderEventModel extends Omit<OrderEventDocument, ModelTimestamps> {
     entry: OrderEventDocument;
 }
 

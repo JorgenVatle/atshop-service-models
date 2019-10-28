@@ -8,6 +8,7 @@ import ProductModel from './ProductModel';
 import Dinero from 'dinero.js';
 import { CategoryModel } from '../index';
 import ShopModel from './ShopModel';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -89,7 +90,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
 
 }
 
-interface ProductGroupModel extends Omit<ProductGroupDocument, 'category'> {
+interface ProductGroupModel extends Omit<ProductGroupDocument, 'category' | ModelTimestamps> {
     entry: ProductGroupDocument;
 }
 

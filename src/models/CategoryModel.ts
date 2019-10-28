@@ -1,6 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import CategoryDocument from '../interfaces/CategoryDocument';
 import ShopModel from './ShopModel';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class CategoryModel extends ServiceModel {
 
@@ -24,7 +25,7 @@ class CategoryModel extends ServiceModel {
     }
 }
 
-interface CategoryModel extends CategoryDocument {
+interface CategoryModel extends Omit<CategoryDocument, ModelTimestamps> {
     entry: CategoryDocument;
 }
 

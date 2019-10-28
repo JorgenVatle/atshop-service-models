@@ -1,5 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import CustomerBlacklistDocument from '../interfaces/CustomerBlacklistDocument';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class CustomerBlacklistModel extends ServiceModel {
 
@@ -10,7 +11,7 @@ class CustomerBlacklistModel extends ServiceModel {
 
 }
 
-interface CustomerBlacklistModel extends CustomerBlacklistDocument {
+interface CustomerBlacklistModel extends Omit<CustomerBlacklistDocument, ModelTimestamps> {
     entry: CustomerBlacklistDocument;
 }
 export default CustomerBlacklistModel;

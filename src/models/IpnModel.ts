@@ -1,6 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import { startCase } from 'lodash';
 import IpnDocument from '../interfaces/IpnDocument';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class IpnModel extends ServiceModel {
 
@@ -18,7 +19,7 @@ class IpnModel extends ServiceModel {
 
 }
 
-interface IpnModel extends IpnDocument{
+interface IpnModel extends Omit<IpnDocument, ModelTimestamps> {
     entry: IpnDocument;
 }
 

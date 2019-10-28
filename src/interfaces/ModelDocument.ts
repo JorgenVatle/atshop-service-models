@@ -24,3 +24,5 @@ export default interface ModelDocument {
      */
     __v?: number;
 }
+
+export type ModelTimestamps = 'createdAt' | 'updatedAt' | 'deletedAt';

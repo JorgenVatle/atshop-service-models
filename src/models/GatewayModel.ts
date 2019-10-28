@@ -1,5 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
 import GatewayDocument, { GatewayBaseDocument } from '../interfaces/GatewayDocument';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends ServiceModel {
 
@@ -26,7 +27,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
 
 }
 
-interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends GatewayBaseDocument {
+interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends Omit<GatewayDocument, ModelTimestamps> {
     entry: GatewayDocument;
 }
 

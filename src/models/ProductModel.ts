@@ -10,6 +10,7 @@ import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import CategoryModel from './CategoryModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
+import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class ProductModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -126,7 +127,7 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
 
 }
 
-interface ProductModel extends Omit<ProductDocument, 'value' | 'category'> {
+interface ProductModel extends Omit<ProductDocument, 'value' | 'category' | ModelTimestamps> {
     entry: ProductDocument;
 }
 

@@ -119,6 +119,33 @@ class ServiceModel {
     }
 
     /**
+     * Entry creation date.
+     */
+    public get createdAt(): Date {
+        return new Date(this.entry.createdAt);
+    }
+
+    /**
+     * Timestamp of entry's last update.
+     */
+    public get updatedAt(): Date {
+        return new Date(this.entry.updatedAt);
+    }
+
+    /**
+     * Entry soft-deletion timestamp.
+     */
+    public get deletedAt(): Date | undefined {
+        const deletedAt = this.entry.deletedAt;
+
+        if (!deletedAt) {
+            return undefined;
+        }
+
+        return new Date(deletedAt);
+    }
+
+    /**
      * Merge and store the ServiceModel's in-database data with the given data.
      */
     public async patch(data: any): Promise<void> {

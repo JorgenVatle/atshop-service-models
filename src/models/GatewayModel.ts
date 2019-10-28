@@ -27,7 +27,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
 
 }
 
-interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends Omit<GatewayDocument, ModelTimestamps> {
+interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends Omit<GatewayBaseDocument, ModelTimestamps> {
     entry: GatewayDocument;
 }
 

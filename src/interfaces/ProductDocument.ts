@@ -1,4 +1,5 @@
 import ProductDocumentInterface from './ProductDocumentInterface';
+import { PaymentGateway } from './GatewayDocument';
 
 export type RequireShipping = 'no' | 'ask' | 'require';
 
@@ -56,5 +57,11 @@ export default interface ProductDocument extends ProductDocumentInterface {
      * Number of stock entries that are left for sale for this product.
      */
     stockCount: number;
+
+    /**
+     * Optional list of whitelisted payment methods for this product.
+     * If left undefined, all gateways are permitted.
+     */
+    paymentMethods?: PaymentGateway[];
 
 }

@@ -11,6 +11,7 @@ import FeedbackSummary from '../interfaces/FeedbackSummary';
 import CategoryModel from './CategoryModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { PaymentGateway } from '../interfaces/GatewayDocument';
 
 class ProductModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -105,6 +106,17 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
             percentage: get(this.entry, 'feedback.score', 0),
             stars: get(this.entry, 'feedback.score', 0) / 20,
         }
+    }
+
+    /**
+     * Whether or not the given payment gateway is acceptable for paying for this product.
+     */
+    public isPermittedGateway(gateway: PaymentGateway): boolean {
+        if (!this.paymentMethods) {
+            return true;
+        }
+
+        return this.paymentMethods.indexOf(gateway) !== -1;
     }
 
     /**

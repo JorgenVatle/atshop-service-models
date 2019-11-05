@@ -60,7 +60,7 @@ export default interface ProductDocument extends ProductDocumentInterface {
 
     /**
      * Optional list of whitelisted payment methods for this product.
-     * If left undefined, all gateways are permitted.
+     * If left undefined or empty, all gateways are permitted.
      */
     paymentMethods?: PaymentGateway[];
 

@@ -116,6 +116,10 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
             return true;
         }
 
+        if (!this.paymentMethods.length) {
+            return true;
+        }
+
         return this.paymentMethods.indexOf(gateway) !== -1;
     }
 

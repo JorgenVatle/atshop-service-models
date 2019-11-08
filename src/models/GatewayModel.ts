@@ -29,7 +29,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
     /**
      * Humanize a payment gateway name.
      */
-    public static humanizeName(name: PaymentGateway) {
+    public static humanizeName(name: PaymentGateway | undefined) {
         switch (name) {
             case 'coinbase-commerce':
                 return 'Coinbase Commerce';
@@ -42,7 +42,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
             case 'xsolla':
                 return 'Xsolla';
             default:
-                return startCase(name) || 'N/A';
+                return name ? startCase(name) : 'N/A';
         }
     }
 

@@ -90,6 +90,13 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
     }
 
     /**
+     * Build a URL to the admin dashboard.
+     */
+    public adminUrl(path: string) {
+        return this.urlTo('/admin/' + path.replace(/^\/+/, ''), true);
+    }
+
+    /**
      * Legal name of the current shop.
      */
     public get legalName() {

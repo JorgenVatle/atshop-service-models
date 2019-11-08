@@ -1,5 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
-import GatewayDocument, { GatewayBaseDocument } from '../interfaces/GatewayDocument';
+import GatewayDocument, { GatewayBaseDocument, PaymentGateway } from '../interfaces/GatewayDocument';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 
 class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends ServiceModel {
@@ -23,6 +23,26 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
      */
     public get shop() {
         return this.belongsTo('ShopModel', this.shopId);
+    }
+
+    /**
+     * Humanize a payment gateway name.
+     */
+    public static humanizeName(name: PaymentGateway) {
+        switch (name) {
+            case 'coinbase-commerce':
+                return 'Coinbase Commerce';
+            case 'g2apay':
+                return 'G2A PAY';
+            case 'coinpayments':
+                return 'CoinPayments';
+            case 'paypal':
+                return 'PayPal';
+            case 'xsolla':
+                return 'Xsolla';
+            default:
+                return 'N/A';
+        }
     }
 
 }

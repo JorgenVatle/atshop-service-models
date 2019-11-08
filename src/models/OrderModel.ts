@@ -259,7 +259,7 @@ class OrderModel extends ServiceModel {
      */
     public async adminLink() {
         const shop = await this.shop;
-        return shop.urlTo('/admin/orders/' + this._id);
+        return shop.adminUrl('/orders/' + this._id);
     }
 
 }

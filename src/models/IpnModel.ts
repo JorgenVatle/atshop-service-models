@@ -1,7 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
-import { startCase } from 'lodash';
 import IpnDocument from '../interfaces/IpnDocument';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
+import GatewayModel from './GatewayModel';
 
 class IpnModel extends ServiceModel {
 
@@ -14,7 +14,7 @@ class IpnModel extends ServiceModel {
      * Human friendly name for the payment gateway associated with this IPN.
      */
     public get humanName() {
-        return startCase(this.gateway);
+        return GatewayModel.humanizeName(this.gateway);
     }
 
 }

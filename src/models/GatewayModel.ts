@@ -1,6 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
 import GatewayDocument, { GatewayBaseDocument, PaymentGateway } from '../interfaces/GatewayDocument';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { startCase } from 'lodash';
 
 class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends ServiceModel {
 
@@ -41,7 +42,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
             case 'xsolla':
                 return 'Xsolla';
             default:
-                return 'N/A';
+                return startCase(name) || 'N/A';
         }
     }
 

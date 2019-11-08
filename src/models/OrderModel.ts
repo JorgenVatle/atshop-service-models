@@ -12,6 +12,7 @@ import { Omit } from '../utility/TS';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { GatewayModel } from '../index';
 
 class OrderModel extends ServiceModel {
 
@@ -165,11 +166,13 @@ class OrderModel extends ServiceModel {
      * Fetch the payment method used to complete this order.
      */
     public async paymentMethod() {
-        if (!this.ipnId) {
-            return 'N/A';
+        const gateway = this.entry.paymentMethod;
+
+        if (!gateway && this.ipnId) {
+            return (await this.ipn).humanName;
         }
 
-        return (await this.ipn).humanGatewayName;
+        return GatewayModel.humanizeName(gateway);
     }
 
     /**
@@ -261,7 +264,7 @@ class OrderModel extends ServiceModel {
 
 }
 
-interface OrderModel extends Omit<OrderDocument, 'currency' | ModelTimestamps> {
+interface OrderModel extends Omit<OrderDocument, 'currency' | 'paymentMethod' | ModelTimestamps> {
     entry: OrderDocument;
 }
 

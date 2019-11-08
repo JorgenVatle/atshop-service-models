@@ -1,5 +1,6 @@
 import ModelDocument from './ModelDocument';
 import { CurrencyCode } from '../utility/AvailableCurrencies';
+import { PaymentGateway } from './GatewayDocument';
 
 export default interface OrderDocument extends ModelDocument {
     /**
@@ -74,5 +75,10 @@ export default interface OrderDocument extends ModelDocument {
          * Whether or not we've tracked the purchase event for this order.
          */
         purchase?: boolean;
-    }
+    },
+
+    /**
+     * Payment method used to pay for this order.
+     */
+    paymentMethod?: PaymentGateway;
 }

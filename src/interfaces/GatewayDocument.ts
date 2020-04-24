@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-holdings';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**
@@ -44,6 +44,11 @@ export interface CoinbaseCommerceCredentials extends GatewayBaseDocument {
     name: 'coinbase-commerce';
     apiKey: string;
     sharedSecret: string;
+}
+
+export interface LexHoldingsCredentials extends GatewayBaseDocument {
+    name: 'lex-holdings';
+    apiKey: string;
 }
 
 export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials;

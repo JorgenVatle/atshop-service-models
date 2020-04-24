@@ -51,5 +51,14 @@ export interface LexHoldingsCredentials extends GatewayBaseDocument {
     apiKey: string;
 }
 
+export enum HumanGatewayName {
+    'coinbase-commerce' = 'Coinbase Commerce',
+    'g2apay' = 'G2A PAY',
+    'coinpayments' = 'CoinPayments',
+    'paypal' = 'PayPal',
+    'xsolla' = 'Xsolla',
+    'lex-holdings' = 'Lex Holdings',
+}
+
 export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials;
 export default GatewayDocument;

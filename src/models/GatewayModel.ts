@@ -1,5 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
-import GatewayDocument, { GatewayBaseDocument, PaymentGateway } from '../interfaces/GatewayDocument';
+import GatewayDocument, { GatewayBaseDocument, HumanGatewayName, PaymentGateway } from '../interfaces/GatewayDocument';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 import { startCase } from 'lodash';
 
@@ -30,20 +30,13 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
      * Humanize a payment gateway name.
      */
     public static humanizeName(name: PaymentGateway | undefined) {
-        switch (name) {
-            case 'coinbase-commerce':
-                return 'Coinbase Commerce';
-            case 'g2apay':
-                return 'G2A PAY';
-            case 'coinpayments':
-                return 'CoinPayments';
-            case 'paypal':
-                return 'PayPal';
-            case 'xsolla':
-                return 'Xsolla';
-            default:
-                return name ? startCase(name) : 'N/A';
+        if (!name) {
+            return 'N/A';
         }
+
+        const humanGatewayName = HumanGatewayName[name];
+
+        return humanGatewayName || startCase(name);
     }
 
 }

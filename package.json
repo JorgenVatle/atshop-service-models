@@ -1,6 +1,6 @@
 {
   "name": "atshop-service-models",
-  "version": "0.34.0",
+  "version": "0.34.1",
   "description": "TypeScript service models for ATShop",
   "main": "dist/index.js",
   "types": "src/index.ts",

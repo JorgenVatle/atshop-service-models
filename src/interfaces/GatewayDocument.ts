@@ -60,5 +60,5 @@ export enum HumanGatewayName {
     'lex-holdings' = 'Lex Holdings',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexHoldingsCredentials;
 export default GatewayDocument;

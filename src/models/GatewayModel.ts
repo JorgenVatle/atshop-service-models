@@ -34,9 +34,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
             return 'N/A';
         }
 
-        const humanGatewayName = HumanGatewayName[name];
-
-        return humanGatewayName || startCase(name);
+        return HumanGatewayName[name] || startCase(name);
     }
 
 }

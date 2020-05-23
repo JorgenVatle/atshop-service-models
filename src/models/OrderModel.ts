@@ -95,13 +95,14 @@ class OrderModel extends ServiceModel {
      * Order value as a Dinero object. This includes any applicable discounts.
      */
     public async value() {
-        const value = await this.originalValue();
-
         if (this.entry.toPay) {
-            return Dinero({ amount: this.entry.toPay });
+            return Dinero({
+                amount: this.entry.toPay,
+                currency: await this.currency,
+            });
         }
 
-        return value;
+        return this.originalValue();
     }
 
     /**

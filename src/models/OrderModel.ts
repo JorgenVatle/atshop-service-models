@@ -80,15 +80,28 @@ class OrderModel extends ServiceModel {
     }
 
     /**
-     * Order value in cents.
+     * Original order value without any discounts.
      */
-    public async value() {
+    public async originalValue() {
         const product = await this.product;
 
         return Dinero({
             ...product.value.toObject(),
             currency: await this.currency,
         }).multiply(this.quantity);
+    }
+
+    /**
+     * Order value as a Dinero object. This includes any applicable discounts.
+     */
+    public async value() {
+        const value = await this.originalValue();
+
+        if (this.entry.toPay) {
+            return Dinero({ amount: this.entry.toPay });
+        }
+
+        return value;
     }
 
     /**

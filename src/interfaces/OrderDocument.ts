@@ -24,6 +24,11 @@ export default interface OrderDocument extends ModelDocument {
     shopId: string;
 
     /**
+     * Order value with discounts.
+     */
+    toPay: number;
+
+    /**
      * Whether or not this order has been paid for.
      */
     paid: boolean;

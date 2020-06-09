@@ -12,6 +12,7 @@ import GatewayModel from './models/GatewayModel';
 import ATShopServiceModels from './config';
 import ProductGroupModel from './models/ProductGroupModel';
 import OrderReplacementModel from './models/OrderReplacementModel';
+import CouponModel from './models/CouponModel';
 
 export {
     CategoryModel,
@@ -25,6 +26,7 @@ export {
     ProductModel,
     ProductGroupModel,
     ProductStockModel,
+    CouponModel,
     ShopModel,
     UserModel,
     ATShopServiceModels,

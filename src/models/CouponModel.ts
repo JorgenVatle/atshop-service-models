@@ -27,7 +27,7 @@ class CouponModel extends ServiceModel {
      * Update the number of uses this coupon has received.
      */
     public async updateUsage() {
-        await this.service.patch({
+        await this.patch({
             uses: await this.orders().find({ paid: true }).count
         })
     }

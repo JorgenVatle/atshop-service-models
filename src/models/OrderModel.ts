@@ -13,6 +13,7 @@ import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 import { GatewayModel } from '../index';
+import CouponModel from './CouponModel';
 
 class OrderModel extends ServiceModel {
 
@@ -274,6 +275,16 @@ class OrderModel extends ServiceModel {
     public async adminLink() {
         const shop = await this.shop;
         return shop.adminUrl('/orders/' + this._id);
+    }
+
+    /**
+     * An order may have a coupon code.
+     */
+    public coupon() {
+        if (!this.couponId) {
+            return null;
+        }
+        return this.belongsTo<typeof CouponModel>('CouponModel', this.couponId);
     }
 
 }

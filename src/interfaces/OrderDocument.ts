@@ -86,4 +86,9 @@ export default interface OrderDocument extends ModelDocument {
      * Payment method used to pay for this order.
      */
     paymentMethod?: PaymentGateway;
+
+    /**
+     * ID of coupon code used with this order.
+     */
+    couponId?: string;
 }

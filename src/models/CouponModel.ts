@@ -17,6 +17,13 @@ class CouponModel extends ServiceModel {
     }
 
     /**
+     * A coupon belongs to a shop.
+     */
+    public shop() {
+        return this.hasOne('ShopModel', 'shopId');
+    }
+
+    /**
      * Update the number of uses this coupon has received.
      */
     public async updateUsage() {

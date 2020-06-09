@@ -1,4 +1,6 @@
-export default interface CouponDocument {
+import ModelDocument from './ModelDocument';
+
+export default interface CouponDocument extends ModelDocument {
     /**
      * ID of the shop this coupon belongs to.
      */

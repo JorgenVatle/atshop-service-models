@@ -20,7 +20,7 @@ class CouponModel extends ServiceModel {
      * A coupon belongs to a shop.
      */
     public shop() {
-        return this.belongsTo('ShopModel', 'shopId');
+        return this.belongsTo('ShopModel', this.shopId);
     }
 
     /**

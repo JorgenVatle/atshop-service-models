@@ -13,6 +13,11 @@ export default interface CouponDocument extends ModelDocument {
     code: string;
 
     /**
+     * The number of total uses this coupon code has seen since its creation.
+     */
+    uses: number;
+
+    /**
      * The maximum number of uses this coupon can receive. Subsequent usage requests will be rejected.
      */
     maxUses: string;

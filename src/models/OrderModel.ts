@@ -95,8 +95,8 @@ class OrderModel extends ServiceModel {
     /**
      * Order value as a Dinero object. This includes any applicable discounts.
      */
-    public async value() {
-        const paymentGateway = await this.paymentGateway();
+    public async value(gateway = this.paymentGateway()) {
+        const paymentGateway = await gateway;
         let value = await this.originalValue();
 
         if (this.entry.toPay) {

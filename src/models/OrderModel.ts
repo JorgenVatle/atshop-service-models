@@ -304,7 +304,7 @@ class OrderModel extends ServiceModel {
             return null;
         }
 
-        return GatewayModel.find({ query: { name: gatewayName, shopId: this.shopId } }).fetchOne();
+        return (await this.shop).gateways.fetchOne({ name: gatewayName });
     }
 
 }

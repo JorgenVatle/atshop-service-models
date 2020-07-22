@@ -287,6 +287,19 @@ class OrderModel extends ServiceModel {
         return this.belongsTo<typeof CouponModel>('CouponModel', this.couponId);
     }
 
+    /**
+     * The payment gateway used to pay for this order.
+     */
+    public async paymentGateway() {
+        const gatewayName = await this.paymentMethod();
+
+        if (!gatewayName) {
+            return null;
+        }
+
+        return GatewayModel.find({ query: { name: gatewayName, shopId: this.shopId } }).fetchOne();
+    }
+
 }
 
 interface OrderModel extends Omit<OrderDocument, 'currency' | 'paymentMethod' | ModelTimestamps> {

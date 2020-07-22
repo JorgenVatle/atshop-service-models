@@ -96,14 +96,21 @@ class OrderModel extends ServiceModel {
      * Order value as a Dinero object. This includes any applicable discounts.
      */
     public async value() {
+        const paymentGateway = await this.paymentGateway();
+        let value = await this.originalValue();
+
         if (this.entry.toPay) {
-            return Dinero({
+            value = Dinero({
                 amount: this.entry.toPay,
                 currency: await this.currency,
             });
         }
 
-        return this.originalValue();
+        if (paymentGateway && paymentGateway.multiplier) {
+            value = value.multiply(paymentGateway.multiplier);
+        }
+
+        return value;
     }
 
     /**

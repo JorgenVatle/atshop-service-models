@@ -17,6 +17,11 @@ export interface GatewayBaseDocument extends ModelDocument {
     enabled: boolean;
 
     /**
+     * Pricing multiplier for orders paid through this gateway.
+     */
+    multiplier?: number;
+
+    /**
      * ID of the shop these gateway settings belong to.
      */
     shopId: string;

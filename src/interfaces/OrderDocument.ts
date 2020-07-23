@@ -39,6 +39,11 @@ export default interface OrderDocument extends ModelDocument {
     paidAt?: Date;
 
     /**
+     * Sum in cents that was transmitted as payment for this order.
+     */
+    paidAmount?: number;
+
+    /**
      * Secret key stored in the customer's browser to protect ordered items from search engines.
      */
     secret: string;

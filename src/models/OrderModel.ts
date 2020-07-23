@@ -308,7 +308,7 @@ class OrderModel extends ServiceModel {
      * The payment gateway used to pay for this order.
      */
     public async paymentGateway() {
-        const gatewayName = await this.paymentMethod();
+        const gatewayName = await this.entry.paymentMethod;
 
         if (!gatewayName) {
             return null;

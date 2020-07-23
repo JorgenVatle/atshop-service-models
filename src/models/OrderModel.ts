@@ -118,7 +118,7 @@ class OrderModel extends ServiceModel {
      */
     public async paidAmount() {
         return Dinero({
-            amount: this.entry.paidAmount,
+            amount: this.entry.paidAmount || 0,
             currency: await this.currency,
         })
     }

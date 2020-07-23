@@ -114,6 +114,16 @@ class OrderModel extends ServiceModel {
     }
 
     /**
+     * Amount of funds transmitted as payment for this order as a Dinero object.
+     */
+    public async paidAmount() {
+        return Dinero({
+            amount: this.entry.paidAmount,
+            currency: await this.currency,
+        })
+    }
+
+    /**
      * Currency of order.
      */
     public get currency(): Promise<CurrencyCode> {
@@ -309,7 +319,7 @@ class OrderModel extends ServiceModel {
 
 }
 
-interface OrderModel extends Omit<OrderDocument, 'currency' | 'paymentMethod' | ModelTimestamps> {
+interface OrderModel extends Omit<OrderDocument, 'currency' | 'paymentMethod' | 'paidAmount' | ModelTimestamps> {
     entry: OrderDocument;
 }
 

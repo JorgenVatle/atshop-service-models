@@ -287,8 +287,6 @@ class OrderModel extends ServiceModel {
         return this.shop.then((shop) => shop.urlTo(path, this.isLegacy));
     }
 
-    payment
-
     /**
      * Link to view this order as an administrator.
      */

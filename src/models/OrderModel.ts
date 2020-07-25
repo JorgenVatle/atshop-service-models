@@ -9,6 +9,7 @@ import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
+import { get } from 'lodash';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
@@ -144,14 +145,14 @@ class OrderModel extends ServiceModel {
      * Direct the user to this URI when the payment process is completed.
      */
     public get redirectOnCompleted() {
-        return this.customerLink('waiting');
+        return get(this.paymentRedirects, 'completed', this.customerLink('waiting'));
     }
 
     /**
      * Redirect the user to this URI when the payment process is cancelled.
      */
     public get redirectOnCancelled() {
-        return this.customerLink('cancelled');
+        return get(this.paymentRedirects, 'cancelled', this.customerLink('cancelled'));
     }
 
     /**
@@ -285,6 +286,8 @@ class OrderModel extends ServiceModel {
 
         return this.shop.then((shop) => shop.urlTo(path, this.isLegacy));
     }
+
+    payment
 
     /**
      * Link to view this order as an administrator.

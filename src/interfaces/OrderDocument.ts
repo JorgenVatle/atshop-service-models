@@ -49,6 +49,14 @@ export default interface OrderDocument extends ModelDocument {
     secret: string;
 
     /**
+     * Redirect targets for payments
+     */
+    paymentRedirects?: {
+        completed: string,
+        cancelled: string,
+    }
+
+    /**
      * Payment status of the current order.
      */
     status?: 'reversed' // The customer triggered a chargeback for this order, reverting funds back to the customer.

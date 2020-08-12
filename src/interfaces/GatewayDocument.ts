@@ -71,5 +71,5 @@ export enum HumanGatewayName {
     'cash-payments' = 'Cash Payments',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials;
 export default GatewayDocument;

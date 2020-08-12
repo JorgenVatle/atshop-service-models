@@ -68,6 +68,7 @@ export enum HumanGatewayName {
     'paypal' = 'PayPal',
     'xsolla' = 'Xsolla',
     'lex-payments' = 'Lex Payments',
+    'cash-payments' = 'Cash Payments',
 }
 
 export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials;

@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**
@@ -61,6 +61,12 @@ export interface CashPaymentsCredentials extends GatewayBaseDocument {
     secret: string;
 }
 
+export interface StripeGatewayCredentials extends GatewayBaseDocument {
+    name: 'stripe';
+    publishableKey: string;
+    secretKey: string;
+}
+
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -69,7 +75,8 @@ export enum HumanGatewayName {
     'xsolla' = 'Xsolla',
     'lex-payments' = 'Lex Payments',
     'cash-payments' = 'Cash Payments',
+    'stripe' = 'Stripe',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials;
 export default GatewayDocument;

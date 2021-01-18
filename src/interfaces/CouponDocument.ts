@@ -20,7 +20,7 @@ export default interface CouponDocument extends ModelDocument {
     /**
      * The maximum number of uses this coupon can receive. Subsequent usage requests will be rejected.
      */
-    maxUses: string;
+    maxUses: number;
 
     /**
      * Discount value.

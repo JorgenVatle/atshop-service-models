@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoopayments';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**
@@ -67,6 +67,12 @@ export interface StripeGatewayCredentials extends GatewayBaseDocument {
     secretKey: string;
 }
 
+export interface YooPaymentsCredentials extends GatewayBaseDocument {
+    name: 'yoopayments';
+    secret: string;
+    walletId: string;
+}
+
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -76,7 +82,8 @@ export enum HumanGatewayName {
     'lex-payments' = 'Lex Payments',
     'cash-payments' = 'Cash Payments',
     'stripe' = 'Stripe',
+    'yoopayments' = 'YooPayments',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooPaymentsCredentials;
 export default GatewayDocument;

@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**
@@ -73,6 +73,13 @@ export interface YooMoneyCredentials extends GatewayBaseDocument {
     walletId: string;
 }
 
+export interface FlutterwaveCredentials extends GatewayBaseDocument {
+    name: 'flutterwave';
+    secret: string;
+    public: string;
+    encryption: string;
+}
+
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -83,7 +90,8 @@ export enum HumanGatewayName {
     'cash-payments' = 'Cash Payments',
     'stripe' = 'Stripe',
     'yoomoney' = 'YooMoney',
+    'flutterwave' = 'FlutterWave',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials;
 export default GatewayDocument;

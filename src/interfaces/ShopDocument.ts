@@ -127,6 +127,11 @@ export default interface ShopDocument extends ModelDocument {
     };
 
     /**
+     * Whether or not the merchant forces all customers to use the shop's custom domain.
+     */
+    enforceCustomDomain: boolean;
+
+    /**
      * Optional override for the maximum number of products to be attached to this shop.
      */
     productLimit?: number;

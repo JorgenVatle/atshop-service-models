@@ -82,7 +82,7 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
 
         let host = `${this.domain}.${frontend.host}`;
 
-        if (this.entry.customDomain) {
+        if (this.entry.customDomain && this.enforceCustomDomain) {
             host = this.entry.customDomain;
         }
 

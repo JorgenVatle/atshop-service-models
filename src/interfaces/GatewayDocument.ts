@@ -76,8 +76,7 @@ export interface YooMoneyCredentials extends GatewayBaseDocument {
 export interface FlutterwaveCredentials extends GatewayBaseDocument {
     name: 'flutterwave';
     secret: string;
-    public: string;
-    encryption: string;
+    secretHash: string;
 }
 
 export enum HumanGatewayName {

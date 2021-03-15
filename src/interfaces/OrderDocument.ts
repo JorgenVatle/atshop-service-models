@@ -8,6 +8,13 @@ export interface EmailStatus {
     exception?: string;
 }
 
+export interface OrderEmailStatuses {
+    /**
+     * Purchase Confirmation Email Status
+     */
+    purchaseConfirmation: EmailStatus;
+}
+
 export default interface OrderDocument extends ModelDocument {
     /**
      * ID of the product that was ordered.
@@ -114,10 +121,5 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Transactional email statuses for this order.
      */
-    emails?: {
-        /**
-         * Purchase Confirmation Email Status
-         */
-        purchaseConfirmation: EmailStatus;
-    }
+    emails?: OrderEmailStatuses;
 }

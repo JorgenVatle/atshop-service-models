@@ -114,7 +114,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Transactional email statuses for this order.
      */
-    emails: {
+    emails?: {
         /**
          * Purchase Confirmation Email Status
          */

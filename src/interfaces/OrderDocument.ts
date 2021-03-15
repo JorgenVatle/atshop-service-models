@@ -2,6 +2,12 @@ import ModelDocument from './ModelDocument';
 import { CurrencyCode } from '../utility/AvailableCurrencies';
 import { PaymentGateway } from './GatewayDocument';
 
+export interface EmailStatus {
+    sent: boolean;
+    attempts: number;
+    exception?: string;
+}
+
 export default interface OrderDocument extends ModelDocument {
     /**
      * ID of the product that was ordered.
@@ -104,4 +110,14 @@ export default interface OrderDocument extends ModelDocument {
      * ID of coupon code used with this order.
      */
     couponId?: string;
+
+    /**
+     * Transactional email statuses for this order.
+     */
+    emails: {
+        /**
+         * Purchase Confirmation Email Status
+         */
+        purchaseConfirmation: EmailStatus;
+    }
 }

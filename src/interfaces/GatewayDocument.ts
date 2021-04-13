@@ -65,6 +65,7 @@ export interface StripeGatewayCredentials extends GatewayBaseDocument {
     name: 'stripe';
     publishableKey: string;
     secretKey: string;
+    paymentMethodTypes: Array<'alipay' | 'card' | 'ideal' | 'fpx' | 'bacs_debit' | 'bancontact' | 'giropay' | 'p24' | 'eps' | 'sofort' | 'sepa_debit' | 'grabpay' | 'afterpay_clearpay' | 'acss_debit'>,
 }
 
 export interface YooMoneyCredentials extends GatewayBaseDocument {

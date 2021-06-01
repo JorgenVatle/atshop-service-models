@@ -84,6 +84,7 @@ export interface AuthorizeNetCredentials extends GatewayBaseDocument {
     name: 'authorize.net',
     apiLoginId: string;
     transactionKey: string;
+    signatureKey: string;
 }
 
 export enum HumanGatewayName {

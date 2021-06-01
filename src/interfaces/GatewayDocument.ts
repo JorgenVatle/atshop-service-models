@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave' | 'authorize.net';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**
@@ -80,6 +80,12 @@ export interface FlutterwaveCredentials extends GatewayBaseDocument {
     secretHash: string;
 }
 
+export interface AuthorizeNetCredentials extends GatewayBaseDocument {
+    name: 'authorize.net',
+    apiLoginId: string;
+    transactionKey: string;
+}
+
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -91,7 +97,8 @@ export enum HumanGatewayName {
     'stripe' = 'Stripe',
     'yoomoney' = 'YooMoney',
     'flutterwave' = 'FlutterWave',
+    'authorize.net' = 'Authorize.net'
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials | AuthorizeNetCredentials;
 export default GatewayDocument;

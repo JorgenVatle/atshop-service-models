@@ -36,7 +36,7 @@ export const config = (options: ConfigOptions) => {
         App.set('legacyFrontend', {
             host: 'atshop.io',
             protocol: 'https',
-            ...options.frontend,
+            ...options.legacyFrontend,
         });
     }
 

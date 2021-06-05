@@ -1,7 +1,7 @@
 /**
  * JavaScript key-value object.
  */
-export type KeyValue = { [key: string]: any };
+export type KeyValue<T = any> = { [key: string]: T };
 
 /**
  * Omit the given keys from the given interface.

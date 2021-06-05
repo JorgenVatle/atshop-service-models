@@ -1,16 +1,17 @@
 import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
-interface FrontendDetails {
-    host?: string,
-    protocol?: 'http' | 'https',
+interface HostConfig {
+    host?: string;
+    protocol?: 'http' | 'https';
 }
 
 export interface ConfigOptions {
-    app: Application,
-    frontend?: FrontendDetails,
-    legacyFrontend?: FrontendDetails,
-    models?: Partial<Models>,
+    app: Application;
+    models?: Partial<Models>;
+    frontend?: HostConfig;
+    legacyFrontend?: HostConfig;
+    permalinkService?: HostConfig;
 }
 
 /**
@@ -38,6 +39,14 @@ export const config = (options: ConfigOptions) => {
             protocol: 'https',
             ...options.legacyFrontend,
         });
+    }
+
+    if (options.permalinkService || !App.get('permalinkService')) {
+        App.set('permalinkService', {
+            host: 'redirect.atshop.io',
+            protocol: 'https',
+            ...options.permalinkService,
+        })
     }
 
     if (options.models) {

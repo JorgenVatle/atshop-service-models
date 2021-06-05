@@ -1,7 +1,7 @@
 import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
-interface HostConfig {
+export interface HostConfig {
     host?: string;
     protocol?: 'http' | 'https';
 }

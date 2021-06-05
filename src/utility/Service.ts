@@ -2,16 +2,16 @@ import { Application } from '@feathersjs/feathers';
 import Models from '../interfaces/Models';
 
 export interface HostConfig {
-    host?: string;
-    protocol?: 'http' | 'https';
+    host: string;
+    protocol: 'http' | 'https';
 }
 
 export interface ConfigOptions {
     app: Application;
     models?: Partial<Models>;
-    frontend?: HostConfig;
-    legacyFrontend?: HostConfig;
-    permalinkService?: HostConfig;
+    frontend?: Partial<HostConfig>;
+    legacyFrontend?: Partial<HostConfig>;
+    permalinkService?: Partial<HostConfig>;
 }
 
 /**

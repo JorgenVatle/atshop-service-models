@@ -16,7 +16,7 @@ interface PermalinkServiceParams {
     secret?: string;
 }
 
-export default class OrderLink {
+export default class OrderURL {
 
     /**
      * Current Order

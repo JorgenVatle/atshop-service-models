@@ -9,12 +9,12 @@ import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
-import { get } from 'lodash';
 import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 import { GatewayModel } from '../index';
 import CouponModel from './CouponModel';
+import OrderURL from '../providers/OrderURL';
 
 class OrderModel extends ServiceModel {
 
@@ -140,21 +140,6 @@ class OrderModel extends ServiceModel {
         // For the time being, we'll just use the order ID.
         return this._id;
     }
-
-    /**
-     * Direct the user to this URI when the payment process is completed.
-     */
-    public get redirectOnCompleted() {
-        return get(this.paymentRedirects, 'completed', this.customerLink('waiting'));
-    }
-
-    /**
-     * Redirect the user to this URI when the payment process is cancelled.
-     */
-    public get redirectOnCancelled() {
-        return get(this.paymentRedirects, 'cancelled', this.customerLink('cancelled'));
-    }
-
     /**
      * Order product name.
      */
@@ -271,20 +256,11 @@ class OrderModel extends ServiceModel {
     }
 
     /**
-     * Link to view this order as a customer.
+     * Order-specific links for different stages in the checkout process.
+     * These links are intended to be permanent and safe, even in instances where a merchant changes their shop URL.
      */
-    public async customerLink(state?: 'waiting' | 'cancelled' | 'completed', includeSecret = false) {
-        let path = `/order/${this._id}`;
-
-        if (state) {
-            path += `/${state}`
-        }
-
-        if (includeSecret) {
-            path += `?s=${this.secret}`;
-        }
-
-        return this.shop.then((shop) => shop.urlTo(path, this.isLegacy));
+    public get orderUrl() {
+        return new OrderURL(this);
     }
 
     /**

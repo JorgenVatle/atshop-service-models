@@ -259,7 +259,7 @@ class OrderModel extends ServiceModel {
      * Order-specific links for different stages in the checkout process.
      * These links are intended to be permanent and safe, even in instances where a merchant changes their shop URL.
      */
-    public get orderUrl() {
+    public get url() {
         return new OrderURL(this);
     }
 

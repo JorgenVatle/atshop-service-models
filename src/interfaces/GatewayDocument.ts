@@ -87,7 +87,7 @@ export interface AuthorizeNetCredentials extends GatewayBaseDocument {
     signatureKey: string;
 }
 
-export interface PaydashCredentials {
+export interface PaydashCredentials extends GatewayBaseDocument {
     name: 'paydash';
     apiKey: string;
 }

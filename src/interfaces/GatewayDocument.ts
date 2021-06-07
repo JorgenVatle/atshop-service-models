@@ -3,7 +3,7 @@ import ModelDocument from './ModelDocument';
 /**
  * Available payment gateways.
  */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave' | 'authorize.net';
+export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave' | 'authorize.net' | 'paydash';
 
 export interface GatewayBaseDocument extends ModelDocument {
     /**

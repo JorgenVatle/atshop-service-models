@@ -87,6 +87,11 @@ export interface AuthorizeNetCredentials extends GatewayBaseDocument {
     signatureKey: string;
 }
 
+export interface PaydashCredentials {
+    name: 'paydash';
+    apiKey: string;
+}
+
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -98,8 +103,9 @@ export enum HumanGatewayName {
     'stripe' = 'Stripe',
     'yoomoney' = 'YooMoney',
     'flutterwave' = 'FlutterWave',
-    'authorize.net' = 'Authorize.net'
+    'authorize.net' = 'Authorize.net',
+    'paydash' = 'PayDash',
 }
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials | AuthorizeNetCredentials;
+export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials | AuthorizeNetCredentials | PaydashCredentials;
 export default GatewayDocument;

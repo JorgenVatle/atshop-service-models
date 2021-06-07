@@ -1,10 +1,5 @@
 import ModelDocument from './ModelDocument';
 
-/**
- * Available payment gateways.
- */
-export type PaymentGateway = 'paypal' | 'coinpayments' | 'xsolla' | 'g2apay' | 'coinbase-commerce' | 'lex-payments' | 'cash-payments' | 'stripe' | 'yoomoney' | 'flutterwave' | 'authorize.net' | 'paydash';
-
 export interface GatewayBaseDocument extends ModelDocument {
     /**
      * Name of the payment gateway.
@@ -106,6 +101,23 @@ export enum HumanGatewayName {
     'authorize.net' = 'Authorize.net',
     'paydash' = 'PayDash',
 }
+
+/**
+ * Available payment gateways.
+ */
+export type PaymentGateway =
+    'paypal'
+    | 'coinpayments'
+    | 'xsolla'
+    | 'g2apay'
+    | 'coinbase-commerce'
+    | 'lex-payments'
+    | 'cash-payments'
+    | 'stripe'
+    | 'yoomoney'
+    | 'flutterwave'
+    | 'authorize.net'
+    | 'paydash';
 
 export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials | AuthorizeNetCredentials | PaydashCredentials;
 export default GatewayDocument;

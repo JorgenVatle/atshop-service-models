@@ -3,7 +3,12 @@ import ModelDocument from './ModelDocument';
 /**
  * Order event name.
  */
-export type OrderEventName = string;
+export type OrderEventName = 'order_on_hold'
+    | 'order_fulfilled'
+    | 'order_manually_approved'
+    | 'order_status_reversed'
+    | 'order_status_discarded'
+    ;
 
 /**
  * Order event metadata.

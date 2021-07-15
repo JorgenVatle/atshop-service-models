@@ -67,3 +67,6 @@ package-lock.json
 
 # TypeScript output
 dist
+
+# JetBrains IDEA files.
+.idea

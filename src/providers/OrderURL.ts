@@ -2,7 +2,6 @@ import OrderModel from '../models/OrderModel';
 import { KeyValue } from '../utility/TS';
 import { HostConfig } from '../utility/Service';
 import Helpers from '../utility/Helpers';
-import { get } from 'lodash';
 import { PaymentRedirectOverrides } from '../interfaces/OrderDocument';
 
 export type OrderLinkType =
@@ -55,9 +54,9 @@ export default class OrderURL {
      */
     protected get redirectOverrides(): PaymentRedirectOverrides {
         return {
-            completed: get(this.order, 'paymentRedirects.completed', null),
-            cancelled: get(this.order, 'paymentRedirects.cancelled', null),
-            waiting: get(this.order, 'paymentRedirects.waiting', null),
+            completed: this.order.paymentRedirects?.completed || null,
+            cancelled: this.order.paymentRedirects?.cancelled || null,
+            waiting: this.order.paymentRedirects?.waiting || null,
         }
     }
 

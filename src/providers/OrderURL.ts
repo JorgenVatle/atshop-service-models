@@ -2,6 +2,8 @@ import OrderModel from '../models/OrderModel';
 import { KeyValue } from '../utility/TS';
 import { HostConfig } from '../utility/Service';
 import Helpers from '../utility/Helpers';
+import { get } from 'lodash';
+import { PaymentRedirectOverrides } from '../interfaces/OrderDocument';
 
 export type OrderLinkType =
     'waiting' | // Gateway payment process completed - waiting for payment to be confirmed.
@@ -43,6 +45,32 @@ export default class OrderURL {
     }
 
     /**
+     * URLs provided by the client to override these dynamic permalinks.
+     * We generally encourage not using this as it can cause issues when links become invalid, in turn leading to issues
+     * when customers try to return to their order.
+     *
+     * It may still be necessary for gateways like Authorize.net where querystring in return URIs aren't supported,
+     * or for merchants running checkouts on their own self-hosted frontend.
+     * @protected
+     */
+    protected get redirectOverrides(): PaymentRedirectOverrides {
+        return {
+            completed: get(this.order, 'paymentRedirects.completed', null),
+            cancelled: get(this.order, 'paymentRedirects.cancelled', null),
+            waiting: get(this.order, 'paymentRedirects.waiting', null),
+        }
+    }
+
+    /**
+     * Retrieve a redirect override for the provided link type.
+     * @param type
+     * @protected
+     */
+    protected getRedirectOverride(type: OrderLinkType): string | null  {
+        return this.redirectOverrides[type];
+    }
+
+    /**
      * Create a safe permanent link for the current order.
      * This works around issues that may occur if a merchant changes their domain while a customer is checking out.
      * @param type
@@ -50,11 +78,16 @@ export default class OrderURL {
      * @protected
      */
     protected createLink({ type, secret }: LinkOptions) {
+        const override = this.getRedirectOverride(type);
         const query: PermalinkServiceParams = {
             orderId: this.order._id,
             type,
             secret,
         };
+
+        if (override) {
+            return override;
+        }
 
         return Helpers.urlTo(
             this.permalinkConfig.protocol,

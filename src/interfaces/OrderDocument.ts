@@ -1,11 +1,16 @@
 import ModelDocument from './ModelDocument';
 import { CurrencyCode } from '../utility/AvailableCurrencies';
 import { PaymentGateway } from './GatewayDocument';
+import { OrderLinkType } from '../providers/OrderURL';
 
 export interface EmailStatus {
     sent: boolean;
     attempts: number;
     exception?: string;
+}
+
+export type PaymentRedirectOverrides = {
+    [key in OrderLinkType]?: string;
 }
 
 export interface OrderEmailStatuses {
@@ -64,10 +69,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Redirect targets for payments
      */
-    paymentRedirects?: {
-        completed: string,
-        cancelled: string,
-    }
+    paymentRedirects?: PaymentRedirectOverrides;
 
     /**
      * Payment status of the current order.

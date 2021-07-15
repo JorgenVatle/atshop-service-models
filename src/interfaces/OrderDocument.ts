@@ -9,6 +9,14 @@ export interface EmailStatus {
     exception?: string;
 }
 
+/**
+ * URLs provided by the client to override dynamic permalinks.
+ * We generally encourage not using this as it can cause issues when links become invalid, in turn leading to issues
+ * when customers try to return to their order.
+ *
+ * It may still be necessary for gateways like Authorize.net where querystring in return URIs aren't supported,
+ * or for merchants running checkouts on their own self-hosted frontend.
+ */
 export type PaymentRedirectOverrides = {
     [key in OrderLinkType]: string | null;
 }

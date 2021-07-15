@@ -65,7 +65,7 @@ export default class OrderURL {
     }
 
     /**
-     * Redirect the customer to this URL after they have cancelled the checkout process with any gateway.
+     * Redirect the customer to this URL after they have completed the checkout process with any gateway.
      */
     public get checkoutCompleted() {
         return this.createLink({

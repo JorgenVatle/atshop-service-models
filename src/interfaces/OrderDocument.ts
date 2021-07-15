@@ -10,7 +10,7 @@ export interface EmailStatus {
 }
 
 export type PaymentRedirectOverrides = {
-    [key in OrderLinkType]: string;
+    [key in OrderLinkType]: string | null;
 }
 
 export interface OrderEmailStatuses {

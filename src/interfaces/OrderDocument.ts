@@ -10,7 +10,7 @@ export interface EmailStatus {
 }
 
 export type PaymentRedirectOverrides = {
-    [key in OrderLinkType]?: string;
+    [key in OrderLinkType]: string;
 }
 
 export interface OrderEmailStatuses {
@@ -69,7 +69,7 @@ export default interface OrderDocument extends ModelDocument {
     /**
      * Redirect targets for payments
      */
-    paymentRedirects?: PaymentRedirectOverrides;
+    paymentRedirects?: Partial<PaymentRedirectOverrides>;
 
     /**
      * Payment status of the current order.

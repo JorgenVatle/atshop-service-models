@@ -3,7 +3,10 @@ import { KeyValue } from '../utility/TS';
 import { HostConfig } from '../utility/Service';
 import Helpers from '../utility/Helpers';
 
-export type OrderLinkType = 'waiting' | 'cancelled' | 'completed';
+export type OrderLinkType =
+    'waiting' | // Gateway payment process completed - waiting for payment to be confirmed.
+    'cancelled' | // Customer cancelled the gateway's checkout process. (prompts customer to select another payment method)
+    'completed'; // The payment process was completed and ATShop has verified the payment. Skips the 'waiting' state. Try to avoid using this for anything other than confirmation emails.
 
 interface LinkOptions {
     type: OrderLinkType;

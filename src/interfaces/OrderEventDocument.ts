@@ -11,9 +11,7 @@ export type OrderEventName = keyof OrderEventDataFields;
 /**
  * Order event metadata.
  */
-export type OrderEventMetadata = {
-    [s: string]: any,
-}
+export type OrderEventMetadata<T extends OrderEventName = any> = OrderEventDataFields[T];
 
 export interface BaseMetadata {
     /**
@@ -27,7 +25,7 @@ export interface BaseMetadata {
     level: 'success' | 'warning' | 'default' | 'danger';
 }
 
-export default interface OrderEventDocument extends ModelDocument {
+export default interface OrderEventDocument<T extends OrderEventName = any> extends ModelDocument {
     /**
      * ID of the order this event belongs to.
      */
@@ -37,12 +35,12 @@ export default interface OrderEventDocument extends ModelDocument {
      * Computer-readable event title.
      * @note Used as a fallback if we can't generate a human readable title for the current event.
      */
-    name: OrderEventName;
+    name: T;
 
     /**
      * Event metadata.
      */
-    metadata: OrderEventMetadata;
+    metadata: OrderEventMetadata<T>;
 }
 
 /**

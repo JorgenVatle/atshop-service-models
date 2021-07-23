@@ -62,7 +62,7 @@ export enum HumanGatewayName {
 /**
  * All available payment gateways and their respective configurations.
  */
-interface PaymentGatewayConfigurations {
+export interface PaymentGatewayConfigurations {
     xsolla: {
         merchantId: number;
         projectId: number;

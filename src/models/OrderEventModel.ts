@@ -1,5 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderEventDocument, { BaseMetadata, OrderEventName } from '../interfaces/OrderEventDocument';
+import OrderEventDocument, { OrderEventLabel, OrderEventName } from '../interfaces/OrderEventDocument';
 import ShopModel from './ShopModel';
 import OrderModel from './OrderModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
@@ -32,7 +32,7 @@ class OrderEventModel extends ServiceModel {
     /**
      * Event base metadata.
      */
-    public readonly baseData: { [key: string]: BaseMetadata } = {
+    public readonly baseData: { [key: string]: OrderEventLabel } = {
         order_fulfilled: {
             title: 'Order Paid',
             level: 'success',

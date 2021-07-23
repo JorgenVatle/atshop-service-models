@@ -13,7 +13,11 @@ export type OrderEventName = keyof OrderEventDataFields;
  */
 export type OrderEventMetadata<T extends OrderEventName = any> = OrderEventDataFields[T];
 
-export interface BaseMetadata {
+/**
+ * Defines a simple standard interface for an event's title and notification level.
+ * Used for webhooks and rendering more user-friendly labels for a given order event.
+ */
+export interface OrderEventLabel {
     /**
      * Human readable heading for the current event.
      */

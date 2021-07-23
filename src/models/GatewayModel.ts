@@ -3,7 +3,7 @@ import GatewayDocument, { GatewayBaseDocument, HumanGatewayName, PaymentGateway 
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 import { startCase } from 'lodash';
 
-class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends ServiceModel {
+class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
 
     /**
      * Gateway Model service path.
@@ -14,7 +14,7 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
      * Gateway credentials.
      */
     public get credentials() {
-        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = <Credentials>this.entry;
+        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = this.entry;
 
         return credentials;
     }
@@ -39,8 +39,8 @@ class GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extend
 
 }
 
-interface GatewayModel<Credentials extends GatewayDocument = GatewayDocument> extends Omit<GatewayBaseDocument, ModelTimestamps> {
-    entry: GatewayDocument;
+interface GatewayModel<GatewayName extends PaymentGateway> extends Omit<GatewayBaseDocument<GatewayName>, ModelTimestamps> {
+    entry: GatewayDocument<GatewayName>;
 }
 
 export default GatewayModel;

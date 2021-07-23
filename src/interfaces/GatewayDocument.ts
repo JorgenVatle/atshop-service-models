@@ -1,10 +1,18 @@
 import ModelDocument from './ModelDocument';
 
-export interface GatewayBaseDocument extends ModelDocument {
+/**
+ * Names of all available gateways.
+ */
+export type PaymentGateway = keyof PaymentGatewayConfigurations;
+
+/**
+ * Base model document for a gateway.
+ */
+export interface GatewayBaseDocument<T extends PaymentGateway> extends ModelDocument {
     /**
      * Name of the payment gateway.
      */
-    name: PaymentGateway;
+    name: T;
 
     /**
      * Whether or not this payment gateway is enabled.
@@ -22,71 +30,20 @@ export interface GatewayBaseDocument extends ModelDocument {
     shopId: string;
 }
 
-export interface XsollaCredentials extends GatewayBaseDocument {
-    name: 'xsolla';
-    merchantId: number;
-    projectId: number;
-    apiKey: string;
-}
+/**
+ * All available configuration properties for the provided gateway.
+ */
+export type GatewayConfiguration<GatewayName extends PaymentGateway> = PaymentGatewayConfigurations[GatewayName];
 
-export interface PayPalCredentials extends GatewayBaseDocument {
-    name: 'paypal';
-    email: string;
-}
+/**
+ * Gateway document for the provided gateway.
+ */
+export type GatewayDocument<GatewayName extends PaymentGateway> = GatewayBaseDocument<GatewayName> & GatewayConfiguration<GatewayName>
 
-export interface CoinPaymentsCredentials extends GatewayBaseDocument {
-    name: 'coinpayments';
-    merchantId: string;
-    secret: string;
-}
-
-export interface CoinbaseCommerceCredentials extends GatewayBaseDocument {
-    name: 'coinbase-commerce';
-    apiKey: string;
-    sharedSecret: string;
-}
-
-export interface LexPaymentsCredentials extends GatewayBaseDocument {
-    name: 'lex-payments';
-    apiKey: string;
-}
-
-export interface CashPaymentsCredentials extends GatewayBaseDocument {
-    name: 'cash-payments',
-    secret: string;
-}
-
-export interface StripeGatewayCredentials extends GatewayBaseDocument {
-    name: 'stripe';
-    publishableKey: string;
-    secretKey: string;
-    paymentMethodTypes?: Array<'alipay' | 'card' | 'ideal' | 'fpx' | 'bacs_debit' | 'bancontact' | 'giropay' | 'p24' | 'eps' | 'sofort' | 'sepa_debit' | 'grabpay' | 'afterpay_clearpay' | 'acss_debit'>,
-}
-
-export interface YooMoneyCredentials extends GatewayBaseDocument {
-    name: 'yoomoney';
-    secret: string;
-    walletId: string;
-}
-
-export interface FlutterwaveCredentials extends GatewayBaseDocument {
-    name: 'flutterwave';
-    secret: string;
-    secretHash: string;
-}
-
-export interface AuthorizeNetCredentials extends GatewayBaseDocument {
-    name: 'authorize.net',
-    apiLoginId: string;
-    transactionKey: string;
-    signatureKey: string;
-}
-
-export interface PaydashCredentials extends GatewayBaseDocument {
-    name: 'paydash';
-    apiKey: string;
-}
-
+/**
+ * Gateway names for human consumption.
+ * Used when rendering a gateway's name to a customer or administrator.
+ */
 export enum HumanGatewayName {
     'coinbase-commerce' = 'Coinbase Commerce',
     'g2apay' = 'G2A PAY',
@@ -103,21 +60,52 @@ export enum HumanGatewayName {
 }
 
 /**
- * Available payment gateways.
+ * All available payment gateways and their respective configurations.
  */
-export type PaymentGateway =
-    'paypal'
-    | 'coinpayments'
-    | 'xsolla'
-    | 'g2apay'
-    | 'coinbase-commerce'
-    | 'lex-payments'
-    | 'cash-payments'
-    | 'stripe'
-    | 'yoomoney'
-    | 'flutterwave'
-    | 'authorize.net'
-    | 'paydash';
+interface PaymentGatewayConfigurations {
+    xsolla: {
+        merchantId: number;
+        projectId: number;
+        apiKey: string;
+    },
+    paypal: {
+        email: string;
+    }
+    coinpayments: {
+        merchantId: string;
+        secret: string;
+    }
+    'coinbase-commerce': {
+        apiKey: string;
+        sharedSecret: string;
+    }
+    'lex-payments': {
+        apiKey: string;
+    }
+    'cash-payments': {
+        secret: string;
+    }
+    stripe: {
+        publishableKey: string;
+        secretKey: string;
+        paymentMethodTypes?: Array<'alipay' | 'card' | 'ideal' | 'fpx' | 'bacs_debit' | 'bancontact' | 'giropay' | 'p24' | 'eps' | 'sofort' | 'sepa_debit' | 'grabpay' | 'afterpay_clearpay' | 'acss_debit'>,
+    }
+    yoomoney: {
+        secret: string;
+        walletId: string;
+    }
+    flutterwave: {
+        secret: string;
+        secretHash: string;
+    }
+    'authorize.net': {
+        apiLoginId: string;
+        transactionKey: string;
+        signatureKey: string;
+    }
+    paydash: {
+        apiKey: string;
+    }
+}
 
-export type GatewayDocument = CoinPaymentsCredentials | PayPalCredentials | StripeGatewayCredentials | XsollaCredentials | CoinbaseCommerceCredentials | LexPaymentsCredentials | CashPaymentsCredentials | YooMoneyCredentials | FlutterwaveCredentials | AuthorizeNetCredentials | PaydashCredentials;
 export default GatewayDocument;

@@ -14,7 +14,7 @@ class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
      * Gateway credentials.
      */
     public get credentials() {
-        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, ...credentials } = this.entry;
+        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, multiplier, __v, ...credentials } = this.entry;
 
         return credentials;
     }

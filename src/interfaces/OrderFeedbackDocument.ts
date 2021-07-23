@@ -1,5 +1,7 @@
 import ModelDocument from './ModelDocument';
 
+export type FeedbackRating = 'satisfied' | 'dissatisfied'
+
 export default interface OrderFeedbackDocument extends ModelDocument {
     /**
      * Customer provided feedback.

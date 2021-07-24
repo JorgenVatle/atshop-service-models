@@ -59,6 +59,7 @@ export enum HumanGatewayName {
     'paydash' = 'PayDash',
 }
 
+
 /**
  * All available payment gateways and their respective configurations.
  */
@@ -88,7 +89,7 @@ export interface PaymentGatewayConfigurations {
     stripe: {
         publishableKey: string;
         secretKey: string;
-        paymentMethodTypes?: Array<'alipay' | 'card' | 'ideal' | 'fpx' | 'bacs_debit' | 'bancontact' | 'giropay' | 'p24' | 'eps' | 'sofort' | 'sepa_debit' | 'grabpay' | 'afterpay_clearpay' | 'acss_debit'>,
+        paymentMethodTypes?: Array<'alipay' | 'bacs_debit' | 'bancontact' | 'card' | 'eps' | 'fpx' | 'giropay' | 'grabpay' | 'ideal' | 'p24' | 'sepa_debit' | 'sofort'>,
     }
     yoomoney: {
         secret: string;

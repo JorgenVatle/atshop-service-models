@@ -85,6 +85,7 @@ export interface PaymentGatewayConfigurations {
     }
     'cash-payments': {
         secret: string;
+        cashCode: string;
     }
     stripe: {
         publishableKey: string;

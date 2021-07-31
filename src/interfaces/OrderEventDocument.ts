@@ -2,6 +2,7 @@ import ModelDocument from './ModelDocument';
 import { DineroObject } from 'dinero.js';
 import { FeedbackRating } from './OrderFeedbackDocument';
 import { PaymentGateway } from './GatewayDocument';
+import { CurrencyCode } from '../utility/AvailableCurrencies';
 
 /**
  * Order event name.
@@ -53,11 +54,11 @@ export default interface OrderEventDocument<T extends OrderEventName = any> exte
 export interface OrderEventDataFields {
     order_status_refunded: {
         amount: number;
-        currency: 'USD';
+        currency: CurrencyCode;
     }
     order_status_partially_refunded: {
         amount: number;
-        currency: 'USD';
+        currency: CurrencyCode;
     }
     order_status_pending: {
         gateway: PaymentGateway;
@@ -75,8 +76,8 @@ export interface OrderEventDataFields {
         intended: number;
     }
     order_invalid_currency: {
-        received: string;
-        intended: string;
+        received: CurrencyCode<any>;
+        intended: CurrencyCode;
     }
     order_replacement: {
         quantity: number;

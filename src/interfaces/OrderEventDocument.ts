@@ -136,6 +136,10 @@ export interface OrderEventDataFields {
         overpaid: DineroObject;
         paid: DineroObject;
     }
+    order_multiple_payments: {
+        gateway: PaymentGateway;
+        payments: DineroObject[];
+    }
     checkout_failed: {}
     order_fulfilled: {},
     order_checkout_g2a: {},
@@ -150,9 +154,5 @@ export interface OrderEventDataFields {
     order_status_canceled_reversal: {}
     order_checkout_canceled: {}
     order_checkout_rejected: {},
-    order_multiple_payments: {
-        gateway: PaymentGateway;
-        payments: DineroObject[];
-    }
     'coinbase-commerce:resolved': {}
 }

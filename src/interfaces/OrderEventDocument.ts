@@ -76,7 +76,7 @@ export interface OrderEventDataFields {
     }
     order_invalid_currency: {
         received: string;
-        correct: string;
+        intended: string;
     }
     order_replacement: {
         quantity: number;

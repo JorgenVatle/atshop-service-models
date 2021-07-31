@@ -45,7 +45,7 @@ export default interface OrderEventDocument<T extends OrderEventName = any> exte
     /**
      * Event metadata.
      */
-    metadata: OrderEventMetadata<T>;
+    data: OrderEventMetadata<T>;
 }
 
 /**

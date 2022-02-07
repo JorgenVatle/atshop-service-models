@@ -97,7 +97,6 @@ export default class OrderURL {
     public get checkoutCompleted() {
         return this.createLink({
             type: 'waiting',
-            secret: this.order.secret,
         });
     }
 

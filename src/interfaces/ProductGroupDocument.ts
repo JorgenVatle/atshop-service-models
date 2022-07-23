@@ -16,7 +16,7 @@ export default interface ProductGroupDocument extends ProductDocumentInterface {
     /**
      * ProductGroups belong to many Products.
      */
-    _belongsToMany: {
+    _belongsToMany?: {
         '/shop/products': ProductDocument[],
     }
 

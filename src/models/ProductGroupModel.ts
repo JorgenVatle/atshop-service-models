@@ -1,4 +1,6 @@
 import { get } from 'lodash';
+import ProductDocument from '../interfaces/ProductDocument';
+import { SupplementalRelationalData } from '../utility/SupplementalRelationalData';
 import { Omit } from '../utility/TS';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
@@ -91,7 +93,11 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
 }
 
 interface ProductGroupModel extends Omit<ProductGroupDocument, 'category' | ModelTimestamps> {
-    entry: ProductGroupDocument;
+    entry: ProductGroupDocument & SupplementalRelationalData<{
+        belongsToMany: {
+            '/shop/products': ProductDocument,
+        }
+    }>;
 }
 
 export default ProductGroupModel;

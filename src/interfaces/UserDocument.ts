@@ -2,14 +2,14 @@ import ModelDocument from './ModelDocument';
 
 export interface UserDocument extends ModelDocument {
 
-    services: {
+    services: Partial<{
         discord: DiscordService,
         twitter: TwitterService,
         google: GoogleService,
         intercom: IntercomService,
         paylike: PaylikeService,
         resume: [ResumeService]
-    }
+    }>
 
     profile: {
         /**

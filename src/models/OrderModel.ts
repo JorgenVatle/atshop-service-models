@@ -196,8 +196,8 @@ class OrderModel extends ServiceModel {
     /**
      * Whether or not the order has been fulfilled.
      */
-    public get isFulfilled() {
-        return this.entry.fulfilled;
+    public get isFulfilled(): boolean {
+        return this.entry.fulfilled || false;
     }
 
     /**

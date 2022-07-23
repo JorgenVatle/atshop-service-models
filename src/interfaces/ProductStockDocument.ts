@@ -11,6 +11,11 @@ export default interface ProductStockDocument extends ModelDocument {
      * ID of the product this stock entry belongs to.
      */
     productId: string;
+    
+    /**
+     * ID of the replacement this stock entry belongs to. (If it's issued as a replacement)
+     */
+    replacementId?: string;
 
     /**
      * ID of the order this stock entry belongs to. (If sold!)

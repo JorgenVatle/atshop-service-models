@@ -5,6 +5,7 @@
     "outDir": "./dist",
 
     "strict": true,
+    "composite": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
 

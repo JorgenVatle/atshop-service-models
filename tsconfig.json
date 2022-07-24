@@ -8,12 +8,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
 
-    "rootDirs": [
-      "src",
-      "tests"
-    ],
-
     "inlineSourceMap": false,
     "inlineSources": false
   },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "tests/**/*"
+  ]
 }

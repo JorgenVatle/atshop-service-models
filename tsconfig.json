@@ -8,14 +8,12 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
 
-    "inlineSourceMap": true,
-    "inlineSources": true
+    "rootDirs": [
+      "src",
+      "tests"
+    ],
+
+    "inlineSourceMap": false,
+    "inlineSources": false
   },
-  "exclude": [
-    "test",
-    "dist"
-  ],
-  "include": [
-    "./src/**/*.ts"
-  ]
 }

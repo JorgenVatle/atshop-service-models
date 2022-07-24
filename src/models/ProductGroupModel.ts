@@ -1,3 +1,4 @@
+import { Paginated } from '@feathersjs/feathers';
 import { get } from 'lodash';
 import ProductDocument from '../interfaces/ProductDocument';
 import { SupplementalRelationalData } from '../utility/SupplementalRelationalData';
@@ -41,20 +42,23 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
     }
 
     /**
-     * Whether or not this product group has enough stock to create a sale.
+     * Whether this product group has enough stock to create a sale.
      */
-    public async hasStockForSale(count: number): Promise<boolean> {
-        let enoughStock = false;
-        const products = await (await this.products).fetch({ query: { $limit: -1 } });
-
-        products.data.forEach((product: ProductModel) => {
-            if (enoughStock) return;
-            if (product.hasStockForSale(count)) {
-                enoughStock = true;
-            }
-        });
-
-        return enoughStock;
+    public hasStockForSale(count: number): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.products
+                .then((products) => products.fetch({ query: { $limit: -1 } }))
+                .then(async ({ data: products }) => {
+                    for (const product of products) {
+                        if (await product.hasStockForSale(count)) {
+                            return resolve(true);
+                        }
+                    }
+        
+                    return resolve(false);
+                })
+                .catch(reject)
+        })
     }
 
     /**

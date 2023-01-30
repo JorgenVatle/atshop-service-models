@@ -49,8 +49,9 @@ export type ModelInstance<Model extends StaticModel> = Model extends StaticModel
                                                        ? InstanceType<StaticModels[Name]>
                                                        : never;
 
-export type InferStaticModel<ModelTypeof> = StaticModels extends { [key in ModelName]: infer Static }
-                                     ? Static extends ModelTypeof
-                                       ? ModelTypeof
-                                       : never
-                                     : never;
+export type InferStaticModel<ModelTypeof> = StaticModels extends {
+    [key in ModelName]: infer Static
+} ? Static extends ModelTypeof
+   ? ModelTypeof
+   : never
+ : never;

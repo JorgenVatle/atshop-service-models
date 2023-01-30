@@ -12,6 +12,7 @@ import OrderFeedbackModel from '../models/OrderFeedbackModel';
 import ProductGroupModel from '../models/ProductGroupModel';
 import OrderReplacementModel from '../models/OrderReplacementModel';
 import CouponModel from '../models/CouponModel';
+import ServiceModel from '../providers/ServiceModel';
 
 export default interface StaticModels {
     CategoryModel: typeof CategoryModel;
@@ -31,3 +32,4 @@ export default interface StaticModels {
 }
 
 export type ModelName = keyof StaticModels;
+export type InferDocumentType<Model extends typeof ServiceModel> = InstanceType<Model>['entry'];

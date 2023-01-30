@@ -47,5 +47,6 @@ export interface DefaultModels {
 }
 
 type StaticModels = ExtendedModels & Omit<DefaultModels, keyof ExtendedModels>;
+export default StaticModels;
 
 export type ModelName = keyof StaticModels;

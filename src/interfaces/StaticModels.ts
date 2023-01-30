@@ -32,5 +32,9 @@ export default interface StaticModels {
 }
 
 export type ModelName = keyof StaticModels;
-export type StaticModel = StaticModels[ModelName];
+
+export interface StaticModel<Name extends ModelName = ModelName> extends ServiceModel {
+    new(...document: ConstructorParameters<StaticModel[Name]>): StaticModels[Name];
+}
+
 export type InferDocumentType<Model extends typeof ServiceModel> = InstanceType<Model>['entry'];

@@ -1,7 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderModel from './OrderModel';
 import OrderFeedbackDocument from '../interfaces/documents/OrderFeedbackDocument';
-import ProductModel from './ProductModel';
 import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class OrderFeedbackModel extends ServiceModel {

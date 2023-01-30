@@ -2,20 +2,11 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "rootDir": "src/",
-    "rootDirs": [
-      "tests",
-      "src"
-    ],
-    "outDir": "dist/",
-
-    "strict": true,
-    "noImplicitAny": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "skipLibCheck": true,
-
-    "inlineSourceMap": false,
-    "inlineSources": false
-  },
-  "exclude": ["jest.config.ts"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
 }

@@ -17,7 +17,7 @@ export default class PaginatedServiceModel<Model extends StaticModel> {
     /**
      * Cached pagination result.
      */
-    private _result: Paginated<InstanceType<Model>> = { total: -1, limit: -1,  skip: -1, data: [] };
+    private _result: PaginatedModels<Model> = { total: -1, limit: -1,  skip: -1, data: [] };
 
     /**
      * Paginated model constructor.

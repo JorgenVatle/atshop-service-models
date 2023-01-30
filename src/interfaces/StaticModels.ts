@@ -33,8 +33,9 @@ export default interface StaticModels {
 }
 
 export type ModelName = keyof StaticModels;
+type StaticServiceModel = typeof ServiceModel;
 
-export interface StaticModel<Name extends ModelName = ModelName> extends ServiceModel {
+export interface StaticModel<Name extends ModelName = ModelName> extends StaticServiceModel {
     new(...document: ModelConstructor<Name>): StaticModels[Name];
 }
 

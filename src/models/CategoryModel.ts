@@ -13,8 +13,8 @@ class CategoryModel extends ServiceModel {
     /**
      * A category belongs to a shop.
      */
-    public get shop(): Promise<ShopModel> {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.shopId);
+    public get shop() {
+        return this.belongsTo('ShopModel', this.shopId);
     }
 
     /**

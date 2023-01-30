@@ -13,7 +13,7 @@ import ProductGroupModel from '../models/ProductGroupModel';
 import OrderReplacementModel from '../models/OrderReplacementModel';
 import CouponModel from '../models/CouponModel';
 
-export default interface Models {
+export default interface StaticModels {
     CategoryModel: typeof CategoryModel;
     CustomerBlacklistModel: typeof CustomerBlacklistModel;
     GatewayModel: typeof GatewayModel;
@@ -30,4 +30,4 @@ export default interface Models {
     CouponModel: typeof CouponModel;
 }
 
-export type ModelName = keyof Models;
+export type ModelName = keyof StaticModels;

@@ -1,5 +1,5 @@
 import { Application } from '@feathersjs/feathers';
-import Models from '../interfaces/Models';
+import StaticModels from '../interfaces/StaticModels';
 
 export interface HostConfig {
     host: string;
@@ -8,7 +8,7 @@ export interface HostConfig {
 
 export interface ConfigOptions {
     app: Application;
-    models?: Partial<Models>;
+    models?: Partial<StaticModels>;
     frontend?: Partial<HostConfig>;
     legacyFrontend?: Partial<HostConfig>;
     permalinkService?: Partial<HostConfig>;

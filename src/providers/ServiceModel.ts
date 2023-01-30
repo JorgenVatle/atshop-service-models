@@ -3,7 +3,7 @@ import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/ModelDocument';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
-import { ModelName } from '../interfaces/Models';
+import { ModelName } from '../interfaces/StaticModels';
 
 class ServiceModel {
 

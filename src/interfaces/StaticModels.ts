@@ -36,7 +36,7 @@ export type ModelName = keyof StaticModels;
 type StaticServiceModel = typeof ServiceModel;
 
 export interface StaticModel<Name extends ModelName = ModelName> extends StaticServiceModel {
-    new(...document: ModelConstructor<Name>): StaticModels[Name]; // Todo: Instance type, not static type
+    new(...document: ModelConstructor<Name>): ModelInstance<StaticModels[Name]>;
 }
 
 // TODO: This should be inferred.
@@ -49,8 +49,8 @@ export type ModelInstance<Model extends StaticModel> = Model extends StaticModel
                                                        ? InstanceType<StaticModels[Name]>
                                                        : never;
 
-export type StaticModelThis<Model> = StaticModels extends { [key in ModelName]: infer Static }
-                                     ? Static extends Model
-                                       ? Model
+export type InferStaticModel<ModelTypeof> = StaticModels extends { [key in ModelName]: infer Static }
+                                     ? Static extends ModelTypeof
+                                       ? ModelTypeof
                                        : never
                                      : never;

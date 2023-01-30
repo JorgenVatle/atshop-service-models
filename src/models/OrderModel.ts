@@ -9,7 +9,6 @@ import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
-import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 import { GatewayModel } from '../index';
@@ -128,7 +127,7 @@ class OrderModel extends ServiceModel {
      * Currency of order.
      */
     public get currency(): Promise<CurrencyCode> {
-        return this.shop.then((shop: ShopModel) => {
+        return this.shop.then((shop) => {
             return shop.currency || 'USD';
         });
     }

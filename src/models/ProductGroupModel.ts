@@ -24,21 +24,21 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      * A product group belongs to many products.
      */
     public get products() {
-        return this.belongsToMany<typeof ProductModel>('ProductModel', this.productIds);
+        return this.belongsToMany('ProductModel', this.productIds);
     }
 
     /**
      * A product group belongs to a category.
      */
     public get category() {
-        return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
+        return this.belongsTo('CategoryModel', this.entry.category);
     }
 
     /**
      * A product group belongs to a shop.
      */
     public get shop() {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
+        return this.belongsTo('ShopModel', this.entry.shopId);
     }
 
     /**

@@ -3,6 +3,10 @@
     "target": "es2020",
     "module": "commonjs",
     "rootDir": "src/",
+    "rootDirs": [
+      "tests",
+      "src",
+    ],
     "outDir": "dist/",
 
     "strict": true,
@@ -10,12 +14,7 @@
     "skipLibCheck": true,
 
     "inlineSourceMap": false,
-    "inlineSources": false
+    "inlineSources": false,
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "tests/**/*"
-  ]
+  "exclude": ["jest.config.ts"],
 }

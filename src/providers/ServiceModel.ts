@@ -44,14 +44,13 @@ class ServiceModel {
      * Fetch a single entry from the current service.
      */
     public static async get(id: AsyncKey, query?: Params) {
-        const self = <typeof ServiceModel><unknown>this;
-        const result = await self.service.get(await id, query);
+        const result = await this.service.get(await id, query);
 
         if (!result) {
             throw new NotFound(`The requested entry could not be located!`, {
                 id,
                 query,
-                service: self.servicePath,
+                service: this.servicePath,
             });
         }
 

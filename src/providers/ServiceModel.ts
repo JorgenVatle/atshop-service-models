@@ -1,9 +1,10 @@
 import { Application, Id, Paginated, Params, Service } from '@feathersjs/feathers';
 import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/documents/ModelDocument';
+import ServiceModelStatic from '../interfaces/ServiceModelStatic';
+import StaticModels, { ModelName } from '../interfaces/StaticModels';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
-import { ModelName, StaticModel } from '../interfaces/StaticModels';
 
 class ServiceModel {
 
@@ -36,14 +37,14 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<Model extends StaticModel<any>>(this: Model, query: Params) {
+    public static find<Self extends ServiceModelStatic>(this: Self, query: Params) {
         return new PaginatedServiceModel(this, query);
     }
 
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get(id: AsyncKey, query?: Params) {
+    public static async get<Self>(this: ServiceModelStatic<Self>, id: AsyncKey, query?: Params) {
         const result = await this.service.get(await id, query);
 
         if (!result) {
@@ -250,7 +251,7 @@ class ServiceModel {
     /**
      * Fetch a model by name.
      */
-    private getModel<Name extends ModelName>(modelName: Name): StaticModel<Name> {
+    private getModel<Name extends ModelName>(modelName: Name): ServiceModelStatic<InstanceType<StaticModels[Name]>> {
         return this._App.get(`atshop-service-models.model.${modelName}`) || require(`../models/${modelName}`).default;
     }
 }

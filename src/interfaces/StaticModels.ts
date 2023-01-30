@@ -12,8 +12,6 @@ import type OrderFeedbackModel from '../models/OrderFeedbackModel';
 import type ProductGroupModel from '../models/ProductGroupModel';
 import type OrderReplacementModel from '../models/OrderReplacementModel';
 import type CouponModel from '../models/CouponModel';
-import type ServiceModel from '../providers/ServiceModel';
-import ModelDocument from './documents/ModelDocument';
 
 export default interface StaticModels {
     readonly CategoryModel: typeof CategoryModel;
@@ -33,25 +31,3 @@ export default interface StaticModels {
 }
 
 export type ModelName = keyof StaticModels;
-type StaticServiceModel = typeof ServiceModel;
-
-export interface StaticModel<Name extends ModelName = ModelName> extends StaticServiceModel {
-    new(...document: ModelConstructor<Name>): ModelInstance<StaticModels[Name]>;
-}
-
-// TODO: This should be inferred.
-// All models should adhere to the entry: ModelDocument interface.
-export type ModelConstructor<Name extends ModelName> = [document: ModelDocument];
-
-export type InferDocumentType<Model extends StaticModel> = InstanceType<Model>['entry'];
-
-export type ModelInstance<Model extends StaticModel> = Model extends StaticModel<infer Name>
-                                                       ? InstanceType<StaticModels[Name]>
-                                                       : never;
-
-export type InferStaticModel<ModelTypeof> = StaticModels extends {
-    [key in ModelName]: infer Static
-} ? Static extends ModelTypeof
-   ? ModelTypeof
-   : never
- : never;

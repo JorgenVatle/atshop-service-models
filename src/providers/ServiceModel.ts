@@ -1,6 +1,7 @@
 import { Application, Id, Paginated, Params, Service } from '@feathersjs/feathers';
 import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/documents/ModelDocument';
+import OrderFeedbackModel from '../models/OrderFeedbackModel';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 import { ModelName, StaticModel } from '../interfaces/StaticModels';
@@ -36,7 +37,7 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<Self extends StaticModel<any>>(this: Self, query: Params) {
+    public static find<Name extends ModelName>(this: StaticModel<Name>, query: Params) {
         return new PaginatedServiceModel(this, query);
     }
 

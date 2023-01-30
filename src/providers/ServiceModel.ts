@@ -1,7 +1,6 @@
 import { Application, Id, Paginated, Params, Service } from '@feathersjs/feathers';
 import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/documents/ModelDocument';
-import OrderFeedbackModel from '../models/OrderFeedbackModel';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 import { ModelName, StaticModel } from '../interfaces/StaticModels';

@@ -13,7 +13,7 @@ import type ProductGroupModel from '../models/ProductGroupModel';
 import type OrderReplacementModel from '../models/OrderReplacementModel';
 import type CouponModel from '../models/CouponModel';
 import type ServiceModel from '../providers/ServiceModel';
-import ModelDocument from './ModelDocument';
+import ModelDocument from './documents/ModelDocument';
 
 export default interface StaticModels {
     CategoryModel: typeof CategoryModel;

@@ -1,6 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
-import CouponDocument from '../interfaces/CouponDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import CouponDocument from '../interfaces/documents/CouponDocument';
 
 class CouponModel extends ServiceModel {
 

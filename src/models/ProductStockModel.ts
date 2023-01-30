@@ -1,7 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
-import ProductStockDocument from '../interfaces/ProductStockDocument';
+import ProductStockDocument from '../interfaces/documents/ProductStockDocument';
 import { Omit } from '../utility/TS';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class ProductStockModel extends ServiceModel {
 

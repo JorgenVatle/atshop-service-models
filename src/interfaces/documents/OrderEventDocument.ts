@@ -2,7 +2,7 @@ import ModelDocument from './ModelDocument';
 import { DineroObject } from 'dinero.js';
 import { FeedbackRating } from './OrderFeedbackDocument';
 import { PaymentGateway } from './GatewayDocument';
-import { CurrencyCode } from '../utility/AvailableCurrencies';
+import { CurrencyCode } from '../../utility/AvailableCurrencies';
 
 /**
  * Order event name.

@@ -1,7 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
-import CategoryDocument from '../interfaces/CategoryDocument';
+import CategoryDocument from '../interfaces/documents/CategoryDocument';
 import ShopModel from './ShopModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class CategoryModel extends ServiceModel {
 

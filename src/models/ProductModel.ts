@@ -1,13 +1,13 @@
 import Dinero from 'dinero.js';
 import { get } from 'lodash';
 import EscapeRegex from 'escape-string-regexp';
-import ProductDocument from '../interfaces/ProductDocument';
+import ProductDocument from '../interfaces/documents/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
 import { Omit } from '../utility/TS';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import { ProductInterface } from '../interfaces/ProductInterface';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
-import { PaymentGateway } from '../interfaces/GatewayDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import { PaymentGateway } from '../interfaces/documents/GatewayDocument';
 
 class ProductModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 

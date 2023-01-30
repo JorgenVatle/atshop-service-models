@@ -1,9 +1,9 @@
 import { get } from 'lodash';
-import ShopDocument from '../interfaces/ShopDocument';
+import ShopDocument from '../interfaces/documents/ShopDocument';
 import ServiceModel from '../providers/ServiceModel';
 import Helpers from '../utility/Helpers';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class ShopModel extends ServiceModel implements FeedbackSummary {
 

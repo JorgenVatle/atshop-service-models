@@ -1,17 +1,17 @@
 import { Paginated } from '@feathersjs/feathers';
 import { get } from 'lodash';
-import ProductDocument from '../interfaces/ProductDocument';
+import ProductDocument from '../interfaces/documents/ProductDocument';
 import { SupplementalRelationalData } from '../utility/SupplementalRelationalData';
 import { Omit } from '../utility/TS';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
-import ProductGroupDocument from '../interfaces/ProductGroupDocument';
+import ProductGroupDocument from '../interfaces/documents/ProductGroupDocument';
 import ProductModel from './ProductModel';
 import Dinero from 'dinero.js';
 import { CategoryModel } from '../index';
 import ShopModel from './ShopModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 

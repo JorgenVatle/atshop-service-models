@@ -1,6 +1,6 @@
 import Gravatar from 'gravatar';
 import ServiceModel from '../providers/ServiceModel';
-import OrderDocument from '../interfaces/OrderDocument';
+import OrderDocument from '../interfaces/documents/OrderDocument';
 import { CurrencyCode } from '../utility/AvailableCurrencies';
 import ShopModel from './ShopModel';
 import Dinero from 'dinero.js';
@@ -10,7 +10,7 @@ import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
 import OrderFeedbackModel from './OrderFeedbackModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import { GatewayModel } from '../index';
 import CouponModel from './CouponModel';
 import OrderURL from '../providers/OrderURL';

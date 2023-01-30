@@ -1,8 +1,8 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderEventDocument, { OrderEventLabel, OrderEventName } from '../interfaces/OrderEventDocument';
+import OrderEventDocument, { OrderEventLabel, OrderEventName } from '../interfaces/documents/OrderEventDocument';
 import ShopModel from './ShopModel';
 import OrderModel from './OrderModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class OrderEventModel extends ServiceModel {
 

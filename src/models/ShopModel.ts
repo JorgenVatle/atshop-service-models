@@ -1,12 +1,7 @@
 import { get } from 'lodash';
 import ShopDocument from '../interfaces/ShopDocument';
-import ProductModel from './ProductModel';
 import ServiceModel from '../providers/ServiceModel';
-import CustomerBlacklistModel from './CustomerBlacklistModel';
-import GatewayModel from './GatewayModel';
-import CategoryModel from './CategoryModel';
 import Helpers from '../utility/Helpers';
-import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import { ModelTimestamps } from '../interfaces/ModelDocument';
 
@@ -20,28 +15,28 @@ class ShopModel extends ServiceModel implements FeedbackSummary {
     /**
      * A shop has many blacklisted customers.
      */
-    public get blacklist(): PaginatedServiceModel<typeof CustomerBlacklistModel> {
+    public get blacklist() {
         return this.hasMany('CustomerBlacklistModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop has many gateways.
      */
-    public get gateways(): PaginatedServiceModel<typeof GatewayModel> {
+    public get gateways() {
         return this.hasMany('GatewayModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop can have many products.
      */
-    public get products(): PaginatedServiceModel<typeof ProductModel> {
+    public get products() {
         return this.hasMany('ProductModel', 'shopId', this.entry._id);
     }
 
     /**
      * A shop can have many categories.
      */
-    public get categories(): PaginatedServiceModel<typeof CategoryModel> {
+    public get categories() {
         return this.hasMany('CategoryModel', 'shopId', this.entry._id);
     }
 

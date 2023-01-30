@@ -72,7 +72,7 @@ export default class PaginatedServiceModel<Model extends StaticModel> {
      *
      * @param query
      */
-    public async fetchOne(query: Params['query'] = {}) {
+    public async fetchOne<Self extends StaticModel>(this: InstanceType<Self>, query: Params['query'] = {}) {
         const result = await this.fetch(query);
 
         if (result.data.length) {

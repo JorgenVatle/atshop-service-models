@@ -36,7 +36,7 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<Self extends StaticModel>(this: Self, query: Params) {
+    public static find<Self extends StaticModel<any>>(this: Self, query: Params) {
         return new PaginatedServiceModel(this, query);
     }
 

@@ -2,7 +2,7 @@ import OrderModel from '../models/OrderModel';
 import { KeyValue } from '../utility/TS';
 import { HostConfig } from '../utility/Service';
 import Helpers from '../utility/Helpers';
-import { PaymentRedirectOverrides } from '../interfaces/OrderDocument';
+import { PaymentRedirectOverrides } from '../interfaces/documents/OrderDocument';
 
 export type OrderLinkType =
     'waiting' | // Gateway payment process completed - waiting for payment to be confirmed.

@@ -1,9 +1,10 @@
 import { Application, Id, Paginated, Params, Service } from '@feathersjs/feathers';
 import { NotFound } from '@feathersjs/errors';
-import ModelDocument from '../interfaces/ModelDocument';
+import ModelDocument from '../interfaces/documents/ModelDocument';
+import ServiceModelStatic from '../interfaces/ServiceModelStatic';
+import StaticModels, { ModelName } from '../interfaces/StaticModels';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
-import { ModelName } from '../interfaces/Models';
 
 class ServiceModel {
 
@@ -36,27 +37,25 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<T extends typeof ServiceModel>(this: T, query: Params) {
-        return new PaginatedServiceModel<T>(this, query);
+    public static find<Self extends typeof ServiceModel = typeof this>(this: Self, query: Params): PaginatedServiceModel<Self> {
+        return new PaginatedServiceModel(this, query) as PaginatedServiceModel<Self>;
     }
 
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get<T extends typeof ServiceModel>(this: T, id: AsyncKey, query?: Params): Promise<InstanceType<T>> {
-        const self = <typeof ServiceModel><unknown>this;
-        const result = await self.service.get(await id, query);
+    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Params) {
+        const result = await this.service.get(await id, query);
 
         if (!result) {
             throw new NotFound(`The requested entry could not be located!`, {
                 id,
                 query,
-                service: self.servicePath,
+                service: this.servicePath,
             });
         }
 
-        // @ts-ignore
-        return new this(result);
+        return new this(result) as InstanceType<Self>;
     }
 
     /**
@@ -173,41 +172,41 @@ class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
+    protected hasMany<Name extends ModelName>(model: Name, foreignKey: string, localKey = this.entry._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(this.getModel<T>(model), query);
+        return new PaginatedServiceModel(this.getModel(model), query);
     }
 
     /**
      * Register a has-one relationship for the current model.
      */
-    protected hasOne<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey: AsyncKey = this._id) {
+    protected hasOne<Name extends ModelName>(model: Name, foreignKey: string, localKey: AsyncKey = this._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(this.getModel<T>(model), query).fetchOne();
+        return new PaginatedServiceModel(this.getModel(model), query).fetchOne();
     }
 
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {
-        return this.getModel<T>(modelName).get(foreignKey);
+    protected belongsTo<Name extends ModelName>(modelName: Name, foreignKey: AsyncKey) {
+        return this.getModel(modelName).get(foreignKey);
     }
 
     /**
      * Register a belongs-to-many relationship for the current model.
      */
-    protected async belongsToMany<T extends typeof ServiceModel>(modelName: ModelName, foreignKeys: AsyncKey[]) {
+    protected async belongsToMany<Name extends ModelName>(modelName: Name, foreignKeys: AsyncKey[]) {
         const query: Params['query'] = {
             _id: {
                 $in: await Promise.all(foreignKeys),
             },
         };
 
-        return new PaginatedServiceModel(this.getModel<T>(modelName), query);
+        return new PaginatedServiceModel(this.getModel(modelName), query);
     }
 
     /**
@@ -252,7 +251,7 @@ class ServiceModel {
     /**
      * Fetch a model by name.
      */
-    private getModel<T extends typeof ServiceModel>(modelName: ModelName): T {
+    private getModel<Name extends ModelName>(modelName: Name): ServiceModelStatic<InstanceType<StaticModels[Name]>> {
         return this._App.get(`atshop-service-models.model.${modelName}`) || require(`../models/${modelName}`).default;
     }
 }

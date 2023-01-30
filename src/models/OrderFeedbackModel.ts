@@ -1,8 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderModel from './OrderModel';
-import OrderFeedbackDocument from '../interfaces/OrderFeedbackDocument';
-import ProductModel from './ProductModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import OrderFeedbackDocument from '../interfaces/documents/OrderFeedbackDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class OrderFeedbackModel extends ServiceModel {
 
@@ -15,14 +13,14 @@ class OrderFeedbackModel extends ServiceModel {
      * Order feedback belongs to an order.
      */
     public get order() {
-        return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
+        return this.belongsTo('OrderModel', this.orderId);
     }
 
     /**
      * Order feedback belongs to a product.
      */
     public get product() {
-        return this.belongsTo<typeof ProductModel>('ProductModel', this.productId);
+        return this.belongsTo('ProductModel', this.productId);
     }
 
     /**
@@ -36,7 +34,7 @@ class OrderFeedbackModel extends ServiceModel {
             $limit: -1,
         }).fetch();
 
-        const ratings: number[] = feedback.data.map((feedback) => feedback.positive ? 1 : 0);
+        const ratings: number[] = feedback.data.map((feedback) => feedback.f ? 1 : 0);
         let sum = 0;
 
         if (ratings.length) {

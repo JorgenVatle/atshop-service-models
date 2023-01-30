@@ -3,7 +3,7 @@ import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/ModelDocument';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
-import StaticModels, { ModelName } from '../interfaces/StaticModels';
+import { ModelName, StaticModel } from '../interfaces/StaticModels';
 
 class ServiceModel {
 
@@ -172,7 +172,7 @@ class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany<Name extends ModelName>(model: Name, foreignKey: string, localKey = this.entry._id): PaginatedServiceModel<Name> {
+    protected hasMany<Name extends ModelName>(model: Name, foreignKey: string, localKey = this.entry._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 

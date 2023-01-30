@@ -1,4 +1,3 @@
-import { StaticModel } from '../interfaces/StaticModels';
 import ServiceModel from '../providers/ServiceModel';
 import OrderFeedbackDocument from '../interfaces/documents/OrderFeedbackDocument';
 import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
@@ -27,7 +26,7 @@ class OrderFeedbackModel extends ServiceModel {
     /**
      * Fetch the rating for one or more products.
      */
-    public static async rating(this: StaticModel<'OrderFeedbackModel'>, productIds: string[]) {
+    public static async rating(productIds: string[]) {
         const feedback = await this.find({
             productId: {
                 $in: productIds
@@ -35,7 +34,7 @@ class OrderFeedbackModel extends ServiceModel {
             $limit: -1,
         }).fetch();
 
-        const ratings: number[] = feedback.data.map((feedback) => feedback.positive ? 1 : 0);
+        const ratings: number[] = feedback.data.map((feedback) => feedback.f ? 1 : 0);
         let sum = 0;
 
         if (ratings.length) {

@@ -251,7 +251,7 @@ class ServiceModel {
     /**
      * Fetch a model by name.
      */
-    private getModel<Name extends ModelName>(modelName: Name): StaticModels[Name] {
+    private getModel<Name extends ModelName>(modelName: Name): StaticModel<Name> {
         return this._App.get(`atshop-service-models.model.${modelName}`) || require(`../models/${modelName}`).default;
     }
 }

@@ -3,7 +3,7 @@ import { NotFound } from '@feathersjs/errors';
 import ModelDocument from '../interfaces/ModelDocument';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
-import { ModelName } from '../interfaces/StaticModels';
+import StaticModels, { ModelName } from '../interfaces/StaticModels';
 
 class ServiceModel {
 
@@ -36,8 +36,8 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<T extends typeof ServiceModel>(this: T, query: Params) {
-        return new PaginatedServiceModel<T>(this, query);
+    public static find(query: Params) {
+        return new PaginatedServiceModel(this, query);
     }
 
     /**
@@ -173,41 +173,41 @@ class ServiceModel {
     /**
      * Register has-many relationship for the current model.
      */
-    protected hasMany<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey = this.entry._id) {
+    protected hasMany<Name extends ModelName>(model: Name, foreignKey: string, localKey = this.entry._id): PaginatedServiceModel<Name> {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(this.getModel<T>(model), query);
+        return new PaginatedServiceModel(this.getModel(model), query);
     }
 
     /**
      * Register a has-one relationship for the current model.
      */
-    protected hasOne<T extends typeof ServiceModel>(model: ModelName, foreignKey: string, localKey: AsyncKey = this._id) {
+    protected hasOne<Name extends ModelName>(model: Name, foreignKey: string, localKey: AsyncKey = this._id) {
         const query: Params['query'] = {};
         query[foreignKey] = localKey;
 
-        return new PaginatedServiceModel(this.getModel<T>(model), query).fetchOne();
+        return new PaginatedServiceModel(this.getModel(model), query).fetchOne();
     }
 
     /**
      * Registers a relationship between the current model instance and the given ServiceModel instance.
      */
-    protected belongsTo<T extends typeof ServiceModel>(modelName: ModelName, foreignKey: AsyncKey) {
-        return this.getModel<T>(modelName).get(foreignKey);
+    protected belongsTo<Name extends ModelName>(modelName: Name, foreignKey: AsyncKey) {
+        return this.getModel(modelName).get(foreignKey);
     }
 
     /**
      * Register a belongs-to-many relationship for the current model.
      */
-    protected async belongsToMany<T extends typeof ServiceModel>(modelName: ModelName, foreignKeys: AsyncKey[]) {
+    protected async belongsToMany<Name extends ModelName>(modelName: Name, foreignKeys: AsyncKey[]) {
         const query: Params['query'] = {
             _id: {
                 $in: await Promise.all(foreignKeys),
             },
         };
 
-        return new PaginatedServiceModel(this.getModel<T>(modelName), query);
+        return new PaginatedServiceModel(this.getModel(modelName), query);
     }
 
     /**
@@ -252,7 +252,7 @@ class ServiceModel {
     /**
      * Fetch a model by name.
      */
-    private getModel<T extends typeof ServiceModel>(modelName: ModelName): T {
+    private getModel<Name extends ModelName>(modelName: Name): StaticModels[Name] {
         return this._App.get(`atshop-service-models.model.${modelName}`) || require(`../models/${modelName}`).default;
     }
 }

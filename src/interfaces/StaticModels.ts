@@ -13,6 +13,7 @@ import type ProductGroupModel from '../models/ProductGroupModel';
 import type OrderReplacementModel from '../models/OrderReplacementModel';
 import type CouponModel from '../models/CouponModel';
 import type ServiceModel from '../providers/ServiceModel';
+import ModelDocument from './ModelDocument';
 
 export default interface StaticModels {
     CategoryModel: typeof CategoryModel;
@@ -34,7 +35,10 @@ export default interface StaticModels {
 export type ModelName = keyof StaticModels;
 
 export interface StaticModel<Name extends ModelName = ModelName> extends ServiceModel {
-    new(...document: ConstructorParameters<StaticModel[Name]>): StaticModels[Name];
+    new(...document: ModelConstructor<Name>): StaticModels[Name];
 }
+
+// TODO: This should be inferred
+export type ModelConstructor<Name extends ModelName> = [document: ModelDocument];
 
 export type InferDocumentType<Model extends typeof ServiceModel> = InstanceType<Model>['entry'];

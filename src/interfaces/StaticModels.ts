@@ -38,7 +38,8 @@ export interface StaticModel<Name extends ModelName = ModelName> extends Service
     new(...document: ModelConstructor<Name>): StaticModels[Name];
 }
 
-// TODO: This should be inferred
-export type ModelConstructor<Name extends ModelName> = [document: ModelDocument];
+// TODO: This should be inferred.
+// All models should adhere to the entry: ModelDocument interface.
+export type ModelConstructor<Name extends ModelName> = [document: InferDocumentType<StaticModels[Name]>];
 
 export type InferDocumentType<Model extends typeof ServiceModel> = InstanceType<Model>['entry'];

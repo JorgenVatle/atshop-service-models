@@ -1,5 +1,5 @@
+import { CurrencyCode } from '../../utility/AvailableCurrencies';
 import ModelDocument from './ModelDocument';
-import { CurrencyCode } from '../utility/AvailableCurrencies';
 
 export default interface ShopDocument extends ModelDocument {
     /**

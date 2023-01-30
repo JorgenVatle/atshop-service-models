@@ -44,7 +44,7 @@ class ServiceModel {
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get<Self>(this: ServiceModelStatic<Self>, id: AsyncKey, query?: Params) {
+    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Params) {
         const result = await this.service.get(await id, query);
 
         if (!result) {
@@ -55,7 +55,7 @@ class ServiceModel {
             });
         }
 
-        return new this(result);
+        return new this(result) as InstanceType<Self>;
     }
 
     /**

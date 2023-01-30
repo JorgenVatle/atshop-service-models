@@ -48,3 +48,9 @@ export type InferDocumentType<Model extends StaticModel> = InstanceType<Model>['
 export type ModelInstance<Model extends StaticModel> = Model extends StaticModel<infer Name>
                                                        ? InstanceType<StaticModels[Name]>
                                                        : never;
+
+export type StaticModelThis<Model> = StaticModels extends { [key in ModelName]: infer Static }
+                                     ? Static extends Model
+                                       ? Model
+                                       : never
+                                     : never;

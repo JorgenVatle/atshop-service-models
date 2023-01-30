@@ -1,7 +1,5 @@
 import ServiceModel from '../providers/ServiceModel';
 import OrderEventDocument, { OrderEventLabel, OrderEventName } from '../interfaces/documents/OrderEventDocument';
-import ShopModel from './ShopModel';
-import OrderModel from './OrderModel';
 import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class OrderEventModel extends ServiceModel {
@@ -58,18 +56,18 @@ class OrderEventModel extends ServiceModel {
     /**
      * An order event belongs to an order.
      */
-    public get order(): Promise<OrderModel> {
-        return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
+    public get order() {
+        return this.belongsTo('OrderModel', this.orderId);
     }
 
     /**
      * An order event belongs to a shop.
      */
-    public get shop(): Promise<ShopModel> {
+    public get shop() {
         const shopId = this.order
             .then((order) => order.shop)
             .then((shop) => shop._id);
-        return this.belongsTo<typeof ShopModel>('ShopModel', shopId);
+        return this.belongsTo('ShopModel', shopId);
     }
 
     /**

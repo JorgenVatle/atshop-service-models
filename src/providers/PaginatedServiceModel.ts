@@ -89,7 +89,7 @@ export default class PaginatedServiceModel<Model extends ServiceModelStatic> {
      *
      * @param query
      */
-    public find(query?: Params['query']) {
+    public find(query?: Params['query']): PaginatedServiceModel<Model> {
         return new PaginatedServiceModel(this.model, { ...query, ...this.query, });
     }
 

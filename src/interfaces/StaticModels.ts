@@ -13,7 +13,23 @@ import type ProductGroupModel from '../models/ProductGroupModel';
 import type OrderReplacementModel from '../models/OrderReplacementModel';
 import type CouponModel from '../models/CouponModel';
 
-export default interface StaticModels {
+/**
+ * There are here for you to inject your own declarations into to ensure your
+ * classes have the correct relational types.
+ *
+ * @example typescript
+ * declare module 'atshop-service-models/src/interfaces/StaticModels' {
+ *     export interface ExtendedModels {
+ *         OrderModel: typeof MyExtendedOrderModel,
+ *         ...
+ *     }
+ * }
+ */
+export interface ExtendedModels {
+
+}
+
+export interface DefaultModels {
     readonly CategoryModel: typeof CategoryModel;
     readonly CustomerBlacklistModel: typeof CustomerBlacklistModel;
     readonly GatewayModel: typeof GatewayModel;
@@ -29,5 +45,7 @@ export default interface StaticModels {
     readonly OrderReplacementModel: typeof OrderReplacementModel;
     readonly CouponModel: typeof CouponModel;
 }
+
+type StaticModels = ExtendedModels & Omit<DefaultModels, keyof ExtendedModels>;
 
 export type ModelName = keyof StaticModels;

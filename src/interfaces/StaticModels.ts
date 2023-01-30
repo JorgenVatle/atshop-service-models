@@ -1,18 +1,18 @@
-import OrderModel from '../models/OrderModel';
-import CategoryModel from '../models/CategoryModel';
-import CustomerBlacklistModel from '../models/CustomerBlacklistModel';
-import GatewayModel from '../models/GatewayModel';
-import IpnModel from '../models/IpnModel';
-import OrderEventModel from '../models/OrderEventModel';
-import ProductModel from '../models/ProductModel';
-import ProductStockModel from '../models/ProductStockModel';
-import ShopModel from '../models/ShopModel';
-import UserModel from '../models/UserModel';
-import OrderFeedbackModel from '../models/OrderFeedbackModel';
-import ProductGroupModel from '../models/ProductGroupModel';
-import OrderReplacementModel from '../models/OrderReplacementModel';
-import CouponModel from '../models/CouponModel';
-import ServiceModel from '../providers/ServiceModel';
+import type OrderModel from '../models/OrderModel';
+import type CategoryModel from '../models/CategoryModel';
+import type CustomerBlacklistModel from '../models/CustomerBlacklistModel';
+import type GatewayModel from '../models/GatewayModel';
+import type IpnModel from '../models/IpnModel';
+import type OrderEventModel from '../models/OrderEventModel';
+import type ProductModel from '../models/ProductModel';
+import type ProductStockModel from '../models/ProductStockModel';
+import type ShopModel from '../models/ShopModel';
+import type UserModel from '../models/UserModel';
+import type OrderFeedbackModel from '../models/OrderFeedbackModel';
+import type ProductGroupModel from '../models/ProductGroupModel';
+import type OrderReplacementModel from '../models/OrderReplacementModel';
+import type CouponModel from '../models/CouponModel';
+import type ServiceModel from '../providers/ServiceModel';
 
 export default interface StaticModels {
     CategoryModel: typeof CategoryModel;
@@ -32,4 +32,5 @@ export default interface StaticModels {
 }
 
 export type ModelName = keyof StaticModels;
+export type StaticModel = StaticModels[ModelName];
 export type InferDocumentType<Model extends typeof ServiceModel> = InstanceType<Model>['entry'];

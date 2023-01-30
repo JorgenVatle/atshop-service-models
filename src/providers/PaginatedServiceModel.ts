@@ -1,5 +1,5 @@
 import { Paginated, Params } from '@feathersjs/feathers';
-import { InferDocumentType, StaticModel } from '../interfaces/StaticModels';
+import { InferDocumentType, ModelInstance, StaticModel } from '../interfaces/StaticModels';
 import { NotFound } from '@feathersjs/errors';
 
 export default class PaginatedServiceModel<Model extends StaticModel> {
@@ -39,7 +39,7 @@ export default class PaginatedServiceModel<Model extends StaticModel> {
         return {
             ...result,
             data: result.data.map((document: any) => {
-                return new this.model(document) as ModelInstance<Model>;
+                return new this.model(document) as unknown as ModelInstance<Model>;
             }),
         }
     }
@@ -131,4 +131,3 @@ export default class PaginatedServiceModel<Model extends StaticModel> {
 
 type PaginatedDocuments<Model extends StaticModel> = Paginated<InferDocumentType<Model>>
 type PaginatedModels<Model extends StaticModel> = Paginated<ModelInstance<Model>>;
-type ModelInstance<Model extends StaticModel> = InstanceType<Model>;

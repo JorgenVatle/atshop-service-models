@@ -16,20 +16,20 @@ import type ServiceModel from '../providers/ServiceModel';
 import ModelDocument from './documents/ModelDocument';
 
 export default interface StaticModels {
-    CategoryModel: typeof CategoryModel;
-    CustomerBlacklistModel: typeof CustomerBlacklistModel;
-    GatewayModel: typeof GatewayModel;
-    IpnModel: typeof IpnModel;
-    OrderEventModel: typeof OrderEventModel;
-    OrderFeedbackModel: typeof OrderFeedbackModel;
-    OrderModel: typeof OrderModel;
-    ProductModel: typeof ProductModel;
-    ProductStockModel: typeof ProductStockModel;
-    ShopModel: typeof ShopModel;
-    UserModel: typeof UserModel;
-    ProductGroupModel: typeof ProductGroupModel;
-    OrderReplacementModel: typeof OrderReplacementModel;
-    CouponModel: typeof CouponModel;
+    readonly CategoryModel: typeof CategoryModel;
+    readonly CustomerBlacklistModel: typeof CustomerBlacklistModel;
+    readonly GatewayModel: typeof GatewayModel;
+    readonly IpnModel: typeof IpnModel;
+    readonly OrderEventModel: typeof OrderEventModel;
+    readonly OrderFeedbackModel: typeof OrderFeedbackModel;
+    readonly OrderModel: typeof OrderModel;
+    readonly ProductModel: typeof ProductModel;
+    readonly ProductStockModel: typeof ProductStockModel;
+    readonly ShopModel: typeof ShopModel;
+    readonly UserModel: typeof UserModel;
+    readonly ProductGroupModel: typeof ProductGroupModel;
+    readonly OrderReplacementModel: typeof OrderReplacementModel;
+    readonly CouponModel: typeof CouponModel;
 }
 
 export type ModelName = keyof StaticModels;

@@ -37,14 +37,14 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<Self extends typeof ServiceModel = typeof this>(this: Self, query: Params): PaginatedServiceModel<Self> {
+    public static find<Self extends typeof ServiceModel = typeof this>(this: Self, query: Params['query']): PaginatedServiceModel<Self> {
         return new PaginatedServiceModel(this, query) as PaginatedServiceModel<Self>;
     }
 
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Params) {
+    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Params['query']) {
         const result = await this.service.get(await id, query);
 
         if (!result) {

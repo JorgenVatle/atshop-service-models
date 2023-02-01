@@ -6,7 +6,6 @@
   "types": "src/index.ts",
   "scripts": {
     "test": "npx jest",
-    "prepare": "npm run build",
     "build": "tsc",
     "preversion": "tsc -noEmit",
     "postpublish": "git push && git push --tags"

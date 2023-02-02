@@ -6,6 +6,8 @@ import StaticModels, { ModelName } from '../interfaces/StaticModels';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
 
+type Query = Params['query'];
+
 class ServiceModel {
 
     /**
@@ -23,7 +25,7 @@ class ServiceModel {
     /**
      * Find a list of entries from the current service.
      */
-    public static _find(query: Params['query']): Promise<Paginated<ModelDocument>> {
+    public static _find(query: Query): Promise<Paginated<ModelDocument>> {
         return this.service.find({ query });
     }
 
@@ -37,14 +39,14 @@ class ServiceModel {
     /**
      * Find and format a list of entries from the current service.
      */
-    public static find<Self extends typeof ServiceModel = typeof this>(this: Self, query: Params['query']): PaginatedServiceModel<Self> {
+    public static find<Self extends typeof ServiceModel = typeof this>(this: Self, query: Query): PaginatedServiceModel<Self> {
         return new PaginatedServiceModel(this, query) as PaginatedServiceModel<Self>;
     }
 
     /**
      * Fetch a single entry from the current service.
      */
-    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Params['query']) {
+    public static async get<Self extends typeof ServiceModel>(this: Self, id: AsyncKey, query?: Query) {
         const result = await this.service.get(await id, query);
 
         if (!result) {

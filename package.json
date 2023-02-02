@@ -7,7 +7,7 @@
   "scripts": {
     "test": "npx jest",
     "build": "tsc",
-    "prepublishOnly": "npm rub build",
+    "prepublishOnly": "npm run build",
     "preversion": "tsc -noEmit",
     "postpublish": "git push && git push --tags"
   },

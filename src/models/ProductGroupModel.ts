@@ -68,7 +68,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
         return {
             count: get(this.entry, 'feedback.count', 0),
             percentage: get(this.entry, 'feedback.score', 0),
-            stars: get(this.entry, 'feedback.score') / 20,
+            stars: get(this.entry, 'feedback.score', 0) / 20,
         }
     }
 

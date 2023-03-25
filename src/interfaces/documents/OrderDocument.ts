@@ -120,7 +120,7 @@ export default interface OrderDocument extends ModelDocument {
     
     snapshot?: {
         checkout?: {
-            [key in PaymentGateway]: {
+            [key in PaymentGateway]?: {
                 updatedAt: Date,
                 data: any,
             }

@@ -169,6 +169,7 @@ class ServiceModel {
     public async _renew(data?: ModelDocument) {
         // @ts-ignore
         this._renewEntry(data || await this.constructor.service.get(this._id));
+        return this;
     }
 
     /**

@@ -117,6 +117,15 @@ export default interface OrderDocument extends ModelDocument {
          */
         purchase?: boolean;
     },
+    
+    snapshot?: {
+        checkout?: {
+            [key in PaymentGateway]: {
+                updatedAt: Date,
+                data: any,
+            }
+        }
+    }
 
     /**
      * Payment method used to pay for this order.

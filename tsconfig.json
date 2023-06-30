@@ -1,21 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "module": "commonjs",
+    "rootDir": "./src",
     "outDir": "./dist",
-
-    "strict": true,
-    "composite": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-
-    "inlineSourceMap": false,
-    "inlineSources": false
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*"
-  ],
   "exclude": [
-    "tests/**/*"
+    "tests",
+    "jest.config.ts",
   ]
 }

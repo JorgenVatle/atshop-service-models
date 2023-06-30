@@ -1,7 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import OrderFeedbackDocument from '../interfaces/OrderFeedbackDocument';
-import OrderModel from './OrderModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import OrderFeedbackDocument from '../interfaces/documents/OrderFeedbackDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class OrderReplacementModel extends ServiceModel {
 
@@ -14,7 +13,7 @@ class OrderReplacementModel extends ServiceModel {
      * A replacement belongs to an order.
      */
     public get order() {
-        return this.belongsTo<typeof OrderModel>('OrderModel', this.orderId);
+        return this.belongsTo('OrderModel', this.orderId);
     }
 
 }

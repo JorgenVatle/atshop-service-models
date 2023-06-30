@@ -1,6 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import CustomerBlacklistDocument from '../interfaces/CustomerBlacklistDocument';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import CustomerBlacklistDocument from '../interfaces/documents/CustomerBlacklistDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class CustomerBlacklistModel extends ServiceModel {
 

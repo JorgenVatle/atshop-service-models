@@ -1,13 +1,13 @@
 import { Paginated, Params } from '@feathersjs/feathers';
-import ServiceModel from './ServiceModel';
+import ServiceModelStatic, { ModelDocumentType, ModelInstance } from '../interfaces/ServiceModelStatic';
 import { NotFound } from '@feathersjs/errors';
 
-export default class PaginatedServiceModel<T extends typeof ServiceModel> {
+export default class PaginatedServiceModel<Model extends ServiceModelStatic> {
 
     /**
      * Model to be paginated
      */
-    private readonly model: T;
+    private readonly model: Model;
 
     /**
      * Service query.
@@ -17,7 +17,7 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
     /**
      * Cached pagination result.
      */
-    private _result: Paginated<InstanceType<T>> = { total: -1, limit: -1,  skip: -1, data: [] };
+    private _result: PaginatedModels<Model> = { total: -1, limit: -1,  skip: -1, data: [] };
 
     /**
      * Paginated model constructor.
@@ -25,7 +25,7 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
      * @param model
      * @param query
      */
-    constructor(model: T, query: Params['query']) {
+    constructor(model: Model, query: Params['query']) {
         this.model = model;
         this.query = query;
     }
@@ -35,12 +35,11 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
      *
      * @param result
      */
-    private formatResult(result: Paginated<any>): Paginated<InstanceType<T>> {
+    private formatResult(result: PaginatedDocuments<Model>): PaginatedModels<Model> {
         return {
             ...result,
-            // @ts-ignore
             data: result.data.map((document: any) => {
-                return new this.model(document);
+                return new this.model(document) as ModelInstance<Model>;
             }),
         }
     }
@@ -61,8 +60,11 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
     /**
      * Fire a raw FeathersJS fetch request to the current model.
      */
-    public async fetchRaw(query: Params['query'] = {}): Promise<Paginated<InstanceType<T>['entry']>> {
-        return await this.model._find({ ...query, ...this.query });
+    public async fetchRaw(query: Params['query'] = {}) {
+        return await this.model._find({
+            ...query,
+            ...this.query
+        });
     }
 
     /**
@@ -70,7 +72,7 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
      *
      * @param query
      */
-    public async fetchOne(query: Params['query'] = {}): Promise<InstanceType<T>> {
+    public async fetchOne(query: Params['query'] = {}) {
         const result = await this.fetch(query);
 
         if (result.data.length) {
@@ -87,8 +89,8 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
      *
      * @param query
      */
-    public find(query?: Params['query']) {
-        return new PaginatedServiceModel<T>(this.model, { ...query, ...this.query, });
+    public find(query?: Params['query']): PaginatedServiceModel<Model> {
+        return new PaginatedServiceModel(this.model, { ...query, ...this.query, });
     }
 
     /**
@@ -126,3 +128,6 @@ export default class PaginatedServiceModel<T extends typeof ServiceModel> {
     }
 
 }
+
+type PaginatedDocuments<Model extends ServiceModelStatic> = Paginated<ModelDocumentType<Model>>
+type PaginatedModels<Model extends ServiceModelStatic> = Paginated<ModelInstance<Model>>;

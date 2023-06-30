@@ -1,6 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import { UserDocument } from '../interfaces/UserDocument';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { UserDocument } from '../interfaces/documents/UserDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class UserModel extends ServiceModel {
 

@@ -1,6 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import GatewayDocument, { GatewayBaseDocument, HumanGatewayName, PaymentGateway } from '../interfaces/GatewayDocument';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import GatewayDocument, { GatewayBaseDocument, HumanGatewayName, PaymentGateway } from '../interfaces/documents/GatewayDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import { startCase } from 'lodash';
 
 class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {

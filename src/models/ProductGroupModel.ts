@@ -1,17 +1,17 @@
 import { Paginated } from '@feathersjs/feathers';
 import { get } from 'lodash';
-import ProductDocument from '../interfaces/ProductDocument';
+import ProductDocument from '../interfaces/documents/ProductDocument';
 import { SupplementalRelationalData } from '../utility/SupplementalRelationalData';
 import { Omit } from '../utility/TS';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
 import ServiceModel from '../providers/ServiceModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
-import ProductGroupDocument from '../interfaces/ProductGroupDocument';
+import ProductGroupDocument from '../interfaces/documents/ProductGroupDocument';
 import ProductModel from './ProductModel';
 import Dinero from 'dinero.js';
 import { CategoryModel } from '../index';
 import ShopModel from './ShopModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class ProductGroupModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -24,21 +24,21 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
      * A product group belongs to many products.
      */
     public get products() {
-        return this.belongsToMany<typeof ProductModel>('ProductModel', this.productIds);
+        return this.belongsToMany('ProductModel', this.productIds);
     }
 
     /**
      * A product group belongs to a category.
      */
     public get category() {
-        return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
+        return this.belongsTo('CategoryModel', this.entry.category);
     }
 
     /**
      * A product group belongs to a shop.
      */
     public get shop() {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
+        return this.belongsTo('ShopModel', this.entry.shopId);
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductGroupModel extends ServiceModel implements FeedbackSummary, Product
         return {
             count: get(this.entry, 'feedback.count', 0),
             percentage: get(this.entry, 'feedback.score', 0),
-            stars: get(this.entry, 'feedback.score') / 20,
+            stars: get(this.entry, 'feedback.score', 0) / 20,
         }
     }
 

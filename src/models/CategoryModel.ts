@@ -1,7 +1,7 @@
 import ServiceModel from '../providers/ServiceModel';
-import CategoryDocument from '../interfaces/CategoryDocument';
+import CategoryDocument from '../interfaces/documents/CategoryDocument';
 import ShopModel from './ShopModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 
 class CategoryModel extends ServiceModel {
 
@@ -13,8 +13,8 @@ class CategoryModel extends ServiceModel {
     /**
      * A category belongs to a shop.
      */
-    public get shop(): Promise<ShopModel> {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.shopId);
+    public get shop() {
+        return this.belongsTo('ShopModel', this.shopId);
     }
 
     /**

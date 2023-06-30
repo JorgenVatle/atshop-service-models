@@ -1,7 +1,7 @@
-export type CurrencyCode<Extras extends string = never> = 'USD' | 'EUR' | 'GBP' | Extras;
-
-export default [
+const CurrencyCodes = [
     'USD',
     'EUR',
     'GBP',
-] as CurrencyCode[];
+] as const;
+
+export type CurrencyCode = typeof CurrencyCodes[number];

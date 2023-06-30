@@ -1,17 +1,13 @@
 import Dinero from 'dinero.js';
 import { get } from 'lodash';
 import EscapeRegex from 'escape-string-regexp';
-import ProductDocument from '../interfaces/ProductDocument';
+import ProductDocument from '../interfaces/documents/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
-import ShopModel from './ShopModel';
-import ProductStockModel from './ProductStockModel';
 import { Omit } from '../utility/TS';
-import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import FeedbackSummary from '../interfaces/FeedbackSummary';
-import CategoryModel from './CategoryModel';
 import { ProductInterface } from '../interfaces/ProductInterface';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
-import { PaymentGateway } from '../interfaces/GatewayDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import { PaymentGateway } from '../interfaces/documents/GatewayDocument';
 
 class ProductModel extends ServiceModel implements FeedbackSummary, ProductInterface {
 
@@ -30,7 +26,7 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
     /**
      * A product has many stock entries.
      */
-    public stock(): PaginatedServiceModel<typeof ProductStockModel> {
+    public stock() {
         return this.hasMany('ProductStockModel', 'productId', this.entry._id);
     }
 
@@ -58,15 +54,15 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
     /**
      * A product belongs to a shop.
      */
-    public get shop(): Promise<ShopModel> {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.entry.shopId);
+    public get shop() {
+        return this.belongsTo('ShopModel', this.entry.shopId);
     }
 
     /**
      * A product can belong to a category.
      */
     public get category() {
-        return this.belongsTo<typeof CategoryModel>('CategoryModel', this.entry.category);
+        return this.belongsTo('CategoryModel', this.entry.category);
     }
 
     /**

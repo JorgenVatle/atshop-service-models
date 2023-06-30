@@ -1,6 +1,6 @@
 import Gravatar from 'gravatar';
 import ServiceModel from '../providers/ServiceModel';
-import OrderDocument from '../interfaces/OrderDocument';
+import OrderDocument from '../interfaces/documents/OrderDocument';
 import { CurrencyCode } from '../utility/AvailableCurrencies';
 import ShopModel from './ShopModel';
 import Dinero from 'dinero.js';
@@ -9,9 +9,8 @@ import ProductModel from './ProductModel';
 import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
 import { Omit } from '../utility/TS';
-import PaginatedServiceModel from '../providers/PaginatedServiceModel';
 import OrderFeedbackModel from './OrderFeedbackModel';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import { GatewayModel } from '../index';
 import CouponModel from './CouponModel';
 import OrderURL from '../providers/OrderURL';
@@ -39,39 +38,39 @@ class OrderModel extends ServiceModel {
     /**
      * An order has many ordered items.
      */
-    public get items(): PaginatedServiceModel<typeof ProductStockModel> {
+    public get items() {
         return this.hasMany('ProductStockModel', 'orderId');
     }
 
     /**
      * An order belongs to a shop.
      */
-    public get shop(): Promise<ShopModel> {
-        return this.belongsTo<typeof ShopModel>('ShopModel', this.shopId);
+    public get shop() {
+        return this.belongsTo('ShopModel', this.shopId);
     }
 
     /**
      * An order belongs to a product.
      */
-    public get product(): Promise<ProductModel> {
-        return this.belongsTo<typeof ProductModel>('ProductModel', this.productId);
+    public get product() {
+        return this.belongsTo('ProductModel', this.productId);
     }
 
     /**
      * An order can have feedback.
      */
-    public get feedback(): Promise<OrderFeedbackModel> {
-        return this.hasOne<typeof OrderFeedbackModel>('OrderFeedbackModel', 'orderId')
+    public get feedback() {
+        return this.hasOne('OrderFeedbackModel', 'orderId')
     }
 
     /**
      * An order belongs to an IPN.
      */
-    public get ipn(): Promise<IpnModel> {
+    public get ipn() {
         if (!this.ipnId) {
             throw new Unprocessable(`Order #${this._id} does not yet have an attached IPN.`);
         }
-        return this.belongsTo<typeof IpnModel>('IpnModel', this.ipnId);
+        return this.belongsTo('IpnModel', this.ipnId);
     }
 
     /**
@@ -128,7 +127,7 @@ class OrderModel extends ServiceModel {
      * Currency of order.
      */
     public get currency(): Promise<CurrencyCode> {
-        return this.shop.then((shop: ShopModel) => {
+        return this.shop.then((shop) => {
             return shop.currency || 'USD';
         });
     }
@@ -278,7 +277,7 @@ class OrderModel extends ServiceModel {
         if (!this.couponId) {
             return null;
         }
-        return this.belongsTo<typeof CouponModel>('CouponModel', this.couponId);
+        return this.belongsTo('CouponModel', this.couponId);
     }
 
     /**

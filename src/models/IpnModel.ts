@@ -1,6 +1,6 @@
 import ServiceModel from '../providers/ServiceModel';
-import IpnDocument from '../interfaces/IpnDocument';
-import { ModelTimestamps } from '../interfaces/ModelDocument';
+import IpnDocument from '../interfaces/documents/IpnDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import GatewayModel from './GatewayModel';
 
 class IpnModel extends ServiceModel {

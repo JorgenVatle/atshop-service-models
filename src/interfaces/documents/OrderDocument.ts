@@ -1,7 +1,7 @@
 import ModelDocument from './ModelDocument';
-import { CurrencyCode } from '../utility/AvailableCurrencies';
+import { CurrencyCode } from '../../utility/AvailableCurrencies';
 import { PaymentGateway } from './GatewayDocument';
-import { OrderLinkType } from '../providers/OrderURL';
+import { OrderLinkType } from '../../providers/OrderURL';
 
 export interface EmailStatus {
     sent: boolean;
@@ -117,6 +117,15 @@ export default interface OrderDocument extends ModelDocument {
          */
         purchase?: boolean;
     },
+    
+    snapshot?: {
+        checkout?: {
+            [key in PaymentGateway]?: {
+                updatedAt: Date,
+                data: any,
+            }
+        }
+    }
 
     /**
      * Payment method used to pay for this order.

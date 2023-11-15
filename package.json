@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
-    "test": "npx jest",
+    "test": "npx vitest",
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "preversion": "tsc -noEmit",

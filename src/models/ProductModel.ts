@@ -1,6 +1,5 @@
 import Dinero from 'dinero.js';
-import { get } from 'lodash';
-import EscapeRegex from 'escape-string-regexp';
+import { escapeRegExp, get } from 'lodash';
 import ProductDocument from '../interfaces/documents/ProductDocument';
 import ServiceModel from '../providers/ServiceModel';
 import { Omit } from '../utility/TS';
@@ -124,7 +123,7 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
      */
     static buildSearch(search: string) {
         const regex = {
-            $regex: new RegExp(`${EscapeRegex(search)}`, 'i')
+            $regex: new RegExp(`${escapeRegExp(search)}`, 'i')
         };
 
         return {

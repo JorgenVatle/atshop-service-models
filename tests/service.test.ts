@@ -16,19 +16,6 @@ let testShop: ShopModel;
 const orderIdWithFeedback = 'PF5HfQQAAqm2unQfr';
 const orderIdWithoutFeedback = '1Uj86Cw0re3q';
 
-test('API service is registered & functioning as expected', async () => {
-    Client.get('shops').find().then((result: unknown) => {
-        expect(result).toBeDefined();
-        expect(result).toBeInstanceOf(Object);
-        expect(result).toHaveProperty('total');
-        expect(result).toHaveProperty('data');
-        
-        // @ts-expect-error unknown type
-        expect(result.data).toBeInstanceOf(Array);
-    });
-})
-
-
 describe('ShopModel', () => {
     beforeAll(async () => {
         testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')

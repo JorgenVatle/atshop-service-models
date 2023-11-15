@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "commonjs",
-    "rootDir": "./src",
+    "rootDirs": ["./src", "./tests"],
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -10,4 +10,5 @@
     "noUncheckedIndexedAccess": true,
     "skipLibCheck": true
   },
+  "exclude": ["tests"]
 }

@@ -7,10 +7,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "tests",
-    "jest.config.ts",
-  ]
 }

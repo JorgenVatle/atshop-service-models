@@ -63,6 +63,7 @@ export interface OrderEventDataFields {
     order_status_pending: {
         gateway: PaymentGateway;
         checkoutId?: string;
+        transactionLink?: string;
     }
     order_status_discarded: {
         userId: string;

@@ -8,7 +8,8 @@
     "test": "npx vitest",
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "preversion": "tsc -noEmit",
+    "clean:build": "rm -rf ./dist",
+    "preversion": "npm run clean:build && tsc --noEmit",
     "postpublish": "git push && git push --tags"
   },
   "files": [

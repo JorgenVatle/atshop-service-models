@@ -6,10 +6,10 @@
   "types": "src/index.ts",
   "scripts": {
     "test": "npx vitest",
-    "build": "tsup src/index.ts --sourcemap --format esm,cjs",
+    "build": "npm run clean:build && tsup src/index.ts --sourcemap --format esm,cjs",
     "prepublishOnly": "npm run build",
     "clean:build": "rm -rf ./dist",
-    "preversion": "npm run clean:build && tsc --noEmit",
+    "preversion": "tsc --noEmit",
     "postpublish": "git push && git push --tags"
   },
   "files": [

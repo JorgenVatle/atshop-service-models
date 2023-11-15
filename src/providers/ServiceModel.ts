@@ -5,6 +5,7 @@ import ServiceModelStatic from '../interfaces/ServiceModelStatic';
 import StaticModels, { ModelName } from '../interfaces/StaticModels';
 import PaginatedServiceModel from './PaginatedServiceModel';
 import { App } from '../utility/Service';
+import * as Models from '../models';
 
 type Query = Params['query'];
 
@@ -255,15 +256,13 @@ class ServiceModel {
      * Fetch a model by name.
      */
     private getModel<Name extends ModelName>(modelName: Name): ServiceModelStatic<InstanceType<StaticModels[Name]>> {
-        const serviceModel = this._App.get(`atshop-service-models.model.${modelName}`);
-        if (!serviceModel) {
-            try {
-                return require(`../models/${modelName}`).default;
-            } catch (error: any) {
-                throw new Error(`Could not find model "${modelName}": ${error.message}`);
-            }
+        const model = this._App.get(`atshop-service-models.model.${modelName}`) || Models[modelName];
+        if (!model) {
+            console.warn(`${modelName} is not an available model! Available models are: ${Object.keys(Models)}`);
+            throw new Error(`[ServiceModel] Could not locate model "${modelName}"!`)
         }
-        return serviceModel;
+        
+        return model;
     }
 }
 

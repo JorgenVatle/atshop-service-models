@@ -7,7 +7,7 @@ import CategoryModel from '../src/models/CategoryModel';
 import Factory from 'feathers-factory';
 import OrderModel from '../src/models/OrderModel';
 
-import { beforeAll, test, describe, expect } from 'vitest';
+import { beforeAll, test, describe, expect, it } from 'vitest';
 
 /**
  * Always available sandbox test shop.

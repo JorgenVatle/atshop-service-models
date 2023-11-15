@@ -255,7 +255,15 @@ class ServiceModel {
      * Fetch a model by name.
      */
     private getModel<Name extends ModelName>(modelName: Name): ServiceModelStatic<InstanceType<StaticModels[Name]>> {
-        return this._App.get(`atshop-service-models.model.${modelName}`) || require(`../models/${modelName}`).default;
+        const serviceModel = this._App.get(`atshop-service-models.model.${modelName}`);
+        if (!serviceModel) {
+            try {
+                return require(`../models/${modelName}`).default;
+            } catch (error: any) {
+                throw new Error(`Could not find model "${modelName}": ${error.message}`);
+            }
+        }
+        return serviceModel;
     }
 }
 

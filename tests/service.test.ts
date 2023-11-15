@@ -16,30 +16,31 @@ let testShop: ShopModel;
 const orderIdWithFeedback = 'PF5HfQQAAqm2unQfr';
 const orderIdWithoutFeedback = '1Uj86Cw0re3q';
 
-beforeAll(async () => {
-    testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
-});
-
-test('Can override service models', async () => {
-    class ProductModelOverride extends ProductModel {
-        customMethod() {
-            return true;
-        }
-    }
-
-    Client.configure(ATShopServiceModels({
-        models: {
-            ProductModel: ProductModelOverride,
-        }
-    }));
-
-    const testProduct = <ProductModelOverride>await testShop.products.fetchOne();
-
-    expect(testProduct).toBeInstanceOf(ProductModelOverride);
-    expect(testProduct.customMethod()).toBe(true);
-});
 
 describe('ShopModel', () => {
+    beforeAll(async () => {
+        testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
+    });
+    
+    test('Can be extended by another service model', async () => {
+        class ProductModelOverride extends ProductModel {
+            customMethod() {
+                return true;
+            }
+        }
+        
+        Client.configure(ATShopServiceModels({
+            models: {
+                ProductModel: ProductModelOverride,
+            }
+        }));
+        
+        const testProduct = <ProductModelOverride>await testShop.products.fetchOne();
+        
+        expect(testProduct).toBeInstanceOf(ProductModelOverride);
+        expect(testProduct.customMethod()).toBe(true);
+    });
+    
     test('can get() a shop by ID', async () => {
         await expect(ShopModel.get(testShop._id)).resolves.toBeDefined();
     });

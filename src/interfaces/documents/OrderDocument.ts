@@ -136,6 +136,12 @@ export default interface OrderDocument extends ModelDocument {
      * ID of coupon code used with this order.
      */
     couponId?: string;
+    
+    /**
+     * Direct link to the external transaction for this order.
+     * (e.g. PayPal receipt, Coinbase Commerce charge, etc.)
+     */
+    transactionLink?: string;
 
     /**
      * Transactional email statuses for this order.

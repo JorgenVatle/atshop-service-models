@@ -5,8 +5,9 @@ import { Forbidden, NotFound } from '@feathersjs/errors';
 import { ATShopServiceModels } from '../src';
 import CategoryModel from '../src/models/CategoryModel';
 import Factory from 'feathers-factory';
-import expect from 'expect';
 import OrderModel from '../src/models/OrderModel';
+
+import { beforeAll, test, describe, expect } from 'vitest';
 
 /**
  * Always available sandbox test shop.
@@ -15,7 +16,7 @@ let testShop: ShopModel;
 const orderIdWithFeedback = 'PF5HfQQAAqm2unQfr';
 const orderIdWithoutFeedback = '1Uj86Cw0re3q';
 
-before(async () => {
+beforeAll(async () => {
     testShop = await ShopModel.get('ZBAWZE4LzB4RoguGY')
 });
 

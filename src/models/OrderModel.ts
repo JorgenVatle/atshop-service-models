@@ -1,19 +1,13 @@
-import Gravatar from 'gravatar';
-import ServiceModel from '../providers/ServiceModel';
-import OrderDocument from '../interfaces/documents/OrderDocument';
-import { CurrencyCode } from '../utility/AvailableCurrencies';
-import ShopModel from './ShopModel';
-import Dinero from 'dinero.js';
-import ProductStockModel from './ProductStockModel';
-import ProductModel from './ProductModel';
-import IpnModel from './IpnModel';
 import { NotFound, Unprocessable } from '@feathersjs/errors';
-import { Omit } from '../utility/TS';
-import OrderFeedbackModel from './OrderFeedbackModel';
-import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import Dinero from 'dinero.js';
+import Gravatar from 'gravatar';
 import { GatewayModel } from '../index';
-import CouponModel from './CouponModel';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import OrderDocument from '../interfaces/documents/OrderDocument';
 import OrderURL from '../providers/OrderURL';
+import ServiceModel from '../providers/ServiceModel';
+import { CurrencyCode } from '../utility/AvailableCurrencies';
+import { Omit } from '../utility/TS';
 
 class OrderModel extends ServiceModel {
 

@@ -36,11 +36,22 @@ export default class PaginatedServiceModel<Model extends ServiceModelStatic> {
      * @param result
      */
     private formatResult(result: PaginatedDocuments<Model>): PaginatedModels<Model> {
+        const data = (result?.data || result).map((document: any) => {
+            return new this.model(document) as ModelInstance<Model>;
+        });
+        
+        if (Array.isArray(result)) {
+            return {
+                total: result.length,
+                limit: 0,
+                skip: 0,
+                data,
+            }
+        }
+        
         return {
             ...result,
-            data: result.data.map((document: any) => {
-                return new this.model(document) as ModelInstance<Model>;
-            }),
+            data,
         }
     }
 

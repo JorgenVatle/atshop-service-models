@@ -122,16 +122,15 @@ class ProductModel extends ServiceModel implements FeedbackSummary, ProductInter
      * Build a search query for a product using the given string.
      */
     static buildSearch(search: string) {
-        const regex = {
-            $regex: new RegExp(`${escapeRegExp(search)}`, 'i')
-        };
+        const fuzzy = new RegExp(`${escapeRegExp(search)}`, 'i');
+        const anchored = new RegExp(`^${escapeRegExp(search)}`, 'i');
 
         return {
             $or: [
-                { _id: regex, },
-                { name: regex },
-                { description: regex },
-                { productIds: regex, },
+                { _id: { $regex: anchored }, },
+                { name: { regex: fuzzy } },
+                { description: { regex: fuzzy } },
+                { productIds: { regex: anchored }, },
             ]
         }
     }

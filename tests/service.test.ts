@@ -73,7 +73,8 @@ describe('ShopModel', () => {
 
     it('can build URLs using custom domains', async () => {
         const myShop = await ShopModel.get('ZBAWZE4LzB4RoguGY');
-        myShop.entry.customDomain = 'example.com';
+        myShop.customDomain = 'example.com';
+        myShop.enforceCustomDomain = true;
 
         expect(myShop.urlTo('/test')).toEqual('https://example.com/test');
         expect(myShop.urlTo('/test', true)).toEqual('https://example.com/test');

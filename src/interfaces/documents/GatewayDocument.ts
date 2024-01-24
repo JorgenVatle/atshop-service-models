@@ -1,4 +1,3 @@
-import { CryptoPaymentsGatewayConfig } from '../../../../../src/providers/gateways/crypto-payments/CryptoPayments.gateway';
 import ModelDocument from './ModelDocument';
 
 /**
@@ -59,6 +58,13 @@ export enum HumanGatewayName {
     'authorize.net' = 'Authorize.net',
     'paydash' = 'PayDash',
     'crypto-payments' = 'Crypto Payments',
+}
+
+export type CryptoCurrency =
+    | 'btc' | 'ltc' | 'eth' | 'usdc';
+
+export interface CryptoPaymentsGatewayConfig {
+    addresses: Record<CryptoCurrency, string>
 }
 
 

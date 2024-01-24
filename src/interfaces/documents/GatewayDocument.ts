@@ -1,4 +1,4 @@
-import { CryptoPaymentsGatewayConfig } from '../../../../../src/providers/gateways/CryptoPaymentsGateway';
+import { CryptoPaymentsGatewayConfig } from '../../../../../src/providers/gateways/crypto-payments/CryptoPaymentsGateway';
 import ModelDocument from './ModelDocument';
 
 /**

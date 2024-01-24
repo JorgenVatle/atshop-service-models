@@ -110,7 +110,8 @@ export interface PaymentGatewayConfigurations {
     }
     paydash: {
         apiKey: string;
-    }
+    },
+    'non-implemented-gateway': unknown;
 }
 
 export default GatewayDocument;

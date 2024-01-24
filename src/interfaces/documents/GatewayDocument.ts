@@ -1,3 +1,4 @@
+import { CryptoPaymentsGatewayConfig } from '../../../../../src/providers/gateways/CryptoPaymentsGateway';
 import ModelDocument from './ModelDocument';
 
 /**
@@ -57,6 +58,7 @@ export enum HumanGatewayName {
     'flutterwave' = 'FlutterWave',
     'authorize.net' = 'Authorize.net',
     'paydash' = 'PayDash',
+    'crypto-payments' = 'Crypto Payments',
 }
 
 
@@ -87,6 +89,7 @@ export interface PaymentGatewayConfigurations {
         secret: string;
         cashCode: string;
     }
+    'crypto-payments': CryptoPaymentsGatewayConfig
     stripe: {
         publishableKey: string;
         secretKey: string;

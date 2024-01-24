@@ -89,7 +89,6 @@ export interface PaymentGatewayConfigurations {
         secret: string;
         cashCode: string;
     }
-    'crypto-payments': CryptoPaymentsGatewayConfig
     stripe: {
         publishableKey: string;
         secretKey: string;
@@ -111,6 +110,7 @@ export interface PaymentGatewayConfigurations {
     paydash: {
         apiKey: string;
     },
+    'crypto-payments': CryptoPaymentsGatewayConfig
     'non-implemented-gateway': unknown;
 }
 

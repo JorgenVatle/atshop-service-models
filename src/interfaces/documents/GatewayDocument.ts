@@ -63,11 +63,6 @@ export enum HumanGatewayName {
 export type CryptoCurrency =
     | 'btc' | 'ltc' | 'eth' | 'usdc';
 
-export interface CryptoPaymentsGatewayConfig {
-    addresses: Record<CryptoCurrency, string>
-}
-
-
 /**
  * All available payment gateways and their respective configurations.
  */
@@ -116,7 +111,7 @@ export interface PaymentGatewayConfigurations {
     paydash: {
         apiKey: string;
     },
-    'crypto-payments': CryptoPaymentsGatewayConfig
+    'crypto-payments': Record<CryptoCurrency, string>
     'non-implemented-gateway': unknown;
 }
 

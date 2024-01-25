@@ -33,8 +33,13 @@ class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
         if (!name) {
             return 'N/A';
         }
+        
+        if (name in HumanGatewayName) {
+            // @ts-ignore
+            return HumanGatewayName[name]
+        }
 
-        return HumanGatewayName[name] || startCase(name);
+        return startCase(name);
     }
 
 }

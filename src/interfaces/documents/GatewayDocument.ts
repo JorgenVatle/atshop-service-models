@@ -111,7 +111,10 @@ export interface PaymentGatewayConfigurations {
     paydash: {
         apiKey: string;
     },
-    'crypto-payments': Record<CryptoCurrency, string>
+    'crypto-payments': Record<CryptoCurrency, string> & {
+        userId?: string;
+        payoutPreference?: string;
+    }
     'non-implemented-gateway': unknown;
 }
 

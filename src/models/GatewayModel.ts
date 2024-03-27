@@ -54,6 +54,9 @@ class GatewayModel<
         if ('version' in this.entry) {
             return this.entry.version === version;
         }
+        if (version === 'v2') {
+            return false;
+        }
         return true;
     }
     

@@ -21,12 +21,23 @@ class GatewayModel<
     /**
      * Gateway credentials.
      */
-    public get credentials(): GatewayConfiguration<GatewayName> {
+    public get credentials(): GatewayConfiguration<GatewayName, 'v2'> {
         if (this.is({ version: 'v2' })) {
             return this.entry.config;
         }
         
-        return omitGatewayV1RootFields(this.entry) as GatewayConfiguration<GatewayName, 'v1'>;
+        if (this.is({ version: 'v1', name: 'crypto-payments' })) {
+            const { userId, payoutPreference, ...addresses } = omitGatewayV1RootFields<GatewayDocument<'crypto-payments', 'v1'>>(this.entry);
+            const config: GatewayConfiguration<'crypto-payments', 'v2'> = {
+                addresses,
+                payoutPreference,
+                userId,
+            };
+            
+            return config as GatewayConfiguration<GatewayName, 'v2'>;
+        }
+        
+        return omitGatewayV1RootFields(this.entry) as GatewayConfiguration<GatewayName, 'v2'>;
     }
     
     public is<

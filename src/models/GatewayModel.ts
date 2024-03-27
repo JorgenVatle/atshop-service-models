@@ -26,10 +26,7 @@ class GatewayModel<
             return this.entry.config;
         }
         
-        // Gateway configuration (v1)
-        const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, multiplier, __v, ...credentials } = this.entry;
-
-        return credentials as GatewayConfiguration<GatewayName>;
+        return omitGatewayV1RootFields(this.entry) as GatewayConfiguration<GatewayName, 'v1'>;
     }
     
     public is<
@@ -70,6 +67,23 @@ class GatewayModel<
         
         return startCase(name);
     }
+}
+
+const GATEWAY_V1_ROOT_FIELDS = [
+    '__v',
+    '_id',
+    'name',
+    'shopId',
+    'enabled',
+    'multiplier',
+    'createdAt',
+    'updatedAt',
+    'deletedAt',
+] satisfies (keyof GatewayDocument | 'config')[];
+type GatewayV1RootField = typeof GATEWAY_V1_ROOT_FIELDS[number];
+
+function omitGatewayV1RootFields<TDocument extends GatewayDocument>(document: TDocument): Omit<TDocument, GatewayV1RootField> {
+    return omit(document, GATEWAY_V1_ROOT_FIELDS);
 }
 
 interface GatewayModel<GatewayName extends PaymentGateway> extends Omit<GatewayBaseDocument<GatewayName>, ModelTimestamps> {

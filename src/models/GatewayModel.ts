@@ -1,7 +1,8 @@
-import { startCase } from 'lodash';
+import { omit, startCase } from 'lodash';
 import GatewayDocument, {
     GatewayBaseDocument,
     type GatewayConfiguration,
+    type GatewayConfigVersion,
     GatewaySpecification,
     PaymentGateway,
 } from '../interfaces/documents/GatewayDocument';
@@ -21,7 +22,7 @@ class GatewayModel<
      * Gateway credentials.
      */
     public get credentials(): GatewayConfiguration<GatewayName> {
-        if (this.isConfigV2()) {
+        if (this.is({ version: 'v2' })) {
             return this.entry.config;
         }
         
@@ -31,14 +32,21 @@ class GatewayModel<
         return credentials as GatewayConfiguration<GatewayName>;
     }
     
-    protected isConfigV2(): this is { entry: { version: 'v2', config: GatewayConfiguration<GatewayName, 'v2'> } } {
-        if ('version' in this.entry) {
-            return this.entry.version === 'v2';
+    public is<
+        TVersion extends GatewayConfigVersion,
+        TName extends PaymentGateway = GatewayName
+    >({ version, name = this.name as any }: { version: TVersion, name?: TName }): this is { entry: GatewayDocument<TName, TVersion> } {
+        // @ts-expect-error The name entry prop is too wide for this to not emit an error.
+        if (this.entry.name !== name) {
+            return false;
         }
         if ('config' in this.entry) {
-            return true;
+            return version === 'v2';
         }
-        return false;
+        if ('version' in this.entry) {
+            return this.entry.version === version;
+        }
+        return true;
     }
     
     /**

@@ -174,11 +174,7 @@ export interface PaymentGatewayConfigurations<TVersion extends GatewayConfigVers
         apiHash: string;
         apiSecret: string;
     }
-    'crypto-payments': TVersion extends 'v1'
-                       ? CryptoPaymentsConfigV1
-                       : TVersion extends 'v2'
-                         ? CryptoPaymentsConfigV2
-                         : never;
+    'crypto-payments': CryptoPaymentsConfig<TVersion>;
     'non-implemented-gateway': unknown;
 }
 
@@ -187,9 +183,13 @@ type CryptoPaymentsConfigBase = {
     payoutPreference?: string;
 }
 
-type CryptoPaymentsConfigV1 = Record<CryptoCurrency, string> & CryptoPaymentsConfigBase;
-type CryptoPaymentsConfigV2 = CryptoPaymentsConfigBase & {
-    addresses: Record<CryptoCurrency, string>;
-}
+type CryptoPaymentsConfig<
+    TVersion extends GatewayConfigVersion = GatewayConfigVersion
+> = {
+    v1: CryptoPaymentsConfigBase & Record<CryptoCurrency, string>;
+    v2: CryptoPaymentsConfigBase & {
+        addresses: Record<Uppercase<CryptoCurrency>, string>;
+    }
+}[TVersion];
 
 export default GatewayDocument;

@@ -187,7 +187,7 @@ type CryptoPaymentsConfig<
 > = {
     v1: CryptoPaymentsConfigBase & Record<CryptoCurrency, string>;
     v2: CryptoPaymentsConfigBase & {
-        addresses: Record<Uppercase<CryptoCurrency>, string>;
+        addresses: Record<CryptoCurrency, string>;
     }
 }[TVersion];
 

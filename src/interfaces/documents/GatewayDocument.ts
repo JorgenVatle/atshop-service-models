@@ -33,12 +33,16 @@ export interface GatewayBaseDocument<T extends PaymentGateway> extends ModelDocu
 /**
  * All available configuration properties for the provided gateway.
  */
-export type GatewayConfiguration<GatewayName extends PaymentGateway> = PaymentGatewayConfigurations[GatewayName];
+export type GatewayConfiguration<
+    GatewayName extends PaymentGateway = PaymentGateway
+> = PaymentGatewayConfigurations[GatewayName];
 
 /**
  * Gateway document for the provided gateway.
  */
-export type GatewayDocument<GatewayName extends PaymentGateway> = GatewayBaseDocument<GatewayName> & GatewayConfiguration<GatewayName>
+export type GatewayDocument<
+    GatewayName extends PaymentGateway = PaymentGateway
+> = GatewayBaseDocument<GatewayName> & GatewayConfiguration<GatewayName>
 
 /**
  * Gateway names for human consumption.

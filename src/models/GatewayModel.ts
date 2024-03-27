@@ -8,7 +8,9 @@ import GatewayDocument, {
 import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import ServiceModel from '../providers/ServiceModel';
 
-class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
+class GatewayModel<
+    GatewayName extends PaymentGateway = PaymentGateway
+> extends ServiceModel {
 
     /**
      * Gateway Model service path.

@@ -135,6 +135,11 @@ export interface PaymentGatewayConfigurations {
     paydash: {
         apiKey: string;
     },
+    g2apay: {
+        merchantEmail: string;
+        apiHash: string;
+        apiSecret: string;
+    }
     'crypto-payments': CryptoPaymentsConfigV2 | CryptoPaymentsConfigV1;
     'non-implemented-gateway': unknown;
 }

@@ -115,11 +115,18 @@ export interface PaymentGatewayConfigurations {
     paydash: {
         apiKey: string;
     },
-    'crypto-payments': Record<CryptoCurrency, string> & {
-        userId?: string;
-        payoutPreference?: string;
-    }
+    'crypto-payments': CryptoPaymentsConfigV2 | CryptoPaymentsConfigV1;
     'non-implemented-gateway': unknown;
+}
+
+type CryptoPaymentsConfigBase = {
+    userId?: string;
+    payoutPreference?: string;
+}
+
+type CryptoPaymentsConfigV1 = Record<CryptoCurrency, string> & CryptoPaymentsConfigBase;
+type CryptoPaymentsConfigV2 = CryptoPaymentsConfigBase & {
+    addresses: Record<CryptoCurrency, string>;
 }
 
 export default GatewayDocument;

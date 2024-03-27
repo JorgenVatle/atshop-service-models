@@ -7,6 +7,7 @@
   "scripts": {
     "test": "npx vitest",
     "build": "npm run clean:build && tsup src/index.ts --sourcemap --format esm,cjs",
+    "lint": "tsc --noEmit",
     "prepublishOnly": "npm run build",
     "clean:build": "rm -rf ./dist",
     "preversion": "tsc --noEmit",

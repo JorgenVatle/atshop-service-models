@@ -2,7 +2,7 @@ import { startCase } from 'lodash';
 import GatewayDocument, {
     GatewayBaseDocument,
     type GatewayConfiguration,
-    HumanGatewayName,
+    GatewaySpecification,
     PaymentGateway,
 } from '../interfaces/documents/GatewayDocument';
 import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
@@ -42,19 +42,17 @@ class GatewayModel<
     /**
      * Humanize a payment gateway name.
      */
-    public static humanizeName(name: PaymentGateway | undefined) {
+    public static humanizeName(name?: PaymentGateway) {
         if (!name) {
             return 'N/A';
         }
         
-        if (name in HumanGatewayName) {
-            // @ts-ignore
-            return HumanGatewayName[name]
+        if (name in GatewaySpecification) {
+            return GatewaySpecification[name].humanName;
         }
-
+        
         return startCase(name);
     }
-
 }
 
 interface GatewayModel<GatewayName extends PaymentGateway> extends Omit<GatewayBaseDocument<GatewayName>, ModelTimestamps> {

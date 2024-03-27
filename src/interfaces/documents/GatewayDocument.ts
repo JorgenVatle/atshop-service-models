@@ -64,32 +64,15 @@ type GatewayDocumentV2<
     config: GatewayConfiguration<TName>;
 }
 
-/**
- * Gateway names for human consumption.
- * Used when rendering a gateway's name to a customer or administrator.
- */
-export enum HumanGatewayName {
-    'coinbase-commerce' = 'Coinbase Commerce',
-    'g2apay' = 'G2A PAY',
-    'coinpayments' = 'CoinPayments',
-    'paypal' = 'PayPal',
-    'xsolla' = 'Xsolla',
-    'lex-payments' = 'Lex Payments',
-    'cash-payments' = 'Cash Payments',
-    'stripe' = 'Stripe',
-    'yoomoney' = 'YooMoney',
-    'flutterwave' = 'FlutterWave',
-    'authorize.net' = 'Authorize.net',
-    'paydash' = 'PayDash',
-    'crypto-payments' = 'Crypto Payments',
-}
-
 export type CryptoCurrency =
     | 'btc' | 'ltc' | 'eth' | 'usdc';
 
 export const GatewaySpecification: {
     [key in PaymentGateway]: {
-        // Official name of the payment gateway. E.g. PayPal, Coinbase Commerce, G2A PAY
+        /**
+         * Official name of the payment gateway. E.g. PayPal, Coinbase Commerce, G2A PAY
+         * Used when rendering the gateway to admins and users when checking out or configuring the gateway.
+         */
         humanName: string;
     }
 } = {

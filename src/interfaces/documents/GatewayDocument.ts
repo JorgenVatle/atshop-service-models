@@ -34,35 +34,34 @@ export interface GatewayBaseDocument<TName extends PaymentGateway> extends Model
  * All available configuration properties for the provided gateway.
  */
 export type GatewayConfiguration<
-    GatewayName extends PaymentGateway = PaymentGateway
-> = PaymentGatewayConfigurations[GatewayName];
+    GatewayName extends PaymentGateway = PaymentGateway,
+    TVersion extends GatewayConfigVersion = GatewayConfigVersion,
+> = PaymentGatewayConfigurations<TVersion>[GatewayName];
 
 /**
  * Gateway document for the provided gateway.
  */
 export type GatewayDocument<
-    GatewayName extends PaymentGateway = PaymentGateway
-> = GatewayDocumentV1<GatewayName> | GatewayDocumentV2<GatewayName>;
+    TName extends PaymentGateway = PaymentGateway,
+    TVersion extends GatewayConfigVersion = GatewayConfigVersion,
+> = {
+    /**
+     * Legacy gateway configuration format
+     * All settings would be stored in a flat document.
+     */
+    v1: GatewayBaseDocument<TName> & GatewayConfiguration<TName, 'v1'>;
+    
+    /**
+     * New gateway configuration format
+     * Any gateway-specific settings are kept under a 'config' property
+     * Common settings like the price multiplier and shopId are stored at the root of the document.
+     */
+    v2: GatewayBaseDocument<TName> & {
+        version: 'v2',
+        config: GatewayConfiguration<TName, 'v2'>
+    }
+}[TVersion];
 
-/**
- * Legacy gateway configuration format
- * All settings would be stored in a flat document.
- */
-type GatewayDocumentV1<
-    TName extends PaymentGateway = PaymentGateway
-> = GatewayBaseDocument<TName> & GatewayConfiguration<TName>
-
-/**
- * New gateway configuration format
- * Any gateway-specific settings are kept under a 'config' property
- * Common settings like the price multiplier and shopId are stored at the root of the document.
- */
-type GatewayDocumentV2<
-    TName extends PaymentGateway = PaymentGateway
-> = GatewayBaseDocument<TName> & {
-    version: 2;
-    config: GatewayConfiguration<TName>;
-}
 
 export type GatewayConfigVersion = 'v1' | 'v2';
 export type CryptoCurrency =

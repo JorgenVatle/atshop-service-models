@@ -36,7 +36,7 @@
     "@types/gravatar": "^1.8.0",
     "@types/lodash": "^4.14.134",
     "@types/node": "^12.0.3",
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "dotenv-defaults": "^1.0.2",
     "faker": "^4.1.0",
     "feathers-factory": "^1.6.0",

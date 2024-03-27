@@ -8,11 +8,11 @@ export type PaymentGateway = keyof PaymentGatewayConfigurations;
 /**
  * Base model document for a gateway.
  */
-export interface GatewayBaseDocument<T extends PaymentGateway> extends ModelDocument {
+export interface GatewayBaseDocument<TName extends PaymentGateway> extends ModelDocument {
     /**
      * Name of the payment gateway.
      */
-    name: T;
+    name: TName;
 
     /**
      * Whether or not this payment gateway is enabled.

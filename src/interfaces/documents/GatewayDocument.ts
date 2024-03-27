@@ -87,7 +87,7 @@ export enum HumanGatewayName {
 export type CryptoCurrency =
     | 'btc' | 'ltc' | 'eth' | 'usdc';
 
-const GatewaySpecification: {
+export const GatewaySpecification: {
     [key in PaymentGateway]: {
         // Official name of the payment gateway. E.g. PayPal, Coinbase Commerce, G2A PAY
         humanName: string;

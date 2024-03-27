@@ -7,9 +7,6 @@ run-name: '🧪 Test | ${{ github.event.head_commit.message || github.event.pull
 on:
   push:
 
-  pull_request:
-    branches: [ "master" ]
-
 jobs:
   test:
     name: 'Test'

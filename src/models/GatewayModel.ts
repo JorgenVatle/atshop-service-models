@@ -1,7 +1,12 @@
-import ServiceModel from '../providers/ServiceModel';
-import GatewayDocument, { GatewayBaseDocument, HumanGatewayName, PaymentGateway } from '../interfaces/documents/GatewayDocument';
-import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
 import { startCase } from 'lodash';
+import GatewayDocument, {
+    GatewayBaseDocument,
+    type GatewayConfiguration,
+    HumanGatewayName,
+    PaymentGateway,
+} from '../interfaces/documents/GatewayDocument';
+import { ModelTimestamps } from '../interfaces/documents/ModelDocument';
+import ServiceModel from '../providers/ServiceModel';
 
 class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
 
@@ -13,10 +18,16 @@ class GatewayModel<GatewayName extends PaymentGateway> extends ServiceModel {
     /**
      * Gateway credentials.
      */
-    public get credentials() {
+    public get credentials(): GatewayConfiguration<GatewayName> {
+        // Gateway configuration (v2)
+        if ('config' in this.entry) {
+            return this.entry.config;
+        }
+        
+        // Gateway configuration (v1)
         const { enabled, name, _id, createdAt, updatedAt, deletedAt, shopId, multiplier, __v, ...credentials } = this.entry;
 
-        return credentials;
+        return credentials as GatewayConfiguration<GatewayName>;
     }
 
     /**

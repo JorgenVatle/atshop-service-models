@@ -117,6 +117,9 @@ export const GatewaySpecification: {
     },
     'non-implemented-gateway': {
         humanName: 'Non-implemented payment gateway',
+    },
+    'test': {
+        humanName: 'Test gateway'
     }
 }
 
@@ -175,6 +178,7 @@ export interface PaymentGatewayConfigurations<TVersion extends GatewayConfigVers
     }
     'crypto-payments': CryptoPaymentsConfig<TVersion>;
     'non-implemented-gateway': unknown;
+    test: unknown;
 }
 
 type CryptoPaymentsConfigBase = {

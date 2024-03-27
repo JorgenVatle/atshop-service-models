@@ -16,13 +16,12 @@ class GatewayModel<
      * Gateway Model service path.
      */
     public static readonly servicePath = '/shop/gateways';
-
+    
     /**
      * Gateway credentials.
      */
     public get credentials(): GatewayConfiguration<GatewayName> {
-        // Gateway configuration (v2)
-        if ('config' in this.entry) {
+        if (this.isConfigV2()) {
             return this.entry.config;
         }
         
@@ -31,7 +30,17 @@ class GatewayModel<
 
         return credentials as GatewayConfiguration<GatewayName>;
     }
-
+    
+    protected isConfigV2(): this is { entry: { version: 'v2', config: GatewayConfiguration<GatewayName, 'v2'> } } {
+        if ('version' in this.entry) {
+            return this.entry.version === 'v2';
+        }
+        if ('config' in this.entry) {
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * A gateway belongs to a shop.
      */

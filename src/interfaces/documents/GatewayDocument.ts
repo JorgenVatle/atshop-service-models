@@ -64,6 +64,7 @@ type GatewayDocumentV2<
     config: GatewayConfiguration<TName>;
 }
 
+export type GatewayConfigVersion = 'v1' | 'v2';
 export type CryptoCurrency =
     | 'btc' | 'ltc' | 'eth' | 'usdc';
 
@@ -123,7 +124,7 @@ export const GatewaySpecification: {
 /**
  * All available payment gateways and their respective configurations.
  */
-export interface PaymentGatewayConfigurations {
+export interface PaymentGatewayConfigurations<TVersion extends GatewayConfigVersion = GatewayConfigVersion> {
     xsolla: {
         merchantId: number;
         projectId: number;
@@ -173,7 +174,11 @@ export interface PaymentGatewayConfigurations {
         apiHash: string;
         apiSecret: string;
     }
-    'crypto-payments': CryptoPaymentsConfigV2 | CryptoPaymentsConfigV1;
+    'crypto-payments': TVersion extends 'v1'
+                       ? CryptoPaymentsConfigV1
+                       : TVersion extends 'v2'
+                         ? CryptoPaymentsConfigV2
+                         : never;
     'non-implemented-gateway': unknown;
 }
 

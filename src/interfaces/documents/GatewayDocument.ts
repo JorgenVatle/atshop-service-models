@@ -87,6 +87,56 @@ export enum HumanGatewayName {
 export type CryptoCurrency =
     | 'btc' | 'ltc' | 'eth' | 'usdc';
 
+const GatewaySpecification: {
+    [key in PaymentGateway]: {
+        // Official name of the payment gateway. E.g. PayPal, Coinbase Commerce, G2A PAY
+        humanName: string;
+    }
+} = {
+    'coinbase-commerce': {
+        humanName: 'Coinbase Commerce'
+    },
+    'g2apay': {
+        humanName: 'G2A PAY'
+    },
+    'coinpayments': {
+        humanName: 'CoinPayments'
+    },
+    'paypal': {
+        humanName: 'PayPal'
+    },
+    'xsolla': {
+        humanName: 'Xsolla'
+    },
+    'lex-payments': {
+        humanName: 'Lex Payments'
+    },
+    'cash-payments': {
+        humanName: 'Cash Payments'
+    },
+    'stripe': {
+        humanName: 'Stripe'
+    },
+    'yoomoney': {
+        humanName: 'YooMoney'
+    },
+    'flutterwave': {
+        humanName: 'FlutterWave'
+    },
+    'authorize.net': {
+        humanName: 'Authorize.net'
+    },
+    'paydash': {
+        humanName: 'PayDash'
+    },
+    'crypto-payments': {
+        humanName: 'Crypto Payments'
+    },
+    'non-implemented-gateway': {
+        humanName: 'Non-implemented payment gateway',
+    }
+}
+
 /**
  * All available payment gateways and their respective configurations.
  */

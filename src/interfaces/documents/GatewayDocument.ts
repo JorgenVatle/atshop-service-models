@@ -42,7 +42,27 @@ export type GatewayConfiguration<
  */
 export type GatewayDocument<
     GatewayName extends PaymentGateway = PaymentGateway
-> = GatewayBaseDocument<GatewayName> & GatewayConfiguration<GatewayName>
+> = GatewayDocumentV1<GatewayName> | GatewayDocumentV2<GatewayName>;
+
+/**
+ * Legacy gateway configuration format
+ * All settings would be stored in a flat document.
+ */
+type GatewayDocumentV1<
+    TName extends PaymentGateway = PaymentGateway
+> = GatewayBaseDocument<TName> & GatewayConfiguration<TName>
+
+/**
+ * New gateway configuration format
+ * Any gateway-specific settings are kept under a 'config' property
+ * Common settings like the price multiplier and shopId are stored at the root of the document.
+ */
+type GatewayDocumentV2<
+    TName extends PaymentGateway = PaymentGateway
+> = GatewayBaseDocument<TName> & {
+    version: 2;
+    config: GatewayConfiguration<TName>;
+}
 
 /**
  * Gateway names for human consumption.

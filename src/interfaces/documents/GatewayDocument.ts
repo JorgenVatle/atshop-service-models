@@ -182,7 +182,23 @@ export interface PaymentGatewayConfigurations<TVersion extends GatewayConfigVers
 }
 
 type CryptoPaymentsConfigBase = {
+    /**
+     * Merchant account user ID that is automatically
+     * created for you when configuring Crypto Payments
+     */
+    merchantId?: string;
+    
+    /**
+     * Merchant provided override for the merchant account ID.
+     * This lets you ensure payments are handled through a Crypto Payments
+     * account that you create/manage yourself.
+     */
     userId?: string;
+    
+    /**
+     * Whether funds should be paid out immediately, or held in a custody
+     * account until a manual withdrawal is requested.
+     */
     payoutPreference?: string;
 }
 

@@ -87,6 +87,7 @@ const GATEWAY_V1_ROOT_FIELDS = [
     '__v',
     '_id',
     'name',
+    'mode',
     'shopId',
     'enabled',
     'multiplier',

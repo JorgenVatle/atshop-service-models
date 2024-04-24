@@ -4,6 +4,9 @@ import ModelDocument from './ModelDocument';
  * Names of all available gateways.
  */
 export type PaymentGateway = keyof PaymentGatewayConfigurations;
+export type PaymentGatewayMode =
+    | 'production'  // Default mode - accepts only real payments.
+    | 'sandbox';    // Use for testing your payment config - accepts fake payments.
 
 /**
  * Base model document for a gateway.
@@ -34,7 +37,7 @@ export interface GatewayBaseDocument<TName extends PaymentGateway> extends Model
      * the gateway has been properly configured. Leaving the gateway in sandbox mode could potentially allow customers
      * to send fake payments for orders. Use with caution.
      */
-    mode?: 'production' | 'sandbox';
+    mode?: PaymentGatewayMode;
 }
 
 /**

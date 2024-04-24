@@ -13,6 +13,7 @@ class ServiceModel {
 
     /**
      * Model index signature.
+     * Todo: Replace this with a stricter signature type.
      */
     [s: string]: any;
 

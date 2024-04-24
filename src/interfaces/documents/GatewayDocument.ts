@@ -28,6 +28,13 @@ export interface GatewayBaseDocument<TName extends PaymentGateway> extends Model
      * ID of the shop these gateway settings belong to.
      */
     shopId: string;
+    
+    /**
+     * Set mode to 'sandbox' to test payments. Only some payment gateways support this. It is intended to test whether
+     * the gateway has been properly configured. Leaving the gateway in sandbox mode could potentially allow customers
+     * to send fake payments for orders. Use with caution.
+     */
+    mode?: 'production' | 'sandbox';
 }
 
 /**

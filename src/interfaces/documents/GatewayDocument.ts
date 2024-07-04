@@ -144,6 +144,8 @@ export interface PaymentGatewayConfigurations<TVersion extends GatewayConfigVers
     },
     paypal: {
         email: string;
+        clientId?: string;
+        clientSecret?: string;
     }
     coinpayments: {
         merchantId: string;
